@@ -11,12 +11,15 @@ import java.beans.PropertyVetoException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.border.CompoundBorder;
 
 //import java.awt.event.MouseListener;
 //import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class HomepageAllEvent extends JInternalFrame {
-	private JTable Alleventlist;
+	private JTable allevent;
 
 	/**
 	 * Launch the application.
@@ -46,7 +49,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		
 		setBounds(0, 0, 1350, 685);
-		setSize(1350, 668);
+		setSize(1344, 668);
 //		BasicInternalFrameUI ifui = ((javax.swing.plaf.BasicInternalFrameUI)this.getUI());
 //		for (MouseListener listener: ifui.getNorthPane().getMouseListeners()) {
 //			ifui.getNorthPane().removeMouseListener(listener);
@@ -78,30 +81,61 @@ public class HomepageAllEvent extends JInternalFrame {
 		lblNewLabel.setFont(new Font("FreeSans", Font.BOLD, 33));
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(5, 0, 625, 641);
+		panel_2.setBounds(0, 0, 630, 641);
 		getContentPane().add(panel_2);
-		Alleventlist = new JTable();
-		panel_2.add(Alleventlist);
-		Alleventlist.setShowGrid(false);
-		Alleventlist.setBackground(Color.LIGHT_GRAY);
-		Alleventlist.setFont(new Font("Lato Heavy", Font.BOLD, 18));
-		Alleventlist.setForeground(Color.WHITE);
-		Alleventlist.setModel(new DefaultTableModel(
+		panel_2.setLayout(null);
+		
+		
+
+		allevent = new JTable();
+		allevent.setSurrendersFocusOnKeystroke(true);
+		allevent.setShowHorizontalLines(false);
+		allevent.setBorder(new CompoundBorder(new LineBorder(new Color(0, 255, 0), 3), new LineBorder(new Color(255, 200, 0), 3)));
+		allevent.setModel(new DefaultTableModel(
 			new Object[][] {
-				{},
-				{},
-				{},
-				{},
-				{},
-				{},
-				{},
-				{},
-				{},
-				{},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
 			},
 			new String[] {
+				"Eid", "Event Name", "Start Date"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		allevent.getColumnModel().getColumn(1).setPreferredWidth(165);
+		allevent.getColumnModel().getColumn(2).setPreferredWidth(95);
+		allevent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		allevent.setBounds(53, 84, 418, 377);
+		
+		panel_2.add(allevent);
+		
+		JLabel lblEid = new JLabel("eid");
+		lblEid.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblEid.setBounds(66, 58, 70, 25);
+		panel_2.add(lblEid);
+		
+		JLabel lblName = new JLabel("Event Name");
+		lblName.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblName.setBounds(178, 58, 130, 25);
+		panel_2.add(lblName);
+		
+		JLabel lblStartDate = new JLabel("Start Date");
+		lblStartDate.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStartDate.setBounds(356, 58, 109, 25);
+		panel_2.add(lblStartDate);
 		
 
 		
