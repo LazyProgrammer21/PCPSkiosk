@@ -1,6 +1,5 @@
 package com.assignment.view.student;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
 
@@ -18,6 +17,10 @@ import javax.swing.JMenuBar;
 
 public class studentpage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchEvent;
 
