@@ -10,7 +10,12 @@ import java.awt.Toolkit;
 import java.awt.Window.Type;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+
+import com.assignment.view.student.stdRegistration;
+import com.assignment.view.student.studentpage;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
@@ -18,6 +23,11 @@ import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyVetoException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Mainpage extends JFrame {
 
@@ -95,6 +105,14 @@ public class Mainpage extends JFrame {
 		mainpanel.add(password);
 		
 		JLabel infolink = new JLabel("Are you a New Student? Click here for Registration.");
+		infolink.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				stdRegistration rg = new stdRegistration();
+				rg.setVisible(true);
+				
+			}
+		});
 		infolink.setBounds(203, 324, 383, 38);
 		mainpanel.add(infolink);
 		
@@ -103,6 +121,23 @@ public class Mainpage extends JFrame {
 		mainpanel.add(ForgetPasswordbtn);
 		
 		JButton Loginbtn = new JButton("Login");
+		Loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				studentpage page;
+				try {
+					
+					page = new studentpage();
+					page.setVisible(true);
+					
+					
+				} catch (PropertyVetoException e) {
+					JOptionPane.showMessageDialog(null, "Page not found.");
+					System.out.println("Page not found");
+				}
+				
+				
+			}
+		});
 		Loginbtn.setBounds(262, 287, 88, 25);
 		mainpanel.add(Loginbtn);
 		

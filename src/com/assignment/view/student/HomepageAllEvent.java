@@ -124,20 +124,19 @@ public class HomepageAllEvent extends JInternalFrame {
 		textArea_1.setRows(200);
 		textArea_1.setLineWrap(true);
 		textArea_1.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea_1.setBounds(216, 179, 261, 160);
+		textArea_1.setBounds(216, 179, 376, 160);
 		panel_1.add(textArea_1);
 		
-		JTextArea txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf = new JTextArea();
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setLineWrap(true);
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setTabSize(4);
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setRows(20);
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setText("fabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayf nasmfjasf asf kasd fhas dha fka fhas fjha sf asjf ash fhas jhas djh asdjha sjh asjgh j ashvjh fjh asdfj asdjf ajlsh akhsg ");
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setFont(new Font("Dialog", Font.PLAIN, 23));
-		txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf.setBounds(216, 348, 261, 68);
-		panel_1.add(txtrFabfabfabsfkjasfnkjasdnfkjasbdkfjbaskjfbaksjdbfkajdbskjabdjbaiufbakjfnakdsjnkajsbgasdbfaksmfayfNasmfjasfAsf);
+		JTextArea venueinfo = new JTextArea();
+		venueinfo.setLineWrap(true);
+		venueinfo.setTabSize(4);
+		venueinfo.setRows(20);
+		venueinfo.setFont(new Font("Dialog", Font.PLAIN, 23));
+		venueinfo.setBounds(216, 348, 261, 68);
+		panel_1.add(venueinfo);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(480, 179, 17, 160);
+		scrollBar.setBounds(591, 179, 17, 160);
 		panel_1.add(scrollBar);
 		
 		JScrollBar scrollBar_1 = new JScrollBar();
