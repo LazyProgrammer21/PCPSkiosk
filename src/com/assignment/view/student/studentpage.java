@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
+import java.awt.Font;
 
 public class studentpage extends JFrame {
 
@@ -22,7 +23,6 @@ public class studentpage extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField searchEvent;
 
 	/**
 	 * Launch the application.
@@ -57,26 +57,16 @@ public class studentpage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 64, 1350, 705);
 		desktopPane.setBackground(Color.LIGHT_GRAY);
-		desktopPane.setBounds(0, 90, 1350, 679);
 		HomepageAllEvent allevent = new HomepageAllEvent();
 		desktopPane.add(allevent).setVisible(true);
 		contentPane.add(desktopPane);
 		
-		searchEvent = new JTextField();
-		searchEvent.setBounds(450, 42, 308, 36);
-		contentPane.add(searchEvent);
-		searchEvent.setColumns(10);
-		
-		JButton btnSearch = new JButton("Search Event");
-		btnSearch.setBounds(770, 47, 126, 25);
-		contentPane.add(btnSearch);
-		btnSearch.setVerticalAlignment(SwingConstants.BOTTOM);
-		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1350, 52);
 		menuBar.setBorderPainted(false);
 		menuBar.setBackground(Color.GRAY);
-		menuBar.setBounds(0, 0, 1350, 38);
 		contentPane.add(menuBar);
 		
 		JComboBox<String> Eventcombobx = new JComboBox<String>();
@@ -97,31 +87,32 @@ public class studentpage extends JFrame {
 		Clubcombobx.addItem("Sports Club");
 		Clubcombobx.setSelectedItem("Select Club");
 		
-		JLabel collegedetail = new JLabel("    College Details            ");
-		menuBar.add(collegedetail);
-		collegedetail.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnCollegeDetail = new JButton("College Detail  ");
+		btnCollegeDetail.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnCollegeDetail);
 		
-		JLabel Personalization = new JLabel("Personalization           ");
-		menuBar.add(Personalization);
-		Personalization.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnNotices = new JButton("Notices  ");
+		btnNotices.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnNotices);
 		
-		JLabel Notice = new JLabel("Notice              ");
-		menuBar.add(Notice);
-		Notice.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnCourses = new JButton("Courses  ");
+		btnCourses.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnCourses);
 		
-		JLabel Routine = new JLabel("Routine Details    ");
-		menuBar.add(Routine);
-		Routine.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnPersonalization = new JButton("Personalization  ");
+		btnPersonalization.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnPersonalization);
 		
-		JLabel Courses = new JLabel("Courses           ");
-		menuBar.add(Courses);
-		Courses.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnRoutine = new JButton("Routine  ");
+		btnRoutine.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnRoutine);
 		
-		JLabel Feedback = new JLabel("Give Feedback       ");
-		menuBar.add(Feedback);
-		Feedback.setVerticalAlignment(SwingConstants.BOTTOM);
+		JButton btnNewButton = new JButton("Give Feedback  ");
+		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 14));
+		menuBar.add(btnNewButton);
 		
-		JButton Exitbtn = new JButton("Logout");
+		JButton Exitbtn = new JButton("Logout  ");
+		Exitbtn.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(Exitbtn);
 		Eventcombobx.addItem("All Event");
 		Eventcombobx.addItem("Upcomming Event");

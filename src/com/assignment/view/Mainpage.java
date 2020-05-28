@@ -2,25 +2,19 @@ package com.assignment.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
-
 import com.assignment.view.student.stdRegistration;
 import com.assignment.view.student.studentpage;
-
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -31,6 +25,10 @@ import java.awt.event.ActionEvent;
 
 public class Mainpage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField studentid;
 	private JPasswordField password;
