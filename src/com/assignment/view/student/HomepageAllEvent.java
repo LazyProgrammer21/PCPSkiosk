@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToolBar;
 
 //import java.awt.event.MouseListener;
 //import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -31,6 +32,7 @@ public class HomepageAllEvent extends JInternalFrame {
 	private JTable allevent;
 	private JTextField textField;
 	private boolean status = true;
+	private JTable statustable;
 	
 
 	/**
@@ -50,7 +52,8 @@ public class HomepageAllEvent extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(1080, 0, 260, 641);
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(1057, 0, 283, 641);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -75,7 +78,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
-		panel_1.setBounds(460, 0, 620, 641);
+		panel_1.setBounds(501, 0, 544, 641);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -85,50 +88,50 @@ public class HomepageAllEvent extends JInternalFrame {
 		lblNewLabel.setFont(new Font("FreeSans", Font.BOLD, 33));
 		
 		JLabel lblEventId = new JLabel("Event Id");
-		lblEventId.setBounds(100, 80, 70, 15);
+		lblEventId.setBounds(49, 81, 70, 15);
 		panel_1.add(lblEventId);
 		
 		JLabel lblEventName = new JLabel("Event Name");
-		lblEventName.setBounds(93, 133, 96, 26);
+		lblEventName.setBounds(42, 134, 96, 26);
 		panel_1.add(lblEventName);
 		
 		JLabel lblEventDescription = new JLabel("Event Description");
-		lblEventDescription.setBounds(74, 199, 129, 26);
+		lblEventDescription.setBounds(23, 200, 129, 26);
 		panel_1.add(lblEventDescription);
 		
 		JLabel lblVenue = new JLabel("Venue");
-		lblVenue.setBounds(100, 369, 70, 26);
+		lblVenue.setBounds(49, 370, 70, 26);
 		panel_1.add(lblVenue);
 		
 		JLabel lblStartDate_1 = new JLabel("Start Date");
-		lblStartDate_1.setBounds(74, 429, 129, 26);
+		lblStartDate_1.setBounds(23, 430, 129, 26);
 		panel_1.add(lblStartDate_1);
 		
 		JLabel lblEndDate = new JLabel("End Date");
-		lblEndDate.setBounds(74, 478, 129, 26);
+		lblEndDate.setBounds(23, 479, 129, 26);
 		panel_1.add(lblEndDate);
 		
 		JLabel lblOrganisedby = new JLabel("Organisedby");
-		lblOrganisedby.setBounds(74, 546, 129, 26);
+		lblOrganisedby.setBounds(23, 547, 129, 26);
 		panel_1.add(lblOrganisedby);
 		
 		JTextArea txtrSs = new JTextArea();
 		txtrSs.setFont(new Font("Dialog", Font.PLAIN, 23));
-		txtrSs.setBounds(216, 70, 364, 28);
+		txtrSs.setBounds(170, 66, 364, 28);
 		panel_1.add(txtrSs);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setRows(3);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea.setBounds(216, 120, 364, 47);
+		textArea.setBounds(170, 116, 364, 47);
 		panel_1.add(textArea);
 		
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setRows(200);
 		textArea_1.setLineWrap(true);
 		textArea_1.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea_1.setBounds(216, 179, 341, 160);
+		textArea_1.setBounds(170, 175, 341, 160);
 		panel_1.add(textArea_1);
 		
 		JTextArea venueinfo = new JTextArea();
@@ -136,40 +139,40 @@ public class HomepageAllEvent extends JInternalFrame {
 		venueinfo.setTabSize(4);
 		venueinfo.setRows(20);
 		venueinfo.setFont(new Font("Dialog", Font.PLAIN, 23));
-		venueinfo.setBounds(216, 348, 341, 68);
+		venueinfo.setBounds(170, 344, 341, 68);
 		panel_1.add(venueinfo);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(563, 179, 17, 160);
+		scrollBar.setBounds(517, 175, 17, 160);
 		panel_1.add(scrollBar);
 		
 		JScrollBar scrollBar_1 = new JScrollBar();
-		scrollBar_1.setBounds(563, 348, 17, 68);
+		scrollBar_1.setBounds(517, 344, 17, 68);
 		panel_1.add(scrollBar_1);
 		
 		JTextArea textArea_2 = new JTextArea();
 		textArea_2.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea_2.setBounds(216, 425, 364, 28);
+		textArea_2.setBounds(170, 421, 364, 28);
 		panel_1.add(textArea_2);
 		
 		JTextArea textArea_3 = new JTextArea();
 		textArea_3.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea_3.setBounds(216, 476, 364, 28);
+		textArea_3.setBounds(170, 472, 364, 28);
 		panel_1.add(textArea_3);
 		
 		JTextArea textArea_4 = new JTextArea();
 		textArea_4.setRows(200);
 		textArea_4.setFont(new Font("Dialog", Font.PLAIN, 23));
-		textArea_4.setBounds(216, 516, 341, 101);
+		textArea_4.setBounds(170, 512, 341, 101);
 		panel_1.add(textArea_4);
 		
 		JScrollBar scrollBar_2 = new JScrollBar();
-		scrollBar_2.setBounds(563, 511, 17, 106);
+		scrollBar_2.setBounds(517, 507, 17, 106);
 		panel_1.add(scrollBar_2);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.setBounds(0, 0, 456, 641);
+		panel_2.setBounds(12, 24, 477, 543);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -212,32 +215,32 @@ public class HomepageAllEvent extends JInternalFrame {
 		allevent.getColumnModel().getColumn(2).setResizable(false);
 		allevent.getColumnModel().getColumn(2).setPreferredWidth(95);
 		allevent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		allevent.setBounds(52, 219, 344, 231);
+		allevent.setBounds(12, 220, 344, 231);
 		
 		panel_2.add(allevent);
 		
 		JLabel lblEid = new JLabel("EID");
 		lblEid.setFont(new Font("Lato Black", Font.BOLD, 20));
-		lblEid.setBounds(52, 196, 70, 25);
+		lblEid.setBounds(12, 197, 70, 25);
 		panel_2.add(lblEid);
 		
 		JLabel lblName = new JLabel("Event Name");
 		lblName.setFont(new Font("Lato Black", Font.BOLD, 20));
-		lblName.setBounds(134, 196, 130, 25);
+		lblName.setBounds(94, 197, 130, 25);
 		panel_2.add(lblName);
 		
 		JLabel lblStartDate = new JLabel("Start Date");
 		lblStartDate.setFont(new Font("Lato Black", Font.BOLD, 20));
-		lblStartDate.setBounds(300, 192, 109, 33);
+		lblStartDate.setBounds(260, 193, 109, 33);
 		panel_2.add(lblStartDate);
 		
 		textField = new JTextField();
-		textField.setBounds(216, 116, 180, 33);
+		textField.setBounds(176, 117, 180, 33);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(305, 155, 91, 25);
+		btnSearch.setBounds(265, 156, 91, 25);
 		panel_2.add(btnSearch);
 		
 		JButton btnEdit = new JButton("Edit");
@@ -250,32 +253,36 @@ public class HomepageAllEvent extends JInternalFrame {
 				getStatusValue();
 			}
 		});
-		btnEdit.setBounds(52, 463, 99, 25);
+		btnEdit.setBounds(12, 464, 81, 25);
 		panel_2.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(163, 463, 99, 25);
+		btnDelete.setBounds(105, 464, 91, 25);
 		panel_2.add(btnDelete);
 		
 		JButton btnBook = new JButton("Book");
-		btnBook.setBounds(270, 499, 129, 25);
+		btnBook.setBounds(230, 500, 129, 25);
 		panel_2.add(btnBook);
 		
 		JButton btnCancelEvent = new JButton("Cancel event");
-		btnCancelEvent.setBounds(270, 536, 129, 25);
+		btnCancelEvent.setBounds(329, 464, 131, 25);
+		btnCancelEvent.setVisible(false);
 		panel_2.add(btnCancelEvent);
 		
 		JButton btnAddEvent = new JButton("Add event");
 		btnAddEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				e.setTitle("Add Event");
-				e.setVisible(true);
+				
+				
+				addEvent e1 = new addEvent(status);
+				e1.setTitle("Add Event");
+				e1.setVisible(true);
 				status=true;
 				getStatusValue();
 						
 			}
 		});
-		btnAddEvent.setBounds(270, 462, 129, 25);
+		btnAddEvent.setBounds(208, 463, 109, 25);
 		panel_2.add(btnAddEvent);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();		
@@ -285,8 +292,48 @@ public class HomepageAllEvent extends JInternalFrame {
 		comboBox.addItem("Socio-Cultural Club");
 		comboBox.addItem("Sports Club");
 		comboBox.setSelectedItem("Filter by Club");
-		comboBox.setBounds(52, 120, 137, 24);
+		comboBox.setBounds(12, 121, 137, 24);
 		panel_2.add(comboBox);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStatus.setBounds(374, 193, 70, 33);
+		lblStatus.setVisible(false);
+		panel_2.add(lblStatus);
+		
+		statustable = new JTable();
+		statustable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"Status"
+			}
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		statustable.getColumnModel().getColumn(0).setResizable(false);
+		statustable.setBounds(361, 220, 99, 231);
+		statustable.setVisible(false);
+		panel_2.add(statustable);
 		
 
 		

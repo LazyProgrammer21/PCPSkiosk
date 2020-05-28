@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import java.awt.Font;
+import java.awt.Insets;
 
 public class studentpage extends JFrame {
 
@@ -48,7 +49,7 @@ public class studentpage extends JFrame {
 	public studentpage() throws PropertyVetoException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 464);
-		setSize(1350, 793);
+		setSize(1350, 754);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(128, 128, 128));
@@ -57,68 +58,93 @@ public class studentpage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 64, 1350, 705);
+		desktopPane.setBounds(0, 33, 1350, 736);
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 		HomepageAllEvent allevent = new HomepageAllEvent();
 		desktopPane.add(allevent).setVisible(true);
 		contentPane.add(desktopPane);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1350, 52);
-		menuBar.setBorderPainted(false);
+		menuBar.setMargin(new Insets(0, 10, 10, 10));
+		menuBar.setBounds(0, 0, 1350, 38);
 		menuBar.setBackground(Color.GRAY);
 		contentPane.add(menuBar);
 		
 		JComboBox<String> Eventcombobx = new JComboBox<String>();
-		
+		Eventcombobx.addItem("All Event");
+		Eventcombobx.addItem("Upcomming Event");
+		Eventcombobx.addItem("Previous Event");
+		Eventcombobx.addItem("My Events");
+		Eventcombobx.addItem("Event History");		
 		menuBar.add(Eventcombobx);
+		
+		JLabel label = new JLabel("     ");
+		menuBar.add(label);
+		
+		JButton btnCollegeDetail = new JButton("College Detail  ");
+		menuBar.add(btnCollegeDetail);
+		btnCollegeDetail.setFont(new Font("Dialog", Font.BOLD, 14));
 		
 		JLabel space = new JLabel("     ");
 		menuBar.add(space);
-		
-		
-		JComboBox<String> Clubcombobx = new JComboBox<String>();
-		Clubcombobx.setBackground(Color.LIGHT_GRAY);
-		menuBar.add(Clubcombobx);
-		Clubcombobx.setEditable(true);
-		Clubcombobx.addItem("IT Club");
-		Clubcombobx.addItem("Free-Flow Club");
-		Clubcombobx.addItem("Socio-Cultural Club");
-		Clubcombobx.addItem("Sports Club");
-		Clubcombobx.setSelectedItem("Select Club");
-		
-		JButton btnCollegeDetail = new JButton("College Detail  ");
-		btnCollegeDetail.setFont(new Font("Dialog", Font.BOLD, 14));
-		menuBar.add(btnCollegeDetail);
 		
 		JButton btnNotices = new JButton("Notices  ");
 		btnNotices.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(btnNotices);
 		
+		JLabel label_1 = new JLabel("     ");
+		menuBar.add(label_1);
+		
 		JButton btnCourses = new JButton("Courses  ");
 		btnCourses.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(btnCourses);
+		
+		JLabel label_2 = new JLabel("     ");
+		menuBar.add(label_2);
 		
 		JButton btnPersonalization = new JButton("Personalization  ");
 		btnPersonalization.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(btnPersonalization);
 		
+		JLabel label_3 = new JLabel("     ");
+		menuBar.add(label_3);
+		
 		JButton btnRoutine = new JButton("Routine  ");
 		btnRoutine.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(btnRoutine);
+		
+		JLabel label_4 = new JLabel("     ");
+		menuBar.add(label_4);
 		
 		JButton btnNewButton = new JButton("Give Feedback  ");
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(btnNewButton);
 		
+		JLabel label_5 = new JLabel("     ");
+		menuBar.add(label_5);
+		
+		JLabel label_7 = new JLabel("     ");
+		menuBar.add(label_7);
+		
+		JLabel label_8 = new JLabel("     ");
+		menuBar.add(label_8);
+		
+		JLabel label_9 = new JLabel("     ");
+		menuBar.add(label_9);
+		
+		JLabel label_10 = new JLabel("     ");
+		menuBar.add(label_10);
+		
+		JLabel label_11 = new JLabel("     ");
+		menuBar.add(label_11);
+		
 		JButton Exitbtn = new JButton("Logout  ");
 		Exitbtn.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(Exitbtn);
-		Eventcombobx.addItem("All Event");
-		Eventcombobx.addItem("Upcomming Event");
-		Eventcombobx.addItem("Previous Event");
-		Eventcombobx.addItem("My Events");
-		Eventcombobx.addItem("Event History");
+		
+		JLabel label_6 = new JLabel("     ");
+		menuBar.add(label_6);
+		
 		
 		
 	}
