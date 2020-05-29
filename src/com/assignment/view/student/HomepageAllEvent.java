@@ -266,7 +266,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		JButton btnCancelEvent = new JButton("Cancel event");
 		btnCancelEvent.setBounds(329, 464, 131, 25);
-		btnCancelEvent.setVisible(false);
+//		btnCancelEvent.setVisible(false);
 		panel_2.add(btnCancelEvent);
 		
 		JButton btnAddEvent = new JButton("Add event");
@@ -298,7 +298,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		JLabel lblStatus = new JLabel("Status");
 		lblStatus.setFont(new Font("Lato Black", Font.BOLD, 20));
 		lblStatus.setBounds(374, 193, 70, 33);
-		lblStatus.setVisible(false);
+//		lblStatus.setVisible(false);
 		panel_2.add(lblStatus);
 		
 		statustable = new JTable();

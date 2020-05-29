@@ -95,10 +95,6 @@ public class studentpage extends JFrame {
 		JLabel label_1 = new JLabel("     ");
 		menuBar.add(label_1);
 		
-		JButton btnCourses = new JButton("Courses  ");
-		btnCourses.setFont(new Font("Dialog", Font.BOLD, 14));
-		menuBar.add(btnCourses);
-		
 		JLabel label_2 = new JLabel("     ");
 		menuBar.add(label_2);
 		
@@ -122,6 +118,24 @@ public class studentpage extends JFrame {
 		
 		JLabel label_5 = new JLabel("     ");
 		menuBar.add(label_5);
+		
+		JLabel label_12 = new JLabel("     ");
+		menuBar.add(label_12);
+		
+		JLabel label_13 = new JLabel("     ");
+		menuBar.add(label_13);
+		
+		JLabel label_14 = new JLabel("     ");
+		menuBar.add(label_14);
+		
+		JLabel label_15 = new JLabel("     ");
+		menuBar.add(label_15);
+		
+		JLabel label_16 = new JLabel("     ");
+		menuBar.add(label_16);
+		
+		JLabel label_17 = new JLabel("     ");
+		menuBar.add(label_17);
 		
 		JLabel label_7 = new JLabel("     ");
 		menuBar.add(label_7);
