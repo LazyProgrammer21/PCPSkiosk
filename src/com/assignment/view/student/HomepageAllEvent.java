@@ -247,9 +247,9 @@ public class HomepageAllEvent extends JInternalFrame {
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				e.setTitle("Edit Event");
+//				e.setTitle("Edit Event");
 				status = false;
-				e.setVisible(true);
+//				e.setVisible(true);
 				getStatusValue();
 			}
 		});
