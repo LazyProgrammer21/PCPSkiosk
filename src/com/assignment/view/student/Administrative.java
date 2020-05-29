@@ -3,6 +3,8 @@ package com.assignment.view.student;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class Administrative extends JInternalFrame {
 
@@ -26,8 +28,9 @@ public class Administrative extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Administrative() {
-		setBounds(100, 100, 973, 526);
+		setTitle("Administrative");
+		setBounds(100, 100, 1099, 566);
+		getContentPane().setLayout(null);
 
 	}
-
 }

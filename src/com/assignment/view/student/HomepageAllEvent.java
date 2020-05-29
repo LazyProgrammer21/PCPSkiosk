@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.CompoundBorder;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JTextField;
@@ -19,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JToolBar;
 
 //import java.awt.event.MouseListener;
 //import javax.swing.plaf.basic.BasicInternalFrameUI;
