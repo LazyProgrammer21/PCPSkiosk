@@ -40,7 +40,7 @@ public class HomepageAllEvent extends JInternalFrame {
 	 * @throws PropertyVetoException 
 	 */
 	public HomepageAllEvent() throws PropertyVetoException {
-		addEvent e = new addEvent(status);
+//		addEvent e = new addEvent(status);
 		setTitle("Homepage");
 		setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		getContentPane().setBackground(Color.DARK_GRAY);
@@ -274,9 +274,9 @@ public class HomepageAllEvent extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
-				addEvent e1 = new addEvent(status);
-				e1.setTitle("Add Event");
-				e1.setVisible(true);
+//				addEvent e1 = new addEvent(status);
+//				e1.setTitle("Add Event");
+//				e1.setVisible(true);
 				status=true;
 				getStatusValue();
 						
