@@ -10,8 +10,12 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+
+
 import com.assignment.view.student.stdRegistration;
 import com.assignment.view.student.studentpage;
+
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -140,6 +144,14 @@ public class Mainpage extends JFrame {
 		mainpanel.add(Loginbtn);
 		
 		JButton Adminbtn = new JButton("Admin");
+		Adminbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+//				AdminPassService adser = new adminPassServiceImpl();
+				
+				
+				
+			}
+		});
 		Adminbtn.setFont(new Font("Dialog", Font.BOLD, 15));
 		Adminbtn.setBounds(262, 374, 99, 46);
 		mainpanel.add(Adminbtn);
