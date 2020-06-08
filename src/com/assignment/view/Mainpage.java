@@ -78,12 +78,12 @@ public class Mainpage extends JFrame {
 		mainpanel.setLayout(null);
 		
 		JLabel Pcpslogo = new JLabel("");
-		Pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer/eclipse-workspace/PCPSKIOSK/images/pcpslogo.jpg"));
+		Pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
 		Pcpslogo.setBounds(47, 34, 177, 97);
 		mainpanel.add(Pcpslogo);
 		
 		JLabel Uoblogo = new JLabel("");
-		Uoblogo.setIcon(new ImageIcon("/home/lazyprogrammer/eclipse-workspace/PCPSKIOSK/images/uoblogo.jpg"));
+		Uoblogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
 		Uoblogo.setBounds(541, 34, 177, 97);
 		mainpanel.add(Uoblogo);
 		
