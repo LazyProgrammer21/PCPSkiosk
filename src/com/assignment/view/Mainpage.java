@@ -155,9 +155,11 @@ public class Mainpage extends JFrame {
 		JButton Adminbtn = new JButton("Admin");
 		Adminbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				s = JOptionPane.showInputDialog("Please Enter Key: ");
 				
-				
-				System.out.println("Hello world");
+			if(JOptionPane.YES_OPTION)
+				}
+			
 				
 			}
 		});
