@@ -10,9 +10,13 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import com.assignment.view.Mainpage;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class stdRegistration extends JFrame {
 
@@ -34,14 +38,17 @@ public class stdRegistration extends JFrame {
 
 	public stdRegistration() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setUndecorated(true);
 		setBounds(100, 100, 924, 622);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(43, 97, 847, 482);
+		panel.setBounds(41, 128, 847, 482);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -173,22 +180,40 @@ public class stdRegistration extends JFrame {
 		subcombox.setSelectedItem("Your Subject");
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//database code..
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				
+				stdRegistration.this.dispose();
+				
+			}
+		});
 		btnSubmit.setBounds(668, 298, 117, 25);
 		panel.add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				
+				stdRegistration.this.dispose();
+				
+			}
+		});
 		btnCancel.setBounds(668, 339, 117, 25);
 		panel.add(btnCancel);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("/home/lazyprogrammer/eclipse-workspace/PCPSKIOSK/images/uoblogo.jpg"));
+		JLabel unilogo = new JLabel("");
+		unilogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
+		unilogo.setBounds(704, 19, 184, 97);
+		contentPane.add(unilogo);
 		
-		lblNewLabel.setBounds(685, 0, 184, 97);
-		contentPane.add(lblNewLabel);
-		
-		JLabel pcpslogo = new JLabel("");
-		pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer/eclipse-workspace/PCPSKIOSK/images/pcpslogo.jpg"));
-		pcpslogo.setBounds(22, 0, 184, 85);
-		contentPane.add(pcpslogo);
+		JLabel pcplogo = new JLabel("");
+		pcplogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
+		pcplogo.setBounds(38, 31, 184, 85);
+		contentPane.add(pcplogo);
 	}
 }
