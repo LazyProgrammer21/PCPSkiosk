@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import com.assignment.view.student.AdminHomepage;
-import com.assignment.view.student.HomepageAllEvent;
+import com.assignment.view.student.GuestUser;
+import com.assignment.view.student.forgetPassword;
 import com.assignment.view.student.stdRegistration;
 import com.assignment.view.student.studentpage;
 
@@ -38,7 +39,9 @@ public class Mainpage extends JFrame {
 	private JTextField studentid;
 	private JPasswordField password;
 	private String s;
-	static Mainpage frame = new Mainpage();
+	String uniID;
+	String guest_email;
+	
 
 	/**
 	 * Launch the application.
@@ -47,9 +50,10 @@ public class Mainpage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+					Mainpage frame = new Mainpage();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -119,7 +123,7 @@ public class Mainpage extends JFrame {
 				stdRegistration rg = new stdRegistration();
 				rg.setVisible(true);
 				
-				Mainpage.this.dispose();
+				disposeMainpage();
 				
 			}
 		});
@@ -127,6 +131,38 @@ public class Mainpage extends JFrame {
 		mainpanel.add(infolink);
 		
 		JButton ForgetPasswordbtn = new JButton("Forget Password");
+		ForgetPasswordbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				uniID = JOptionPane.showInputDialog("Please Enter your University ID to proceed");
+				int id = 1816212;//received from database..
+				
+				if(!uniID.isEmpty()) {
+					int uni_id = Integer.parseInt(uniID);
+					if(id==uni_id) {
+				JOptionPane.showMessageDialog(null, "Authentication Success");
+				forgetPassword pass = new forgetPassword();
+				pass.setVisible(true);
+				disposeMainpage();
+				
+				}
+					else {
+						JOptionPane.showMessageDialog(null, "Contact to Admin or Try Again!!","Alert",JOptionPane.WARNING_MESSAGE);
+						
+					}
+					
+				}
+				
+				
+				else{
+				
+					JOptionPane.showMessageDialog(null, "Field is Empty");
+					
+					
+				}	
+				
+				
+			}
+		});
 		ForgetPasswordbtn.setBounds(362, 287, 168, 25);
 		mainpanel.add(ForgetPasswordbtn);
 		
@@ -139,7 +175,7 @@ public class Mainpage extends JFrame {
 					page = new studentpage();
 					page.setVisible(true);
 					
-					Mainpage.this.dispose();
+					disposeMainpage();
 					
 				} catch (PropertyVetoException e) {
 					JOptionPane.showMessageDialog(null, "Page not found.");
@@ -155,12 +191,18 @@ public class Mainpage extends JFrame {
 		JButton Adminbtn = new JButton("Admin");
 		Adminbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				s = JOptionPane.showInputDialog("Please Enter Key: ");
-				
-			if(JOptionPane.YES_OPTION)
+				s = JOptionPane.showInputDialog("Please Enter the Key");
+				String key = "admin123";
+				if(s.equals(key)) {
+					JOptionPane.showMessageDialog(null, "Success");
+				AdminHomepage h = new AdminHomepage();
+				h.setVisible(true);
+				h.setLocationRelativeTo(null);
+				disposeMainpage();}
+				else {
+					JOptionPane.showMessageDialog(null, "False");
 				}
 			
-				
 			}
 		});
 		Adminbtn.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -168,8 +210,41 @@ public class Mainpage extends JFrame {
 		mainpanel.add(Adminbtn);
 		
 		JButton Guestbtn = new JButton("Guest");
+		Guestbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				guest_email = JOptionPane.showInputDialog("Please Enter Your Email for Subscription:");
+				if(!guest_email.isEmpty())
+				{
+					if(isValid(guest_email)) {
+						JOptionPane.showMessageDialog(null, "Thank you for Subscription");
+						GuestUser homepage = new GuestUser();
+						homepage.setVisible(true);
+						homepage.setLocationRelativeTo(null);
+						disposeMainpage();
+						
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Try Again with valid Emailaddress");
+					}
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Field cannot be Empty");
+				}
+			
+			}
+		});
 		Guestbtn.setFont(new Font("Dialog", Font.BOLD, 15));
 		Guestbtn.setBounds(426, 374, 99, 46);
 		mainpanel.add(Guestbtn);
 	}
+	static boolean isValid(String guest_email) {
+		 String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		 return guest_email.matches(regex);
+	}
+	void disposeMainpage() {
+		Mainpage.this.dispose();
+	}
+	
 }
