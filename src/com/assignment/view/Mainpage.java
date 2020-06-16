@@ -193,17 +193,27 @@ public class Mainpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				s = JOptionPane.showInputDialog("Please Enter the Key");
 				String key = "admin123";
-				if(s.equals(key)) {
-					JOptionPane.showMessageDialog(null, "Success");
-				AdminHomepage h = new AdminHomepage();
-				h.setVisible(true);
-				h.setLocationRelativeTo(null);
-				disposeMainpage();}
-				else {
-					JOptionPane.showMessageDialog(null, "False");
+				
+				if(!s.isEmpty()) {
+					if(s.equals(key)) {
+						JOptionPane.showMessageDialog(null, "Success");
+					AdminHomepage h = new AdminHomepage();
+					h.setVisible(true);
+					h.setLocationRelativeTo(null);
+					disposeMainpage();}
+					else {
+						JOptionPane.showMessageDialog(null, "Invalid Key Try Again","Alert",JOptionPane.WARNING_MESSAGE);
+					}
 				}
+				else {
+					JOptionPane.showMessageDialog(null, "Field Cannot be Empty");
+				}
+				
+			
 			
 			}
+				
+			
 		});
 		Adminbtn.setFont(new Font("Dialog", Font.BOLD, 15));
 		Adminbtn.setBounds(262, 374, 99, 46);
@@ -214,6 +224,7 @@ public class Mainpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				guest_email = JOptionPane.showInputDialog("Please Enter Your Email for Subscription:");
+				
 				if(!guest_email.isEmpty())
 				{
 					if(isValid(guest_email)) {
