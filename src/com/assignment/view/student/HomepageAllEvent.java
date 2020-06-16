@@ -41,8 +41,9 @@ public class HomepageAllEvent extends JInternalFrame {
 //		addEvent e = new addEvent(status);
 		setTitle("Homepage");
 		setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		getContentPane().setBackground(Color.DARK_GRAY);
+		getContentPane().setBackground(Color.GRAY);
 		setClosed(true);
+		setVisible(true);
 		
 		
 		setBounds(0, 0, 1350, 685);
@@ -170,7 +171,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.setBounds(12, 24, 477, 543);
+		panel_2.setBounds(0, 0, 495, 641);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		

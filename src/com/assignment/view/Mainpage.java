@@ -36,6 +36,7 @@ public class Mainpage extends JFrame {
 	private JPanel contentPane;
 	private JTextField studentid;
 	private JPasswordField password;
+	static Mainpage frame = new Mainpage();
 
 	/**
 	 * Launch the application.
@@ -44,8 +45,9 @@ public class Mainpage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mainpage frame = new Mainpage();
+					
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,12 +59,14 @@ public class Mainpage extends JFrame {
 	 * Create the frame.
 	 */
 	public Mainpage() {
+		
+		
 		setAlwaysOnTop(true);
 		setBackground(Color.DARK_GRAY);
 		setTitle("PCPSKIOSK");
 		setResizable(false);
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("/home/lazyprogrammer/eclipse-workspace/PCPSKIOSK/images/appicon.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("/home/lazyprogrammer21/git/PCPSkiosk/images/appicon.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 807, 508);
 		setLocationRelativeTo(null);
@@ -113,6 +117,8 @@ public class Mainpage extends JFrame {
 				stdRegistration rg = new stdRegistration();
 				rg.setVisible(true);
 				
+				Mainpage.this.dispose();
+				
 			}
 		});
 		infolink.setBounds(203, 324, 383, 38);
@@ -131,6 +137,7 @@ public class Mainpage extends JFrame {
 					page = new studentpage();
 					page.setVisible(true);
 					
+					Mainpage.this.dispose();
 					
 				} catch (PropertyVetoException e) {
 					JOptionPane.showMessageDialog(null, "Page not found.");

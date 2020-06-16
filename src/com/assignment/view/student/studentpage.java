@@ -6,6 +6,9 @@ import java.beans.PropertyVetoException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.assignment.view.Mainpage;
+
 import java.awt.Color;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -14,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class studentpage extends JFrame {
 
@@ -22,6 +27,7 @@ public class studentpage extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 
 	/**
 	 * Launch the application.
@@ -46,27 +52,22 @@ public class studentpage extends JFrame {
 	
 	public studentpage() throws PropertyVetoException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setUndecorated(true);
 		setBounds(100, 100, 714, 464);
 		setSize(1350, 754);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(128, 128, 128));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 33, 1350, 736);
-		desktopPane.setBackground(Color.LIGHT_GRAY);
-		HomepageAllEvent allevent = new HomepageAllEvent();
-		desktopPane.add(allevent).setVisible(true);
-		contentPane.add(desktopPane);
+	
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setMargin(new Insets(0, 10, 10, 10));
-		menuBar.setBounds(0, 0, 1350, 38);
-		menuBar.setBackground(Color.GRAY);
+		menuBar.setBounds(0, 26, 1338, 35);
 		contentPane.add(menuBar);
+		menuBar.setMargin(new Insets(0, 10, 10, 10));
+		menuBar.setBackground(Color.LIGHT_GRAY);
 		
 		JComboBox<String> Eventcombobx = new JComboBox<String>();
 		Eventcombobx.addItem("All Event");
@@ -74,10 +75,13 @@ public class studentpage extends JFrame {
 		Eventcombobx.addItem("Previous Event");
 		Eventcombobx.addItem("My Events");
 		Eventcombobx.addItem("Event History");		
-		menuBar.add(Eventcombobx);
 		
 		JLabel label = new JLabel("     ");
 		menuBar.add(label);
+		menuBar.add(Eventcombobx);
+		
+		JLabel label_18 = new JLabel("     ");
+		menuBar.add(label_18);
 		
 		JButton btnCollegeDetail = new JButton("College Detail  ");
 		menuBar.add(btnCollegeDetail);
@@ -151,11 +155,27 @@ public class studentpage extends JFrame {
 		menuBar.add(label_11);
 		
 		JButton Exitbtn = new JButton("Logout  ");
+		Exitbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				studentpage.this.dispose();
+			}
+		});
 		Exitbtn.setFont(new Font("Dialog", Font.BOLD, 14));
 		menuBar.add(Exitbtn);
 		
 		JLabel label_6 = new JLabel("     ");
 		menuBar.add(label_6);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		HomepageAllEvent home = new HomepageAllEvent();
+		home.getContentPane().setBackground(Color.WHITE);
+		home.setBounds(0, 0, 1344, 704);
+		desktopPane.setBackground(Color.DARK_GRAY);
+		desktopPane.setBounds(0, 59, 1338, 683);
+		desktopPane.add(home);
+		contentPane.add(desktopPane);
 		
 		
 		
