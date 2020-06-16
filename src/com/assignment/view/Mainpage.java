@@ -11,7 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-
+import com.assignment.view.student.AdminHomepage;
+import com.assignment.view.student.HomepageAllEvent;
 import com.assignment.view.student.stdRegistration;
 import com.assignment.view.student.studentpage;
 
@@ -36,6 +37,7 @@ public class Mainpage extends JFrame {
 	private JPanel contentPane;
 	private JTextField studentid;
 	private JPasswordField password;
+	private String s;
 	static Mainpage frame = new Mainpage();
 
 	/**
@@ -153,9 +155,9 @@ public class Mainpage extends JFrame {
 		JButton Adminbtn = new JButton("Admin");
 		Adminbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				AdminPassService adser = new adminPassServiceImpl();
 				
 				
+				System.out.println("Hello world");
 				
 			}
 		});

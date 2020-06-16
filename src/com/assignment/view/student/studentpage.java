@@ -64,7 +64,7 @@ public class studentpage extends JFrame {
 	
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 26, 1338, 35);
+		menuBar.setBounds(0, 12, 1338, 35);
 		contentPane.add(menuBar);
 		menuBar.setMargin(new Insets(0, 10, 10, 10));
 		menuBar.setBackground(Color.LIGHT_GRAY);
