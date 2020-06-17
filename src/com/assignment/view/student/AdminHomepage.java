@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import com.assignment.view.Mainpage;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -47,8 +50,8 @@ public class AdminHomepage extends JFrame {
 	public AdminHomepage() {
 		setTitle("Admin Dashboard");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1219, 618);
-//		setUndecorated(true);
+		setBounds(100, 100, 1336, 770);
+		setUndecorated(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,17 +59,18 @@ public class AdminHomepage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(27, 100, 1155, 442);
+		desktopPane.setBounds(12, 51, 1312, 670);
 		contentPane.add(desktopPane);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(73, 23, 986, 54);
+		menuBar.setBounds(27, -3, 1112, 54);
 		contentPane.add(menuBar);
 		
 		JButton btnStudentRecord = new JButton("Student Record");
 		menuBar.add(btnStudentRecord);
 		btnStudentRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				desktopPane.removeAll();
 				StudentRecordAdmin sra;
 				try {
 					sra = new StudentRecordAdmin();
@@ -87,14 +91,44 @@ public class AdminHomepage extends JFrame {
 		menuBar.add(btnEvents);
 		
 		JButton btnNotice = new JButton("Notice");
+		btnNotice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				desktopPane.removeAll();
+				NoticedashBoard nb;
+				nb = new NoticedashBoard();
+				nb.setVisible(true);
+				desktopPane.add(nb);
+				
+			}
+		});
 		btnNotice.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnNotice);
 		
 		JButton btnFeedbacks = new JButton("Feedbacks");
+		btnFeedbacks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				trigger_for_btn_disable = 1;
+				desktopPane.removeAll();
+				FeedbackDashboard fd = new FeedbackDashboard(trigger_for_btn_disable);
+				fd.setVisible(true);
+				desktopPane.add(fd);
+				
+			}
+		});
 		btnFeedbacks.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnFeedbacks);
 		
 		JButton btnRoutine = new JButton("Routine");
+		btnRoutine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				desktopPane.removeAll();
+				RoutineDashboardAdmin rda = new RoutineDashboardAdmin();
+				rda.setVisible(true);
+				desktopPane.add(rda);
+				
+			}
+		});
 		btnRoutine.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnRoutine);
 		
@@ -111,18 +145,28 @@ public class AdminHomepage extends JFrame {
 		menuBar.add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				AdminHomepage.this.dispose();
 			}
 		});
 		btnCollegeDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				desktopPane.removeAll();
+				CollegeDetaildashBoard rda = new CollegeDetaildashBoard();
+				rda.setVisible(true);
+				desktopPane.add(rda);
+				
 			}
 		});
 		btnEvents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				HomepageAllEvent event;
 				try {
 					trigger_for_btn_disable = 1;
+					desktopPane.removeAll();
 					event = new HomepageAllEvent(trigger_for_btn_disable);
 //					event.btnCancelEvent.disabled();
 					desktopPane.add(event).setVisible(true);

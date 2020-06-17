@@ -14,6 +14,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Window.Type;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class IssueNotice extends JFrame {
 
@@ -22,18 +24,18 @@ public class IssueNotice extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IssueNotice frame = new IssueNotice();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					IssueNotice frame = new IssueNotice();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -41,7 +43,9 @@ public class IssueNotice extends JFrame {
 	public IssueNotice() {
 		setTitle("Add Notice\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setUndecorated(true);
 		setBounds(100, 100, 632, 584);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,6 +81,14 @@ public class IssueNotice extends JFrame {
 		contentPane.add(btnUpload);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+//				
+				IssueNotice.this.dispose();
+//				
+			}
+		});
 		btnCancel.setFont(new Font("Dialog", Font.PLAIN, 17));
 		btnCancel.setBounds(479, 434, 117, 27);
 		contentPane.add(btnCancel);

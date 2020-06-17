@@ -12,7 +12,11 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FeedbackDashboard extends JInternalFrame {
 
@@ -21,33 +25,42 @@ public class FeedbackDashboard extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable table;
+	public int triggervalue;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FeedbackDashboard frame = new FeedbackDashboard();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					FeedbackDashboard frame = new FeedbackDashboard();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FeedbackDashboard() {
-		setBounds(100, 100, 1085, 568);
+	public FeedbackDashboard(int triggervalue) {
+		this.triggervalue = triggervalue;
+		initialize();
+	}
+	public void initialize() {
+		setBounds(0, 0, 1085, 568);
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		setSize(1344, 668);	
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(Color.BLACK));
-		panel.setBounds(37, 90, 300, 368);
+		panel.setBounds(163, 165, 300, 368);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -70,6 +83,9 @@ public class FeedbackDashboard extends JInternalFrame {
 		panel.add(table);
 		
 		JComboBox <String>comboBox = new JComboBox<String>();
+		if(triggervalue==1) {
+			comboBox.setVisible(false);
+		}
 		comboBox.setBounds(26, 38, 246, 24);
 		comboBox.addItem("All Feedback");
 		comboBox.addItem("My Feedbacks");
@@ -82,16 +98,34 @@ public class FeedbackDashboard extends JInternalFrame {
 		panel.add(btnDelete);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+			
+		});
+		if(triggervalue ==1) {
+			btnAdd.setVisible(false);
+		}
 		btnAdd.setBounds(36, 248, 117, 25);
+		
 		panel.add(btnAdd);
 		
 		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		if(triggervalue ==1) {
+			btnEdit.setVisible(false);
+		}
 		btnEdit.setBounds(171, 248, 117, 25);
+	
 		panel.add(btnEdit);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(Color.BLACK));
-		panel_1.setBounds(349, 44, 604, 446);
+		panel_1.setBounds(475, 113, 714, 460);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		

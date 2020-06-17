@@ -59,6 +59,8 @@ public class StudentRecordAdmin extends JInternalFrame {
 		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
 		gui.setNorthPane(null);
 		setBounds(0, 0, 1074, 581);
+		setSize(1344, 668);
+		
 		
 		getContentPane().setBackground(Color.GRAY);
 		setClosed(true);
@@ -66,7 +68,7 @@ public class StudentRecordAdmin extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 68, 486, 398);
+		panel.setBounds(149, 152, 486, 398);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -146,7 +148,7 @@ public class StudentRecordAdmin extends JInternalFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(Color.LIGHT_GRAY);
-		panel_1.setBounds(510, 12, 542, 496);
+		panel_1.setBounds(687, 92, 542, 496);
 		getContentPane().add(panel_1);
 		
 		JLabel label = new JLabel("ID");
