@@ -137,6 +137,39 @@ public class AdminHomepage extends JFrame {
 		menuBar.add(btnCollegeDetails);
 		
 		JButton btnAddAdmin = new JButton("Administrative");
+		btnAddAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String adminKey = JOptionPane.showInputDialog("Please enter the Key to proceed:");
+				String key = "admin123";
+				try {
+
+					if (!adminKey.isEmpty()) {
+						if(adminKey.equals(key)) {
+							
+							JOptionPane.showMessageDialog(null, "Success");
+						administrativepage h = new administrativepage();
+						
+						h.setVisible(true);
+						h.setLocationRelativeTo(null);
+						
+						
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Invalid Key Try Again","Alert",JOptionPane.WARNING_MESSAGE);
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Field Cannot be Empty");
+					}
+					
+					
+				}
+				catch(Exception e){
+					System.out.println("Cancel pressed");
+				}
+			}
+		});
 		btnAddAdmin.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnAddAdmin);
 		
@@ -179,18 +212,7 @@ public class AdminHomepage extends JFrame {
 			}
 		});
 	}
-	void eventhomepagebyAdmin(JButton cancelBtn, JTable table1, JButton bookbtn) {
-		try {
-			HomepageAllEvent eve = new HomepageAllEvent(trigger_for_btn_disable);
-//			cancelBtn = eve.cancelbtn;
-			
-		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
+
 	public int passtheTrigger() {
 		
 		int value = trigger_for_btn_disable;
