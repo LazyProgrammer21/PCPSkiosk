@@ -10,6 +10,7 @@ import java.beans.PropertyVetoException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
@@ -39,8 +40,10 @@ public class HomepageAllEvent extends JInternalFrame {
 	 */
 	public HomepageAllEvent() throws PropertyVetoException {
 //		addEvent e = new addEvent(status);
-		setTitle("Homepage");
-		setBorder(new LineBorder(new Color(0, 0, 0), 2));
+//		setTitle("Homepage");
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
 		getContentPane().setBackground(Color.GRAY);
 		setClosed(true);
 		setVisible(true);
@@ -225,11 +228,11 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		JLabel lblName = new JLabel("Event Name");
 		lblName.setFont(new Font("Lato Black", Font.BOLD, 20));
-		lblName.setBounds(94, 197, 130, 25);
+		lblName.setBounds(94, 197, 154, 25);
 		panel_2.add(lblName);
 		
 		JLabel lblStartDate = new JLabel("Start Date");
-		lblStartDate.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStartDate.setFont(new Font("Dialog", Font.BOLD, 17));
 		lblStartDate.setBounds(260, 193, 109, 33);
 		panel_2.add(lblStartDate);
 		
@@ -260,7 +263,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		panel_2.add(btnDelete);
 		
 		JButton btnBook = new JButton("Book");
-		btnBook.setBounds(230, 500, 129, 25);
+		btnBook.setBounds(331, 501, 129, 25);
 		panel_2.add(btnBook);
 		
 		JButton btnCancelEvent = new JButton("Cancel event");
@@ -295,7 +298,7 @@ public class HomepageAllEvent extends JInternalFrame {
 		panel_2.add(comboBox);
 		
 		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStatus.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblStatus.setBounds(374, 193, 70, 33);
 //		lblStatus.setVisible(false);
 		panel_2.add(lblStatus);

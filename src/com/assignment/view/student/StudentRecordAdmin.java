@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.beans.PropertyVetoException;
+
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
@@ -14,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
 public class StudentRecordAdmin extends JInternalFrame {
@@ -48,10 +51,18 @@ public class StudentRecordAdmin extends JInternalFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws PropertyVetoException 
 	 */
-	public StudentRecordAdmin() {
-		setTitle("Student record");
-		setBounds(100, 100, 1074, 581);
+	public StudentRecordAdmin() throws PropertyVetoException {
+//		setTitle("Student record");
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		setBounds(0, 0, 1074, 581);
+		
+		getContentPane().setBackground(Color.GRAY);
+		setClosed(true);
+		setVisible(true);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -81,12 +92,12 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		JComboBox <String>comboBox_3 = new JComboBox<String>();
 		comboBox_3.setEditable(true);
-		comboBox_3.addItem("Subject");
+		comboBox_3.setBounds(12, 24, 124, 34);
 		comboBox_3.addItem("L4");
 		comboBox_3.addItem("L5");
 		comboBox_3.addItem("L6");
 		comboBox_3.setSelectedItem("Filter Stduent");
-		comboBox_3.setBounds(12, 24, 124, 34);
+		
 		panel.add(comboBox_3);
 		
 		textField_10 = new JTextField();

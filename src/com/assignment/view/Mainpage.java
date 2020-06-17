@@ -20,6 +20,7 @@ import com.assignment.view.student.studentpage;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -135,7 +136,7 @@ public class Mainpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				uniID = JOptionPane.showInputDialog("Please Enter your University ID to proceed");
 				int id = 1816212;//received from database..
-				
+				try {
 				if(!uniID.isEmpty()) {
 					int uni_id = Integer.parseInt(uniID);
 					if(id==uni_id) {
@@ -158,7 +159,11 @@ public class Mainpage extends JFrame {
 					JOptionPane.showMessageDialog(null, "Field is Empty");
 					
 					
-				}	
+				}
+				}
+				catch(Exception e) {
+					System.out.println("Cancel Pressed");
+				}
 				
 				
 			}
@@ -193,8 +198,9 @@ public class Mainpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				s = JOptionPane.showInputDialog("Please Enter the Key");
 				String key = "admin123";
-				
-				if(!s.isEmpty()) {
+				try {
+			
+				if (!s.isEmpty()) {
 					if(s.equals(key)) {
 						JOptionPane.showMessageDialog(null, "Success");
 					AdminHomepage h = new AdminHomepage();
@@ -212,6 +218,11 @@ public class Mainpage extends JFrame {
 			
 			
 			}
+				catch(Exception e ){
+					System.out.println("Cancel pressed");
+					
+				}
+			}
 				
 			
 		});
@@ -224,7 +235,7 @@ public class Mainpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				guest_email = JOptionPane.showInputDialog("Please Enter Your Email for Subscription:");
-				
+				try {
 				if(!guest_email.isEmpty())
 				{
 					if(isValid(guest_email)) {
@@ -242,6 +253,11 @@ public class Mainpage extends JFrame {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Field cannot be Empty");
+				}
+				}
+				catch(Exception e)
+				{
+					System.out.println("Cancel pressed");
 				}
 			
 			}
