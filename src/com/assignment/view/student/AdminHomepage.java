@@ -14,6 +14,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
 
 public class AdminHomepage extends JFrame {
 
@@ -22,6 +23,7 @@ public class AdminHomepage extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public int trigger_for_btn_disable;
 
 	/**
 	 * Launch the application.
@@ -45,8 +47,8 @@ public class AdminHomepage extends JFrame {
 	public AdminHomepage() {
 		setTitle("Admin Dashboard");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1216, 618);
-		setUndecorated(true);
+		setBounds(100, 100, 1219, 618);
+//		setUndecorated(true);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,10 +56,15 @@ public class AdminHomepage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(157, 23, 1074, 557);
+		desktopPane.setBounds(27, 100, 1155, 442);
 		contentPane.add(desktopPane);
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(73, 23, 986, 54);
+		contentPane.add(menuBar);
+		
 		JButton btnStudentRecord = new JButton("Student Record");
+		menuBar.add(btnStudentRecord);
 		btnStudentRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				StudentRecordAdmin sra;
@@ -73,16 +80,50 @@ public class AdminHomepage extends JFrame {
 				
 			}
 		});
-		btnStudentRecord.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnStudentRecord.setBounds(7, 27, 143, 54);
-		contentPane.add(btnStudentRecord);
+		btnStudentRecord.setFont(new Font("C059", Font.BOLD, 16));
 		
 		JButton btnEvents = new JButton("Events");
+		btnEvents.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnEvents);
+		
+		JButton btnNotice = new JButton("Notice");
+		btnNotice.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnNotice);
+		
+		JButton btnFeedbacks = new JButton("Feedbacks");
+		btnFeedbacks.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnFeedbacks);
+		
+		JButton btnRoutine = new JButton("Routine");
+		btnRoutine.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnRoutine);
+		
+		JButton btnCollegeDetails = new JButton("College Details");
+		btnCollegeDetails.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnCollegeDetails);
+		
+		JButton btnAddAdmin = new JButton("Administrative");
+		btnAddAdmin.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnAddAdmin);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(new Font("C059", Font.BOLD, 16));
+		menuBar.add(btnExit);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnCollegeDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnEvents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				HomepageAllEvent event;
 				try {
-					event = new HomepageAllEvent();
+					trigger_for_btn_disable = 1;
+					event = new HomepageAllEvent(trigger_for_btn_disable);
 //					event.btnCancelEvent.disabled();
 					desktopPane.add(event).setVisible(true);
 				} catch (PropertyVetoException e) {
@@ -93,41 +134,10 @@ public class AdminHomepage extends JFrame {
 				
 			}
 		});
-		btnEvents.setBounds(7, 78, 143, 54);
-		contentPane.add(btnEvents);
-		
-		JButton btnNotice = new JButton("Notice");
-		btnNotice.setBounds(7, 128, 143, 54);
-		contentPane.add(btnNotice);
-		
-		JButton btnFeedbacks = new JButton("Feedbacks");
-		btnFeedbacks.setBounds(7, 176, 143, 54);
-		contentPane.add(btnFeedbacks);
-		
-		JButton btnRoutine = new JButton("Routine");
-		btnRoutine.setBounds(7, 224, 143, 54);
-		contentPane.add(btnRoutine);
-		
-		JButton btnCollegeDetails = new JButton("College Details");
-		btnCollegeDetails.setBounds(7, 279, 143, 54);
-		contentPane.add(btnCollegeDetails);
-		
-		JButton btnAddAdmin = new JButton("Administrative");
-		btnAddAdmin.setBounds(7, 473, 143, 54);
-		contentPane.add(btnAddAdmin);
-		
-		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		btnExit.setBounds(7, 526, 143, 54);
-		contentPane.add(btnExit);
 	}
 	void eventhomepagebyAdmin(JButton cancelBtn, JTable table1, JButton bookbtn) {
 		try {
-			HomepageAllEvent eve = new HomepageAllEvent();
+			HomepageAllEvent eve = new HomepageAllEvent(trigger_for_btn_disable);
 //			cancelBtn = eve.cancelbtn;
 			
 		} catch (PropertyVetoException e) {
@@ -136,5 +146,10 @@ public class AdminHomepage extends JFrame {
 		}
 		
 		
+	}
+	public int passtheTrigger() {
+		
+		int value = trigger_for_btn_disable;
+		return value;
 	}
 }

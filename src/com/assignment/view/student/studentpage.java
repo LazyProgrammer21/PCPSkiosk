@@ -169,12 +169,12 @@ public class studentpage extends JFrame {
 		menuBar.add(label_6);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-//		HomepageAllEvent home = new HomepageAllEvent();
-//		home.getContentPane().setBackground(Color.WHITE);
-//		home.setBounds(0, 0, 1344, 704);
+		HomepageAllEvent home = new HomepageAllEvent(0);
+		home.getContentPane().setBackground(Color.WHITE);
+		home.setBounds(0, 0, 1344, 704);
 		desktopPane.setBackground(Color.DARK_GRAY);
 		desktopPane.setBounds(0, 59, 1338, 683);
-//		desktopPane.add(home);
+		desktopPane.add(home);
 		contentPane.add(desktopPane);
 		
 		

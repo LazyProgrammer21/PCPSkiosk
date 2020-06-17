@@ -40,8 +40,8 @@ public class Mainpage extends JFrame {
 	private JTextField studentid;
 	private JPasswordField password;
 	private String s;
-	String uniID;
-	String guest_email;
+	private String uniID;
+	 private String guest_email;
 	
 
 	/**
@@ -135,6 +135,7 @@ public class Mainpage extends JFrame {
 		ForgetPasswordbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				uniID = JOptionPane.showInputDialog("Please Enter your University ID to proceed");
+				System.out.println(uniID);
 				int id = 1816212;//received from database..
 				try {
 				if(!uniID.isEmpty()) {
