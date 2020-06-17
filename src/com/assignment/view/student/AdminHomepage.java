@@ -83,7 +83,7 @@ public class AdminHomepage extends JFrame {
 				HomepageAllEvent event;
 				try {
 					event = new HomepageAllEvent();
-					event.btnCancelEvent.disabled();
+//					event.btnCancelEvent.disabled();
 					desktopPane.add(event).setVisible(true);
 				} catch (PropertyVetoException e) {
 					
