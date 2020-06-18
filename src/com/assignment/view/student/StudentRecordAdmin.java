@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.beans.PropertyVetoException;
+
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
@@ -14,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
 public class StudentRecordAdmin extends JInternalFrame {
@@ -48,14 +51,24 @@ public class StudentRecordAdmin extends JInternalFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws PropertyVetoException 
 	 */
-	public StudentRecordAdmin() {
-		setTitle("Student record");
-		setBounds(100, 100, 1074, 581);
+	public StudentRecordAdmin() throws PropertyVetoException {
+//		setTitle("Student record");
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		setBounds(0, 0, 1074, 581);
+		setSize(1344, 668);
+		
+		
+		getContentPane().setBackground(Color.GRAY);
+		setClosed(true);
+		setVisible(true);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 68, 486, 398);
+		panel.setBounds(149, 152, 486, 398);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -81,12 +94,12 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		JComboBox <String>comboBox_3 = new JComboBox<String>();
 		comboBox_3.setEditable(true);
-		comboBox_3.addItem("Subject");
+		comboBox_3.setBounds(12, 24, 124, 34);
 		comboBox_3.addItem("L4");
 		comboBox_3.addItem("L5");
 		comboBox_3.addItem("L6");
 		comboBox_3.setSelectedItem("Filter Stduent");
-		comboBox_3.setBounds(12, 24, 124, 34);
+		
 		panel.add(comboBox_3);
 		
 		textField_10 = new JTextField();
@@ -135,7 +148,7 @@ public class StudentRecordAdmin extends JInternalFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(Color.LIGHT_GRAY);
-		panel_1.setBounds(510, 12, 542, 496);
+		panel_1.setBounds(687, 92, 542, 496);
 		getContentPane().add(panel_1);
 		
 		JLabel label = new JLabel("ID");

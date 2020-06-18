@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 
 public class RoutineDashboard extends JInternalFrame {
@@ -24,12 +27,17 @@ public class RoutineDashboard extends JInternalFrame {
 
 
 	public RoutineDashboard() {
-		setBounds(100, 100, 923, 548);
+		getContentPane().setBackground(Color.WHITE);
+		setBounds(0, 0, 923, 548);
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		setSize(1344, 668);	
 		getContentPane().setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(Color.BLACK));
-		panel_1.setBounds(12, 12, 889, 492);
+		panel_1.setBounds(218, 117, 858, 460);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -109,6 +117,16 @@ public class RoutineDashboard extends JInternalFrame {
 		comboBox_3.setSelectedItem("Select Day");
 		comboBox_3.setBounds(256, 57, 237, 34);
 		panel_1.add(comboBox_3);
+		
+		JLabel Uoblogo = new JLabel("");
+		Uoblogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
+		Uoblogo.setBounds(1105, 12, 177, 97);
+		getContentPane().add(Uoblogo);
+		
+		JLabel Pcpslogo = new JLabel("");
+		Pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
+		Pcpslogo.setBounds(12, 12, 177, 97);
+		getContentPane().add(Pcpslogo);
 
 	}
 }

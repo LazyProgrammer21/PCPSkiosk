@@ -1,6 +1,5 @@
 package com.assignment.view.student;
 
-import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -12,7 +11,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NoticedashBoard extends JInternalFrame {
 
@@ -21,33 +24,45 @@ public class NoticedashBoard extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable notietable;
+	private int triggerValue;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NoticedashBoard frame = new NoticedashBoard();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					NoticedashBoard frame = new NoticedashBoard();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public NoticedashBoard() {
-		setBounds(100, 100, 1088, 591);
+	
+	public NoticedashBoard(int triggerValue) {
+		this.triggerValue=triggerValue;
+		initialize();
+	}
+	public void initialize() {
+		getContentPane().setBackground(Color.LIGHT_GRAY);
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		setBounds(0, 0, 1088, 591);
+		setSize(1344, 668);	
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBorder(new LineBorder(Color.BLACK));
-		panel.setBounds(30, 114, 323, 316);
+		panel.setBounds(179, 168, 323, 316);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -70,6 +85,9 @@ public class NoticedashBoard extends JInternalFrame {
 		panel.add(notietable);
 		
 		JButton btnDeleteNotice = new JButton("Delete Notice");
+		if(triggerValue==1) {
+			btnDeleteNotice.setVisible(false);
+		}
 		btnDeleteNotice.setBounds(49, 253, 130, 25);
 		panel.add(btnDeleteNotice);
 		
@@ -89,20 +107,33 @@ public class NoticedashBoard extends JInternalFrame {
 		panel.add(lblIssuedBy);
 		
 		JButton btnIssueNotice = new JButton("Issue Notice");
+		btnIssueNotice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				IssueNotice in = new IssueNotice();
+				in.setVisible(true);
+				in.setLocationRelativeTo(null);
+				
+//				NoticedashBoard.this.dispose();
+			}
+		});
+		if(triggerValue==1) {
+			btnIssueNotice.setVisible(false);
+		}
 		btnIssueNotice.setBounds(181, 253, 130, 25);
 		panel.add(btnIssueNotice);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBorder(new LineBorder(Color.BLACK));
-		panel_1.setBounds(365, 24, 701, 500);
+		panel_1.setBounds(514, 78, 701, 500);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JTextPane txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf = new JTextPane();
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setFont(new Font("Dialog", Font.PLAIN, 21));
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setEditable(false);
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setBounds(44, 114, 610, 305);
-		panel_1.add(txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf);
+		JTextPane txtPane = new JTextPane();
+		txtPane.setFont(new Font("Dialog", Font.PLAIN, 21));
+		txtPane.setEditable(false);
+		txtPane.setBounds(44, 114, 610, 305);
+		panel_1.add(txtPane);
 		
 		JLabel lblSubject = new JLabel("SUBJECT:");
 		lblSubject.setFont(new Font("Dialog", Font.BOLD, 26));
@@ -113,9 +144,7 @@ public class NoticedashBoard extends JInternalFrame {
 		textPane.setBounds(192, 52, 462, 32);
 		panel_1.add(textPane);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(30, 52, 252, 29);
-		getContentPane().add(comboBox);
+		
 
 	}
 }

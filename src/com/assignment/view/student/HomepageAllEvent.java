@@ -10,6 +10,7 @@ import java.beans.PropertyVetoException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
@@ -31,16 +32,23 @@ public class HomepageAllEvent extends JInternalFrame {
 	private JTextField textField;
 	private boolean status = true;
 	private JTable statustable;
+	public int triggervalue;
 	
 
 	/**
 	 * Create the frame.
 	 * @throws PropertyVetoException 
 	 */
-	public HomepageAllEvent() throws PropertyVetoException {
+	public HomepageAllEvent(int triggervalue) throws PropertyVetoException {
+		this.triggervalue = triggervalue;
+		initialize();
+	}
+	public void initialize() throws PropertyVetoException {
 //		addEvent e = new addEvent(status);
-		setTitle("Homepage");
-		setBorder(new LineBorder(new Color(0, 0, 0), 2));
+//		setTitle("Homepage");
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
 		getContentPane().setBackground(Color.GRAY);
 		setClosed(true);
 		setVisible(true);
@@ -225,11 +233,11 @@ public class HomepageAllEvent extends JInternalFrame {
 		
 		JLabel lblName = new JLabel("Event Name");
 		lblName.setFont(new Font("Lato Black", Font.BOLD, 20));
-		lblName.setBounds(94, 197, 130, 25);
+		lblName.setBounds(94, 197, 154, 25);
 		panel_2.add(lblName);
 		
 		JLabel lblStartDate = new JLabel("Start Date");
-		lblStartDate.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStartDate.setFont(new Font("Dialog", Font.BOLD, 17));
 		lblStartDate.setBounds(260, 193, 109, 33);
 		panel_2.add(lblStartDate);
 		
@@ -249,7 +257,7 @@ public class HomepageAllEvent extends JInternalFrame {
 //				e.setTitle("Edit Event");
 				status = false;
 //				e.setVisible(true);
-				getStatusValue();
+				
 			}
 		});
 		btnEdit.setBounds(12, 464, 81, 25);
@@ -260,25 +268,34 @@ public class HomepageAllEvent extends JInternalFrame {
 		panel_2.add(btnDelete);
 		
 		JButton btnBook = new JButton("Book");
-		btnBook.setBounds(230, 500, 129, 25);
+		btnBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnBook.setBounds(331, 501, 129, 25);
+		if(triggervalue==1) {
+			btnBook.setVisible(false);
+		}
 		panel_2.add(btnBook);
 		
 		JButton btnCancelEvent = new JButton("Cancel event");
+		btnCancelEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnCancelEvent.setBounds(329, 464, 131, 25);
-//		btnCancelEvent.setVisible(false);
+		if(triggervalue==1) {
+			btnCancelEvent.setVisible(false);
+		}
+		
 		panel_2.add(btnCancelEvent);
 		
 		JButton btnAddEvent = new JButton("Add event");
 		btnAddEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+			
 				
-//				addEvent e1 = new addEvent(status);
-//				e1.setTitle("Add Event");
-//				e1.setVisible(true);
-				status=true;
-				getStatusValue();
-						
 			}
 		});
 		btnAddEvent.setBounds(208, 463, 109, 25);
@@ -295,9 +312,13 @@ public class HomepageAllEvent extends JInternalFrame {
 		panel_2.add(comboBox);
 		
 		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setFont(new Font("Lato Black", Font.BOLD, 20));
+		lblStatus.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblStatus.setBounds(374, 193, 70, 33);
-//		lblStatus.setVisible(false);
+		if(triggervalue==1) {
+			lblStatus.setVisible(false);
+			
+		}
+	
 		panel_2.add(lblStatus);
 		
 		statustable = new JTable();
@@ -331,7 +352,10 @@ public class HomepageAllEvent extends JInternalFrame {
 		});
 		statustable.getColumnModel().getColumn(0).setResizable(false);
 		statustable.setBounds(361, 220, 99, 231);
-		statustable.setVisible(false);
+		if(triggervalue==1) {
+			statustable.setVisible(false);
+		}
+		
 		panel_2.add(statustable);
 		
 
@@ -339,8 +363,6 @@ public class HomepageAllEvent extends JInternalFrame {
 
 	}
 	
-	public boolean getStatusValue() {
+
 	
-	return status;
-	}
 }
