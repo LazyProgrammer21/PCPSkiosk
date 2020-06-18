@@ -60,10 +60,11 @@ public class administrativepage extends JFrame {
 						if(adminKey.equals(key)) {
 							
 							JOptionPane.showMessageDialog(null, "Success");
-						administrativepage h = new administrativepage();
+						changeAdminKey h = new changeAdminKey();
 						
 						h.setVisible(true);
 						h.setLocationRelativeTo(null);
+						administrativepage.this.dispose();
 						
 						
 						}

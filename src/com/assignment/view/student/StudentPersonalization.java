@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
@@ -34,29 +35,35 @@ public class StudentPersonalization extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StudentPersonalization frame = new StudentPersonalization();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					StudentPersonalization frame = new StudentPersonalization();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 
 	public StudentPersonalization() {
-		getContentPane().setBackground(Color.GRAY);
-		setBounds(100, 100, 999, 562);
+		
+		setBorder(null);
+		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
+		gui.setNorthPane(null);
+		
+		setBounds(0, 0, 999, 562);
+		setSize(1344, 668);
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.GRAY);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setLayout(null);
-		panel.setBounds(41, 22, 903, 496);
+		panel.setBounds(201, 103, 903, 496);
 		getContentPane().add(panel);
 		
 		JLabel label = new JLabel("ID");

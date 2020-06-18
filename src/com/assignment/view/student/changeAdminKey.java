@@ -7,9 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class changeAdminKey extends JFrame {
 
@@ -46,10 +51,12 @@ public class changeAdminKey extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel Pcpslogo = new JLabel("");
+		Pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
 		Pcpslogo.setBounds(66, 12, 177, 97);
 		contentPane.add(Pcpslogo);
 		
 		JLabel Uoblogo = new JLabel("");
+		Uoblogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
 		Uoblogo.setBounds(388, 12, 177, 97);
 		contentPane.add(Uoblogo);
 		
@@ -72,11 +79,25 @@ public class changeAdminKey extends JFrame {
 		contentPane.add(passwordField_1);
 		
 		JButton btnNewButton = new JButton("Confirm");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//database ma gayerw data store garne
+				JOptionPane.showMessageDialog(null, "Success");
+				changeAdminKey.this.dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnNewButton.setBounds(288, 330, 117, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				changeAdminKey.this.dispose();
+			}
+		});
 		btnCancel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnCancel.setBounds(421, 330, 103, 25);
 		contentPane.add(btnCancel);

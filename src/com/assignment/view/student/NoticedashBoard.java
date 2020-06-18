@@ -24,6 +24,7 @@ public class NoticedashBoard extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable notietable;
+	private int triggerValue;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,12 @@ public class NoticedashBoard extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NoticedashBoard() {
+	
+	public NoticedashBoard(int triggerValue) {
+		this.triggerValue=triggerValue;
+		initialize();
+	}
+	public void initialize() {
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setBorder(null);
 		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
@@ -79,6 +85,9 @@ public class NoticedashBoard extends JInternalFrame {
 		panel.add(notietable);
 		
 		JButton btnDeleteNotice = new JButton("Delete Notice");
+		if(triggerValue==1) {
+			btnDeleteNotice.setVisible(false);
+		}
 		btnDeleteNotice.setBounds(49, 253, 130, 25);
 		panel.add(btnDeleteNotice);
 		
@@ -107,6 +116,9 @@ public class NoticedashBoard extends JInternalFrame {
 //				NoticedashBoard.this.dispose();
 			}
 		});
+		if(triggerValue==1) {
+			btnIssueNotice.setVisible(false);
+		}
 		btnIssueNotice.setBounds(181, 253, 130, 25);
 		panel.add(btnIssueNotice);
 		
@@ -117,11 +129,11 @@ public class NoticedashBoard extends JInternalFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JTextPane txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf = new JTextPane();
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setFont(new Font("Dialog", Font.PLAIN, 21));
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setEditable(false);
-		txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf.setBounds(44, 114, 610, 305);
-		panel_1.add(txtpnJdsbfkjsbdfkasbdfkbaskfFkjSfsf);
+		JTextPane txtPane = new JTextPane();
+		txtPane.setFont(new Font("Dialog", Font.PLAIN, 21));
+		txtPane.setEditable(false);
+		txtPane.setBounds(44, 114, 610, 305);
+		panel_1.add(txtPane);
 		
 		JLabel lblSubject = new JLabel("SUBJECT:");
 		lblSubject.setFont(new Font("Dialog", Font.BOLD, 26));
@@ -132,9 +144,7 @@ public class NoticedashBoard extends JInternalFrame {
 		textPane.setBounds(192, 52, 462, 32);
 		panel_1.add(textPane);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(179, 106, 252, 29);
-		getContentPane().add(comboBox);
+		
 
 	}
 }

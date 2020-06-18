@@ -18,6 +18,7 @@ public class CollegeDetaildashBoard extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private int triggervalue;
 
 	/**
 	 * Launch the application.
@@ -38,7 +39,11 @@ public class CollegeDetaildashBoard extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CollegeDetaildashBoard() {
+	public CollegeDetaildashBoard(int triggervalue) {
+		this.triggervalue=triggervalue;
+		initialize();
+	}
+	public void initialize() {
 		setBounds(0, 0, 1080, 578);
 		setBorder(null);
 		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
@@ -133,6 +138,9 @@ public class CollegeDetaildashBoard extends JInternalFrame {
 		panel_5.add(scrollBar_1);
 		
 		JButton btnUpdate = new JButton("Update");
+		if(triggervalue==1) {
+			btnUpdate.setVisible(false);
+		}
 		btnUpdate.setBounds(1187, 577, 96, 25);
 		getContentPane().add(btnUpdate);
 

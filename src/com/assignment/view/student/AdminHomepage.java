@@ -96,7 +96,7 @@ public class AdminHomepage extends JFrame {
 				
 				desktopPane.removeAll();
 				NoticedashBoard nb;
-				nb = new NoticedashBoard();
+				nb = new NoticedashBoard(0);
 				nb.setVisible(true);
 				desktopPane.add(nb);
 				
@@ -139,11 +139,11 @@ public class AdminHomepage extends JFrame {
 		JButton btnAddAdmin = new JButton("Administrative");
 		btnAddAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				desktopPane.removeAll();
 				String adminKey = JOptionPane.showInputDialog("Please enter the Key to proceed:");
 				String key = "admin123";
 				try {
-
+					
 					if (!adminKey.isEmpty()) {
 						if(adminKey.equals(key)) {
 							
@@ -173,7 +173,7 @@ public class AdminHomepage extends JFrame {
 		btnAddAdmin.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnAddAdmin);
 		
-		JButton btnExit = new JButton("Exit");
+		JButton btnExit = new JButton("LogOut");
 		btnExit.setFont(new Font("C059", Font.BOLD, 16));
 		menuBar.add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
@@ -187,7 +187,7 @@ public class AdminHomepage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				desktopPane.removeAll();
-				CollegeDetaildashBoard rda = new CollegeDetaildashBoard();
+				CollegeDetaildashBoard rda = new CollegeDetaildashBoard(0);
 				rda.setVisible(true);
 				desktopPane.add(rda);
 				
