@@ -260,9 +260,6 @@ public class studentpage extends JFrame {
 	
 		
 	}
-	public int passtheTrigger() {
-		int value = trigger_for_btndisable;
-		return value;
-	}
+	
 
 }

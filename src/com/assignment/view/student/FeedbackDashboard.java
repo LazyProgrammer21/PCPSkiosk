@@ -46,8 +46,9 @@ public class FeedbackDashboard extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FeedbackDashboard(int triggervalue) {
+	public FeedbackDashboard(int triggervalue ) {
 		this.triggervalue = triggervalue;
+		
 		initialize();
 	}
 	public void initialize() {
