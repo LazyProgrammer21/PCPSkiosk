@@ -17,7 +17,7 @@ import java.awt.Color;
 
 public class addEvent extends JFrame {
 
-	private boolean btnstate;
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField eventName;
@@ -26,8 +26,8 @@ public class addEvent extends JFrame {
 
 
 	
-	public addEvent(boolean status) {
-		this.btnstate = status;
+	public addEvent( ) {
+	
 		
 		
 		
@@ -123,17 +123,7 @@ public class addEvent extends JFrame {
 		Cancel.setBounds(562, 467, 139, 25);
 		contentPane.add(Cancel);
 		
-		JButton uploadImg = new JButton("Upload Images");
-		if(btnstate==false) {
-			uploadImg.setEnabled(false);
-			System.out.println("*"+btnstate);
-		}
-		else
-		{
-			uploadImg.setEnabled(true);
-			System.out.println("*"+btnstate);
-		}
-		
+		JButton uploadImg = new JButton("Upload Images");		
 		uploadImg.setBounds(562, 413, 139, 25);
 		contentPane.add(uploadImg);
 		

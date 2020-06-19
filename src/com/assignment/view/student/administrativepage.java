@@ -88,6 +88,14 @@ public class administrativepage extends JFrame {
 		contentPane.add(btnChangeAdminkey);
 		
 		JButton btnViewStudentUnikey = new JButton("View Student Unikey");
+		btnViewStudentUnikey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				stdUNIkey key = new stdUNIkey();
+				key.setVisible(true);
+				key.setLocationRelativeTo(null);
+				administrativepage.this.dispose();
+			}
+		});
 		btnViewStudentUnikey.setBounds(109, 206, 183, 41);
 		contentPane.add(btnViewStudentUnikey);
 	}
