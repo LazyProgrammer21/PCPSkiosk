@@ -213,9 +213,5 @@ public class AdminHomepage extends JFrame {
 		});
 	}
 
-	public int passtheTrigger() {
-		
-		int value = trigger_for_btn_disable;
-		return value;
-	}
+	
 }
