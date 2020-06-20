@@ -87,7 +87,7 @@ public class FeedbackDashboard extends JInternalFrame {
 		if(triggervalue==1) {
 			comboBox.setVisible(false);
 		}
-		comboBox.setBounds(26, 38, 246, 24);
+		comboBox.setBounds(26, 12, 246, 24);
 		comboBox.addItem("All Feedback");
 		comboBox.addItem("My Feedbacks");
 		comboBox.addItem("Feedback by Date");
@@ -123,6 +123,18 @@ public class FeedbackDashboard extends JInternalFrame {
 		btnEdit.setBounds(171, 248, 117, 25);
 	
 		panel.add(btnEdit);
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(26, 48, 38, 15);
+		panel.add(lblId);
+		
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(104, 48, 63, 15);
+		panel.add(lblName);
+		
+		JLabel lblDate = new JLabel("Date");
+		lblDate.setBounds(192, 48, 63, 15);
+		panel.add(lblDate);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(Color.BLACK));
