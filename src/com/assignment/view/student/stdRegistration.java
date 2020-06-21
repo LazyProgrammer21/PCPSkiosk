@@ -6,15 +6,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+
+import com.assignment.model.studentinfo;
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
 import com.assignment.view.Mainpage;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -183,6 +191,64 @@ public class stdRegistration extends JFrame {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//database code..
+				
+				
+				studentinfo s_info = new studentinfo();
+				s_info.setClzId(Integer.parseInt(stdid.getText()));
+				//clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,pass
+				s_info.setName(name.getText());
+				s_info.setEmail(email.getText());
+				s_info.setDob(new Date(birthdate.getDate().getTime()));
+				if(male.isSelected())
+				{
+					s_info.setGender("Male");
+				}
+				
+				else if(female.isSelected()){
+					
+					s_info.setGender("Female");
+				}
+				
+				else if(other.isSelected())
+				{
+					s_info.setGender("Other");
+				}
+				
+				s_info.setAdd_city(city.getText());
+				s_info.setAdd_state(state.getText());
+				s_info.setZipCode(zipcode.getText());
+//				s_info.setPhone(Integerphone.getText());
+				s_info.setPassWord(password.getText());
+				
+				
+				studentService stdservice = new studentserviceImpl();
+				
+				if(stdservice.newRegister(s_info))
+				{
+					JOptionPane.showMessageDialog(null, "Added Success");
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "Added Failed");
+				}
+				
+				//input field make empty once the button is pressed..
+				
+				stdid.setText("");
+				name.setText("");
+				email.setText("");
+				birthdate.setCalendar(null);
+				city.setText("");
+				state.setText("");
+				zipcode.setText("");
+				phone.setText("");
+				password.setText("");
+				
+				
+				   
+				
+				
+				
 				Mainpage mp = new Mainpage();
 				mp.setVisible(true);
 				
