@@ -1,16 +1,12 @@
 package com.assignment.view.student;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.assignment.model.studentinfo;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -88,23 +84,24 @@ public class addStudent extends JFrame {
 				studentService ss = new studentserviceImpl();
 				
 				
-						validation_id();
 				
-						if(ss.addStudentadmin(uniid, name))
-						{
-							JOptionPane.showMessageDialog(null, "Added Success");
-						}
-						
-						else {
-							JOptionPane.showMessageDialog(null, "Added Failed");
-						}
-						
-						uniID.setText(null);
-						Name.setText("");
-					
+				if(ss.addStudentadmin(validation_id(),validation_name() ) ) {
+					JOptionPane.showMessageDialog(null, "Added Success");
 				}
+				else {
+					
+					JOptionPane.showMessageDialog(null, "Added Failed");
+				}
+				
+				
+					
+				
+			
+			uniID.setText(null);
+			Name.setText(null);
+			
 						
-		
+		}
 				
 		});
 		btnOk.setBounds(253, 295, 74, 25);
@@ -120,20 +117,39 @@ public class addStudent extends JFrame {
 		contentPane.add(btnCancel);
 	}
 	
-	public void validation_id() {
+	public int validation_id() {
 		
-			int length=String.valueOf(uniid).length();
+			int id = 0;
 			
-			if(uniID.getText().isEmpty()||name.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Field cannot be Empty");
+			int length=String.valueOf(uniid).length();
+		
+			if(length==7) {
+				id=uniid;
+				
 				
 			}
-		
-			if(length!=7) {
-				JOptionPane.showMessageDialog(null, "Check UNI ID!");
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Check UNIVERSITY ID!");
 			}
+			return id;
+			
+			
 		
-	
+	}
+	public String validation_name() {
+		String sname = null;
+		if(name.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Student Name cannot be Empty!!");
+			
+		}
+		else
+		{
+			sname=name;
+		}
+		
+		return sname;
+		
 		
 	}
 
