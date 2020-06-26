@@ -217,7 +217,7 @@ public class stdRegistration extends JFrame {
 				s_info.setAdd_city(city.getText());
 				s_info.setAdd_state(state.getText());
 				s_info.setZipCode(zipcode.getText());
-//				s_info.setPhone(Integerphone.getText());
+				s_info.setPhone(phone.getText());
 				s_info.setPassWord(password.getText());
 				
 				

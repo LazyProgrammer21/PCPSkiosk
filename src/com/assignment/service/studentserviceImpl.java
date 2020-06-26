@@ -20,22 +20,22 @@ public class studentserviceImpl implements studentService{
 	}
 	@Override
 	public boolean newRegister(studentinfo student) {
-		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,passWord) values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,passWord) values(?,?,?,?,?,?,?,?,?,?)";
 		
 		   try 
 		   {
 			   PreparedStatement stmt = con.prepareStatement(sql);
 			
 			   stmt.setInt(1, student.getClzId());
-			   stmt.setString(3, student.getName());
-			   stmt.setString(4, student.getEmail());
-			   stmt.setDate(5, student.getDob());
-			   stmt.setString(6, student.getGender());
-			   stmt.setString(7, student.getAdd_city());
-			   stmt.setString(8,student.getAdd_state());
-			   stmt.setString(9, student.getZipCode());
-//			   stmt.setInt(10, student.getPhone());
-			   stmt.setString(11, student.getPassWord());
+			   stmt.setString(2, student.getName());
+			   stmt.setString(3, student.getEmail());
+			   stmt.setDate(4, student.getDob());
+			   stmt.setString(5, student.getGender());
+			   stmt.setString(6, student.getAdd_city());
+			   stmt.setString(7,student.getAdd_state());
+			   stmt.setString(8, student.getZipCode());
+			   stmt.setString(9, student.getPhone());
+			   stmt.setString(10, student.getPassWord());
 			   
 			   stmt.execute();
 			   
@@ -50,6 +50,28 @@ public class studentserviceImpl implements studentService{
 		
 		
 		
+		return false;
+	}
+	@Override
+	public boolean addStudentadmin(int uniId, String Name) {
+		String sql = "insert into AdminStudentrecord(uniID,StudentName) values(?,?)";
+		  try 
+		   {
+			   PreparedStatement stmt = con.prepareStatement(sql);
+			
+			   stmt.setInt(1,uniId);
+			   stmt.setString(2,Name);
+		
+			   
+			   stmt.execute();
+			   
+			   return true;
+			
+			} 
+		   catch (SQLException e) {
+			
+			      System.out.println(e);
+		    }
 		return false;
 	}
 

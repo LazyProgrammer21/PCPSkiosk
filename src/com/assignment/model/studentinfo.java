@@ -13,8 +13,10 @@ public class studentinfo {
 	private String Add_city;
 	private String Add_state;
 	private String zipCode;
-	private int phone;
+	private String phone;
 	private String passWord;
+	
+	
 	public int getClzId() {
 		return clzId;
 	}
@@ -69,10 +71,10 @@ public class studentinfo {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getPassWord() {
