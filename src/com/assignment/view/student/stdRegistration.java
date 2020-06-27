@@ -282,5 +282,11 @@ public class stdRegistration extends JFrame {
 		pcplogo.setBounds(38, 31, 184, 85);
 		contentPane.add(pcplogo);
 	}
+	
+	
+	private void ValidationREG() {
+		
+		
+	}
 
 }

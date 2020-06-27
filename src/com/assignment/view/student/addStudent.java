@@ -4,12 +4,10 @@ package com.assignment.view.student;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -18,6 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class addStudent extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField Name;
 	private JTextField uniID;
@@ -25,6 +27,12 @@ public class addStudent extends JFrame {
 	private JButton btnCancel;
 	private int uniid;
 	private String name;
+	private String idvalue;
+	private String stdname;
+	private String sname;
+	private int id;
+	
+
 
 	/**
 	 * Launch the application.
@@ -78,24 +86,55 @@ public class addStudent extends JFrame {
 		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 uniid = Integer.parseInt(uniID.getText());
-				 name = Name.getText();
 				
-				studentService ss = new studentserviceImpl();
+				 idvalue=uniID.getText();
+				 stdname = Name.getText();
 				
-				
-				
-				if(ss.addStudentadmin(validation_id(),validation_name() ) ) {
-					JOptionPane.showMessageDialog(null, "Added Success");
-				}
-				else {
+			
 					
-					JOptionPane.showMessageDialog(null, "Added Failed");
-				}
-				
+					
+					
+					if(idvalue.isEmpty()||stdname.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Field Cannot be Empty!!");
+					}
 				
 					
+					
+					else if(isnumeric()) {
+						 uniid = Integer.parseInt(uniID.getText());
+						 name = Name.getText();
+						 studentService ss = new studentserviceImpl();
+						 
+						 if(validation_id()==0||validation_name().equals(null)) {
+								
+								JOptionPane.showMessageDialog(null, "Fill the appropriate data.. Try Again!!");
+							}
+						else {
+								
+								if(ss.addStudentadmin(validation_id(), validation_name())){
+									JOptionPane.showMessageDialog(null, "Added Success");
+								}
+								else {
+									System.out.println("Database connection Intrupeted. Check Internet COnnection");
+									JOptionPane.showMessageDialog(null, "Added Failed");
+								}
+							
+							}
+						
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "ID cannot be String");
+					}
+					
+					
 				
+			
+				
+
+				
+			
+					
+	
 			
 			uniID.setText(null);
 			Name.setText(null);
@@ -115,11 +154,16 @@ public class addStudent extends JFrame {
 		});
 		btnCancel.setBounds(339, 295, 82, 25);
 		contentPane.add(btnCancel);
+		
+		JLabel lblNoteUniversity = new JLabel("Note * University ID is 7 digit Number!");
+		lblNoteUniversity.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNoteUniversity.setBounds(84, 252, 351, 15);
+		contentPane.add(lblNoteUniversity);
 	}
 	
 	public int validation_id() {
 		
-			int id = 0;
+		
 			
 			int length=String.valueOf(uniid).length();
 		
@@ -137,20 +181,33 @@ public class addStudent extends JFrame {
 			
 		
 	}
-	public String validation_name() {
-		String sname = null;
-		if(name.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Student Name cannot be Empty!!");
-			
-		}
-		else
-		{
+	private String validation_name() {
+		
+		
+		
 			sname=name;
-		}
+		
 		
 		return sname;
 		
 		
 	}
-
+	
+	private boolean isnumeric () {
+		boolean x = false;
+		try {
+			if(idvalue!=null) {
+				Double.parseDouble(idvalue);
+				x=true;
+			}
+			
+		}
+		catch(NumberFormatException e) {
+			System.out.println("Cannot  be Empty");
+			x=false;
+		}
+	
+		
+		return x;
+	}
 }

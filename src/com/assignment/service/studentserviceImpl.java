@@ -2,7 +2,9 @@ package com.assignment.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.assignment.db.database;
 import com.assignment.model.studentinfo;
@@ -74,5 +76,37 @@ public class studentserviceImpl implements studentService{
 		    }
 		return false;
 	}
+	@Override
+	public int getuniIDdb(int uid) {
+		
+		int id=0;
+		
+		String sql = "select uniID from AdminStudentrecord ";
+		
+		
+			Statement s;
+			try {
+				s = con.createStatement();
+				ResultSet rs = s.executeQuery(sql);
+				while(rs.next()) {
+				 id = rs.getInt(1);
+				if(id==uid)
+				{
+					break;
+				}
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+
+		return id;
+	}
+	
+
+
 
 }
