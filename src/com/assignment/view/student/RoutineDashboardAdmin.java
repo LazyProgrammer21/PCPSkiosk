@@ -159,12 +159,8 @@ public class RoutineDashboardAdmin extends JInternalFrame {
 		getContentPane().add(textField_4);
 		
 		JButton btnUpdate = new JButton("update");
-		btnUpdate.setBounds(897, 451, 99, 25);
+		btnUpdate.setBounds(897, 479, 99, 25);
 		getContentPane().add(btnUpdate);
-		
-		JButton btnAddroutine = new JButton("Add");
-		btnAddroutine.setBounds(897, 482, 99, 25);
-		getContentPane().add(btnAddroutine);
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setBounds(897, 516, 99, 25);

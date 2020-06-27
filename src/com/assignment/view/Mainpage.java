@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
 import com.assignment.view.student.AdminHomepage;
 import com.assignment.view.student.GuestUser;
 import com.assignment.view.student.forgetPassword;
@@ -42,6 +44,7 @@ public class Mainpage extends JFrame {
 	private String s;
 	private String uniID;
 	 private String guest_email;
+	 private String uniid;
 	
 
 	/**
@@ -121,10 +124,48 @@ public class Mainpage extends JFrame {
 		infolink.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				stdRegistration rg = new stdRegistration();
-				rg.setVisible(true);
 				
-				disposeMainpage();
+				uniid = JOptionPane.showInputDialog("Please Enter your UniversityID to proceed>>");
+				studentService ss = new studentserviceImpl();
+//				System.out.println(ss.getuniIDdb());
+				
+				
+				try {
+				if(isnumeric()&&!uniid.isEmpty()) {
+					int id = Integer.parseInt(uniid);
+					if(id==ss.getuniIDdb(id)) {
+						stdRegistration rg = new stdRegistration();
+						rg.setVisible(true);
+						
+						disposeMainpage();
+						
+					}
+				
+				else  {
+						JOptionPane.showMessageDialog(null, "Invalid University ID..Try Again!!");
+
+					}
+					
+				}
+				else{
+				
+						JOptionPane.showMessageDialog(null, "ID cannot be String");
+
+				
+				}
+				
+				
+			
+				
+				}
+		
+				catch(Exception ex) {
+					System.out.println("Cancel Pressed");
+				}
+				
+				
+				 
+			
 				
 			}
 		});
@@ -135,7 +176,7 @@ public class Mainpage extends JFrame {
 		ForgetPasswordbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				uniID = JOptionPane.showInputDialog("Please Enter your University ID to proceed");
-				System.out.println(uniID);
+//				System.out.println(uniID);
 				int id = 1816212;//received from database..
 				try {
 				if(!uniID.isEmpty()) {
@@ -267,12 +308,29 @@ public class Mainpage extends JFrame {
 		Guestbtn.setBounds(426, 374, 99, 46);
 		mainpanel.add(Guestbtn);
 	}
-	static boolean isValid(String guest_email) {
+	private static boolean isValid(String guest_email) {
 		 String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		 return guest_email.matches(regex);
 	}
-	void disposeMainpage() {
+	private void disposeMainpage() {
 		Mainpage.this.dispose();
+	}
+	private boolean isnumeric () {
+		boolean x = false;
+		try {
+			if(uniid!=null) {
+				Double.parseDouble(uniid);
+				x=true;
+			}
+			
+		}
+		catch(NumberFormatException e) {
+			System.out.println("Cannot  be Empty");
+			x=false;
+		}
+	
+		
+		return x;
 	}
 	
 }

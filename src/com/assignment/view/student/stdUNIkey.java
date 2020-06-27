@@ -43,6 +43,7 @@ public class stdUNIkey extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 546, 426);
 		setUndecorated(true);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -101,5 +102,18 @@ public class stdUNIkey extends JFrame {
 		});
 		btnBack.setBounds(387, 352, 117, 25);
 		contentPane.add(btnBack);
+		
+		JButton btnAddStudent = new JButton("Add Student");
+		btnAddStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addStudent add = new addStudent();
+				add.setVisible(true);
+				add.setLocationRelativeTo(null);
+				stdUNIkey.this.dispose();
+				
+			}
+		});
+		btnAddStudent.setBounds(233, 352, 142, 25);
+		contentPane.add(btnAddStudent);
 	}
 }
