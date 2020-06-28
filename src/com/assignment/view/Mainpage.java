@@ -128,17 +128,16 @@ public class Mainpage extends JFrame {
 				
 				uniid = JOptionPane.showInputDialog("Please Enter your UniversityID to proceed>>");
 				studentService ss = new studentserviceImpl();
-//				System.out.println(ss.getuniIDdb());
-				
+
 				
 				try {
 				if(isnumeric()&&!uniid.isEmpty()) {
 					
 					BigInteger bgi = new BigInteger(uniid);
 					long lvalue=bgi.longValue();
-					studentService ss1 = new studentserviceImpl();
+			
 					
-					if(lvalue==ss1.getuniIDdb(bgi)){
+					if(lvalue==ss.getuniIDdb(lvalue)){
 						stdRegistration rg = new stdRegistration();
 						rg.setVisible(true);
 						

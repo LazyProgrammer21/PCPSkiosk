@@ -258,7 +258,7 @@ public class stdRegistration extends JFrame {
 				s_info.setZipCode(zipcode.getText());
 				
 			
-				
+				passwordValidation checkpassword = new passwordValidation();
 				if(checkpassword.validate(spassword)) {
 					s_info.setPassWord(password.getText());
 				}
