@@ -80,8 +80,10 @@ public class studentserviceImpl implements studentService{
 	}
 	@Override
 	public long getuniIDdb(BigInteger uid) {
-			long id;
+			
 			long longvalue_of_uid = uid.longValue();
+			long id;
+			long acvalue=0;
 		String sql = "select uniID from AdminStudentrecord ";
 				
 			Statement s;
@@ -90,12 +92,10 @@ public class studentserviceImpl implements studentService{
 				ResultSet rs = s.executeQuery(sql);
 				while(rs.next()) {
 				 id = rs.getLong(1);
-				 
-				if(id==longvalue_of_uid)
-				{
-					break;
+				if(id==longvalue_of_uid) {
+					acvalue=id;
 				}
-					
+				 					
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -104,7 +104,36 @@ public class studentserviceImpl implements studentService{
 			
 			
 
-		return longvalue_of_uid;
+		return acvalue;
+	}
+	@Override
+	public boolean setPKofSubject(int subject_id, int section_id, int sem_id) {
+		
+		String sql = "insert into studentinfo (courseID,semID,sectionID) values(?,?,?)";
+		 try 
+		   {
+			   PreparedStatement stmt = con.prepareStatement(sql);
+			   stmt.setInt(11, subject_id);
+			   stmt.setInt(12, section_id);
+			   stmt.setInt(13, sem_id);
+			
+			   
+			   
+			   stmt.execute();
+			   
+			   return true;
+			
+			} 
+		   catch (SQLException e) {
+			
+			      System.out.println(e);
+		    }
+			
+		
+		
+		
+		
+		return false;
 	}
 	
 

@@ -137,7 +137,7 @@ public class Mainpage extends JFrame {
 					long lvalue=bgi.longValue();
 			
 					
-					if(lvalue==ss.getuniIDdb(lvalue)){
+					if(lvalue==ss.getuniIDdb(bgi)){
 						stdRegistration rg = new stdRegistration();
 						rg.setVisible(true);
 						
