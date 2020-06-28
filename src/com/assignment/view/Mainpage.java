@@ -135,9 +135,10 @@ public class Mainpage extends JFrame {
 				if(isnumeric()&&!uniid.isEmpty()) {
 					
 					BigInteger bgi = new BigInteger(uniid);
+					long lvalue=bgi.longValue();
 					studentService ss1 = new studentserviceImpl();
 					
-					if(bgi=ss1.getuniIDdb()){
+					if(lvalue==ss1.getuniIDdb(bgi)){
 						stdRegistration rg = new stdRegistration();
 						rg.setVisible(true);
 						
