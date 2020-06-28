@@ -1,10 +1,11 @@
 package com.assignment.model;
 
+import java.math.BigInteger;
 import java.sql.Date;
 
 public class studentinfo {
 
-	private int clzId;
+	private BigInteger clzId;
 	private int uniId;
 	private String Name;
 	private String Email;
@@ -17,10 +18,11 @@ public class studentinfo {
 	private String passWord;
 	
 	
-	public int getClzId() {
+	
+	public BigInteger getClzId() {
 		return clzId;
 	}
-	public void setClzId(int clzId) {
+	public void setClzId(BigInteger clzId) {
 		this.clzId = clzId;
 	}
 	public int getUniId() {

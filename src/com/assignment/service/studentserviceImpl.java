@@ -1,5 +1,6 @@
 package com.assignment.service;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +28,9 @@ public class studentserviceImpl implements studentService{
 		   try 
 		   {
 			   PreparedStatement stmt = con.prepareStatement(sql);
+			   long longval = student.getClzId().longValue();
 			
-			   stmt.setInt(1, student.getClzId());
+			   stmt.setLong(1, longval);
 			   stmt.setString(2, student.getName());
 			   stmt.setString(3, student.getEmail());
 			   stmt.setDate(4, student.getDob());
@@ -77,20 +79,19 @@ public class studentserviceImpl implements studentService{
 		return false;
 	}
 	@Override
-	public int getuniIDdb(int uid) {
-		
-		int id=0;
-		
+	public long getuniIDdb(BigInteger uid) {
+			long id;
+			long longvalue_of_uid = uid.longValue();
 		String sql = "select uniID from AdminStudentrecord ";
-		
-		
+				
 			Statement s;
 			try {
 				s = con.createStatement();
 				ResultSet rs = s.executeQuery(sql);
 				while(rs.next()) {
-				 id = rs.getInt(1);
-				if(id==uid)
+				 id = rs.getLong(1);
+				 
+				if(id==longvalue_of_uid)
 				{
 					break;
 				}
@@ -103,7 +104,7 @@ public class studentserviceImpl implements studentService{
 			
 			
 
-		return id;
+		return longvalue_of_uid;
 	}
 	
 

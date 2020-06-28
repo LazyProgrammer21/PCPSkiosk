@@ -29,6 +29,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.math.BigInteger;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -132,8 +133,12 @@ public class Mainpage extends JFrame {
 				
 				try {
 				if(isnumeric()&&!uniid.isEmpty()) {
-					int id = Integer.parseInt(uniid);
-					if(id==ss.getuniIDdb(id)) {
+					
+					BigInteger bgi = new BigInteger(uniid);
+					long lvalue=bgi.longValue();
+					studentService ss1 = new studentserviceImpl();
+					
+					if(lvalue==ss1.getuniIDdb(bgi)){
 						stdRegistration rg = new stdRegistration();
 						rg.setVisible(true);
 						
