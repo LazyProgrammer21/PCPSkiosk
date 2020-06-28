@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 
 import com.assignment.model.studentinfo;
+import com.assignment.service.passwordValidation;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
 import com.assignment.view.Mainpage;
@@ -25,6 +26,9 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.math.BigInteger;
 
 public class stdRegistration extends JFrame {
 
@@ -41,6 +45,7 @@ public class stdRegistration extends JFrame {
 	private JTextField zipcode;
 	private JTextField phone;
 	private JPasswordField password;
+	private String stdName;
 	
 	
 	String sid;
@@ -128,62 +133,62 @@ public class stdRegistration extends JFrame {
 		panel.add(lblSubject);
 		
 		stdid = new JTextField();
-		stdid.setBounds(394, 12, 189, 24);
+		stdid.setBounds(344, 10, 189, 24);
 		panel.add(stdid);
 		stdid.setColumns(10);
 		
 		name = new JTextField();
 		name.setColumns(10);
-		name.setBounds(394, 51, 189, 24);
+		name.setBounds(344, 49, 189, 24);
 		panel.add(name);
 		
 		email = new JTextField();
 		email.setColumns(10);
-		email.setBounds(394, 87, 189, 24);
+		email.setBounds(344, 85, 189, 24);
 		panel.add(email);
 		
 		city = new JTextField();
 		city.setColumns(10);
-		city.setBounds(394, 185, 189, 24);
+		city.setBounds(344, 183, 189, 24);
 		panel.add(city);
 		
 		state = new JTextField();
 		state.setColumns(10);
-		state.setBounds(394, 233, 189, 24);
+		state.setBounds(344, 231, 189, 24);
 		panel.add(state);
 		
 		zipcode = new JTextField();
 		zipcode.setColumns(10);
-		zipcode.setBounds(394, 270, 189, 24);
+		zipcode.setBounds(344, 268, 189, 24);
 		panel.add(zipcode);
 		
 		phone = new JTextField();
 		phone.setColumns(10);
-		phone.setBounds(442, 320, 141, 24);
+		phone.setBounds(392, 318, 141, 24);
 		panel.add(phone);
 		
 		password = new JPasswordField();
-		password.setBounds(394, 393, 189, 25);
+		password.setBounds(344, 391, 189, 25);
 		panel.add(password);
 		
 		JRadioButton male = new JRadioButton("Male");
-		male.setBounds(391, 159, 70, 23);
+		male.setBounds(341, 157, 70, 23);
 		panel.add(male);
 		
 		JRadioButton female = new JRadioButton("Female");
-		female.setBounds(466, 159, 90, 23);
+		female.setBounds(416, 157, 90, 23);
 		panel.add(female);
 		
 		JRadioButton other = new JRadioButton("Other");
-		other.setBounds(564, 159, 90, 23);
+		other.setBounds(514, 157, 90, 23);
 		panel.add(other);
 		
 		JDateChooser birthdate = new JDateChooser();
-		birthdate.setBounds(394, 123, 189, 28);
+		birthdate.setBounds(344, 121, 189, 28);
 		panel.add(birthdate);
 		
 		JComboBox <String>subcombox = new JComboBox<String>();
-		subcombox.setBounds(394, 429, 189, 24);
+		subcombox.setBounds(344, 427, 189, 24);
 		panel.add(subcombox);
 		subcombox.addItem("Bsc. CS & SE");
 		subcombox.addItem("BBA");
@@ -197,26 +202,42 @@ public class stdRegistration extends JFrame {
 				 sid = stdid.getText();
 				 sname = name.getText();
 				 semail = email.getText();
-				sdob = new Date(birthdate.getDate().getTime());
-				sphone = phone.getText();
-				spassword = password.getText();
+				 sdob = new Date(birthdate.getDate().getTime());
+				 sphone = phone.getText();
+				 spassword = password.getText();
 				
 				
 				studentinfo s_info = new studentinfo();
-				if(numeric()) {
-					s_info.setClzId(Integer.parseInt(stdid.getText()));
+				
+				if(sid.isEmpty()||sname.isEmpty()||semail.isEmpty()||sphone.isEmpty()||spassword.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, "Field cannot be Empty");
 				}
-				else if(phonenumeric()) {
+				else {
+					
+					
+				if(numeric()) {
+					BigInteger bg = new BigInteger(sid);
+					s_info.setClzId(bg);
+				}
+			
+				if(phonenumeric()) {
 					s_info.setPhone(phone.getText());
 				}
+			
+				if(!check_name().isEmpty()) {
+					s_info.setName(name.getText());
+				}
+			
+				if(isValidemail(semail)) {
+					s_info.setEmail(email.getText());
+				}
 				
+				if(sdob != null) {
+					s_info.setDob(new Date(birthdate.getDate().getTime()));
+				}	
 				
-				
-				
-				//clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,pass
-				s_info.setName(name.getText());
-				s_info.setEmail(email.getText());
-				s_info.setDob(new Date(birthdate.getDate().getTime()));
+			
 				if(male.isSelected())
 				{
 					s_info.setGender("Male");
@@ -236,8 +257,14 @@ public class stdRegistration extends JFrame {
 				s_info.setAdd_state(state.getText());
 				s_info.setZipCode(zipcode.getText());
 				
+				passwordValidation checkpassword = new passwordValidation();
+				
+				if(checkpassword.validate(spassword)) {
+					s_info.setPassWord(password.getText());
+				}
+				}
 			
-				s_info.setPassWord(password.getText());
+			
 				
 				
 				studentService stdservice = new studentserviceImpl();
@@ -275,7 +302,7 @@ public class stdRegistration extends JFrame {
 				
 			}
 		});
-		btnSubmit.setBounds(668, 298, 117, 25);
+		btnSubmit.setBounds(628, 281, 117, 25);
 		panel.add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -288,12 +315,12 @@ public class stdRegistration extends JFrame {
 				
 			}
 		});
-		btnCancel.setBounds(668, 339, 117, 25);
+		btnCancel.setBounds(628, 318, 117, 25);
 		panel.add(btnCancel);
 		
 		JComboBox<String> sem = new JComboBox<String>();
 		
-		sem.setBounds(394, 355, 189, 24);
+		sem.setBounds(344, 353, 189, 24);
 		sem.addItem("L4S1");
 		sem.addItem("L4S2");
 		sem.addItem("L5S1");
@@ -305,8 +332,28 @@ public class stdRegistration extends JFrame {
 		
 		JLabel lblId_1 = new JLabel("+977");
 		lblId_1.setFont(new Font("FreeSans", Font.BOLD, 16));
-		lblId_1.setBounds(392, 319, 45, 28);
+		lblId_1.setBounds(342, 317, 45, 28);
 		panel.add(lblId_1);
+		
+		JLabel lblInfo = new JLabel("*Info*");
+		lblInfo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				passwordinfo pi = new passwordinfo();
+				pi.setVisible(true);
+				pi.setLocationRelativeTo(null);
+				
+			}
+		});
+		lblInfo.setFont(new Font("FreeSans", Font.BOLD, 16));
+		lblInfo.setBounds(535, 391, 45, 25);
+		panel.add(lblInfo);
+		
+		JLabel lblClzIdConsists = new JLabel("Clz ID consists of 10 digit Number");
+		lblClzIdConsists.setFont(new Font("FreeSans", Font.BOLD, 16));
+		lblClzIdConsists.setBounds(535, 14, 264, 25);
+		panel.add(lblClzIdConsists);
 		
 		JLabel unilogo = new JLabel("");
 		unilogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
@@ -357,7 +404,19 @@ public class stdRegistration extends JFrame {
 		return x;
 	}
 	
-	private String
+	private String check_name() {
+		if(!sname.isEmpty()) {
+			stdName = sname;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Field Cannot be Empty");
+		}
 		
+		return stdName;
+	}
+	
+	private static boolean isValidemail(String stdemail) {
+		 String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		 return stdemail.matches(regex);
 	}
 }
