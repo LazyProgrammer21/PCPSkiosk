@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 
-import com.assignment.model.courseSubjectinfo;
 import com.assignment.model.studentinfo;
 import com.assignment.service.course;
 import com.assignment.service.courseSubjectImpl;
@@ -64,6 +63,11 @@ public class stdRegistration extends JFrame {
 	String ssubject;
 	String ssection;
 	String ssemester;
+	
+	studentinfo s_info = new studentinfo();
+	course cs = new courseSubjectImpl();
+	sectionService s = new sectionServiceImpl();
+	semesterService sems = new semesterSeriveImpl();
 
 
 	public stdRegistration() {
@@ -241,14 +245,8 @@ public class stdRegistration extends JFrame {
 				 
 				
 				
-				studentinfo s_info = new studentinfo();
-				course cs = new courseSubjectImpl();
-//				cs.getcourseNameID(ssubject);
-				sectionService s = new sectionServiceImpl();
-//				s.getsecvalue(ssection);
-				semesterService sems = new semesterSeriveImpl();
-//				sems.getsemesterID(ssection);
-				
+		
+
 				
 				if(sid.isEmpty()||sname.isEmpty()||semail.isEmpty()||sphone.isEmpty()||spassword.isEmpty()) {
 					
@@ -324,26 +322,26 @@ public class stdRegistration extends JFrame {
 				
 				//input field make empty once the button is pressed..
 				
-				stdid.setText("");
-				name.setText("");
-				email.setText("");
-				birthdate.setCalendar(null);
-				city.setText("");
-				state.setText("");
-				zipcode.setText("");
-				phone.setText("");
-				password.setText("");
-				
-				
-				
-				   
-				
-				
-				
-				Mainpage mp = new Mainpage();
-				mp.setVisible(true);
-				
-				stdRegistration.this.dispose();
+//				stdid.setText("");
+//				name.setText("");
+//				email.setText("");
+//				birthdate.setCalendar(null);
+//				city.setText("");
+//				state.setText("");
+//				zipcode.setText("");
+//				phone.setText("");
+//				password.setText("");
+//				
+//				
+//				
+//				   
+//				
+//				
+//				
+//				Mainpage mp = new Mainpage();
+//				mp.setVisible(true);
+//				
+//				stdRegistration.this.dispose();
 				
 			}
 		});

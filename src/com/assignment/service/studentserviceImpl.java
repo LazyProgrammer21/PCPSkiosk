@@ -116,9 +116,6 @@ public class studentserviceImpl implements studentService{
 			   stmt.setInt(11, subject_id);
 			   stmt.setInt(12, section_id);
 			   stmt.setInt(13, sem_id);
-			
-			   
-			   
 			   stmt.execute();
 			   
 			   return true;
@@ -126,7 +123,7 @@ public class studentserviceImpl implements studentService{
 			} 
 		   catch (SQLException e) {
 			
-			      System.out.println(e);
+			    System.out.println("hello");
 		    }
 			
 		

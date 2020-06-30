@@ -38,7 +38,7 @@ public class courseSubjectImpl implements course {
 			}
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("data fetch failed");
 		}
 		
 
