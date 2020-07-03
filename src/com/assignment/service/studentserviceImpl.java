@@ -15,6 +15,9 @@ public class studentserviceImpl implements studentService{
 
 
 	Connection con = null;
+	course cs = new courseSubjectImpl();
+	sectionService s = new sectionServiceImpl();
+	semesterService sems = new semesterSeriveImpl();
 	
 	public studentserviceImpl() {
 		
@@ -22,8 +25,8 @@ public class studentserviceImpl implements studentService{
 	
 	}
 	@Override
-	public boolean newRegister(studentinfo student) {
-		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,passWord) values(?,?,?,?,?,?,?,?,?,?)";
+	public boolean newRegister(studentinfo student,int sub_id,int sem_id,int secid ) {
+		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,passWord,courseID,semID,sectionID) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		   try 
 		   {
@@ -40,6 +43,10 @@ public class studentserviceImpl implements studentService{
 			   stmt.setString(8, student.getZipCode());
 			   stmt.setString(9, student.getPhone());
 			   stmt.setString(10, student.getPassWord());
+			   stmt.setInt(11, sub_id);
+			   stmt.setInt(12, sem_id);
+			   stmt.setInt(13, secid);
+		
 			   
 			   stmt.execute();
 			   
@@ -106,33 +113,57 @@ public class studentserviceImpl implements studentService{
 
 		return acvalue;
 	}
-	@Override
-	public boolean setPKofSubject(int subject_id, int section_id, int sem_id) {
-		
-		String sql = "insert into studentinfo (courseID,semID,sectionID) values(?,?,?)";
-		 try 
-		   {
-			   PreparedStatement stmt = con.prepareStatement(sql);
-			   stmt.setInt(11, subject_id);
-			   stmt.setInt(12, section_id);
-			   stmt.setInt(13, sem_id);
-			   stmt.execute();
-			   
-			   return true;
-			
-			} 
-		   catch (SQLException e) {
-			
-			    System.out.println("hello");
-		    }
-			
-		
-		
-		
-		
-		return false;
-	}
-	
+//	@Override
+//	public boolean setPKofSubject(int subject_id, int section_id, int sem_id) {
+//		
+//		String sql = "insert into studentinfo (courseID,semID,sectionID) values(?,?,?)";
+//		 try 
+//		   {
+//			   PreparedStatement stmt = con.prepareStatement(sql);
+//			   stmt.setInt(11, subject_id);
+//			   stmt.setInt(12, section_id);
+//			   stmt.setInt(13, sem_id);
+//			   stmt.execute();
+//			   
+//			   return true;
+//			
+//			} 
+//		   catch (SQLException e) {
+//			
+//			    System.out.println("hello");
+//		    }
+//			
+//		
+//		
+//		
+//		
+//		return false;
+//	}
+//	public boolean setPKofSubject(int subject_id) {
+//		
+//		String sql = "insert into studentinfo (courseID) values(?)";
+//		 try 
+//		   {
+//			   PreparedStatement stmt = con.prepareStatement(sql);
+//			   stmt.setInt(11, subject_id);
+//		
+//			   stmt.execute();
+//			   
+//			   return true;
+//			
+//			} 
+//		   catch (SQLException e) {
+//			
+//			    System.out.println("hello");
+//		    }
+//			
+//		
+//		
+//		
+//		
+//		return false;
+//	}
+//	
 
 
 

@@ -1,6 +1,6 @@
 package com.assignment.view.student;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class viewTeacher extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 
@@ -95,6 +99,15 @@ public class viewTeacher extends JFrame {
 		contentPane.add(table);
 		
 		JButton btnAddTeacher = new JButton("Add Teacher");
+		btnAddTeacher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				addTeacher at = new addTeacher();
+				at.setVisible(true);
+				at.setLocationRelativeTo(null);
+				viewTeacher.this.dispose();
+			}
+		});
 		btnAddTeacher.setBounds(205, 351, 142, 25);
 		contentPane.add(btnAddTeacher);
 		

@@ -31,6 +31,7 @@ public class courseSubjectImpl implements course {
 					
 					c_id=rs.getInt(1);
 					setthisvalue=c_id;
+//					System.out.println(setthisvalue);
 				}
 				
 				

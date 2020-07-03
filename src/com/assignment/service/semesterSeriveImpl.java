@@ -19,7 +19,7 @@ public class semesterSeriveImpl implements semesterService {
 		int sem_id;
 		String sem_name;
 		int setthisvalue=0;
-		String sql = "select * from subjectCourse";
+		String sql = "select * from semester";
 		Statement stmt;
 		try {
 			stmt = con.createStatement();

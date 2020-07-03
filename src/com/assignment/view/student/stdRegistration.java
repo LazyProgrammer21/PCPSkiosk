@@ -32,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigInteger;
@@ -68,7 +69,22 @@ public class stdRegistration extends JFrame {
 	course cs = new courseSubjectImpl();
 	sectionService s = new sectionServiceImpl();
 	semesterService sems = new semesterSeriveImpl();
-
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					stdRegistration frame = new stdRegistration();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public stdRegistration() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,7 +220,7 @@ public class stdRegistration extends JFrame {
 		JComboBox <String>subject = new JComboBox<String>();
 		subject.setBounds(344, 450, 189, 24);
 		panel.add(subject);
-		subject.addItem("Bsc. CS & SE");
+		subject.addItem("Bsc.Cs&SE");
 		subject.addItem("BBA");
 		subject.setSelectedItem("Your Subject");
 		
@@ -228,7 +244,7 @@ public class stdRegistration extends JFrame {
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+		
 			public void actionPerformed(ActionEvent arg0) {
 				//database code..
 				
@@ -259,6 +275,7 @@ public class stdRegistration extends JFrame {
 					BigInteger bg = new BigInteger(sid);
 					s_info.setClzId(bg);
 				}
+				
 			
 				if(phonenumeric()) {
 					s_info.setPhone(phone.getText());
@@ -310,8 +327,8 @@ public class stdRegistration extends JFrame {
 				
 				
 				studentService stdservice = new studentserviceImpl();
-				
-				if(stdservice.newRegister(s_info)&&stdservice.setPKofSubject(cs.getcourseNameID(ssubject),s.getsecvalue(ssection),sems.getsemesterID(ssection)))
+//				if(stdservice.newRegister(s_info)&&stdservice.setPKofSubject(cs.getcourseNameID(ssubject),s.getsecvalue(ssection),sems.getsemesterID(ssection)))
+				if(stdservice.newRegister(s_info,cs.getcourseNameID(ssubject),sems.getsemesterID(ssemester),s.getsecvalue(ssection)))
 				{
 					JOptionPane.showMessageDialog(null, "Added Success");
 				}
@@ -322,26 +339,26 @@ public class stdRegistration extends JFrame {
 				
 				//input field make empty once the button is pressed..
 				
-//				stdid.setText("");
-//				name.setText("");
-//				email.setText("");
-//				birthdate.setCalendar(null);
-//				city.setText("");
-//				state.setText("");
-//				zipcode.setText("");
-//				phone.setText("");
-//				password.setText("");
-//				
-//				
-//				
-//				   
-//				
-//				
-//				
-//				Mainpage mp = new Mainpage();
-//				mp.setVisible(true);
-//				
-//				stdRegistration.this.dispose();
+				stdid.setText("");
+				name.setText("");
+				email.setText("");
+				birthdate.setCalendar(null);
+				city.setText("");
+				state.setText("");
+				zipcode.setText("");
+				phone.setText("");
+				password.setText("");
+				
+				
+				
+				   
+				
+				
+				
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				
+				stdRegistration.this.dispose();
 				
 			}
 		});
@@ -396,12 +413,12 @@ public class stdRegistration extends JFrame {
 	
 		
 		JLabel unilogo = new JLabel("");
-		unilogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
+		unilogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/uoblogo.jpg"));
 		unilogo.setBounds(704, 19, 184, 97);
 		contentPane.add(unilogo);
 		
 		JLabel pcplogo = new JLabel("");
-		pcplogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
+		pcplogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/pcpslogo.jpg"));
 		pcplogo.setBounds(38, 31, 184, 85);
 		contentPane.add(pcplogo);
 	}
@@ -459,4 +476,6 @@ public class stdRegistration extends JFrame {
 		 String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		 return stdemail.matches(regex);
 	}
+	
+	
 }
