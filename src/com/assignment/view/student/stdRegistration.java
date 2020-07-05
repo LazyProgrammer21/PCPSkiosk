@@ -30,10 +30,14 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class stdRegistration extends JFrame {
@@ -51,23 +55,37 @@ public class stdRegistration extends JFrame {
 	private JTextField zipcode;
 	private JTextField phone;
 	private JPasswordField password;
-	private String stdName;
+	private String stdName="";
 	
 	
-	String sid;
-	String sname;
-	String semail;
-	Date sdob;
-	String sphone;
-	String spassword;
-	String ssubject;
-	String ssection;
-	String ssemester;
+	String sid="";
+	String sname="";
+	String semail="";
+	Date sdob=null;
+	String sphone="";
+	String spassword="";
+
 	
 	studentinfo s_info = new studentinfo();
 	course cs = new courseSubjectImpl();
 	sectionService s = new sectionServiceImpl();
-	semesterService sems = new semesterSeriveImpl();
+	static semesterService sems = new semesterSeriveImpl();
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					stdRegistration frame = new stdRegistration();
+//					frame.setVisible(true);
+//					frame.setLocationRelativeTo(null);
+//						
+//					
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 
 	public stdRegistration() {
@@ -202,35 +220,40 @@ public class stdRegistration extends JFrame {
 		panel.add(birthdate);
 		
 		JComboBox <String>subject = new JComboBox<String>();
+		for(String sub:cs.getAllcourse()) {
+			subject.addItem(sub);
+		}
 		subject.setBounds(344, 450, 189, 24);
 		panel.add(subject);
-		subject.addItem("Bsc. CS & SE");
-		subject.addItem("BBA");
-		subject.setSelectedItem("Your Subject");
+		
+		
 		
 		JComboBox<String> sem = new JComboBox<String>();
+		
+		for(String x: sems.getTotalsemester()) {
+			sem.addItem(x);
+			
+		}
+		
 		sem.setBounds(344, 343, 189, 24);
-		sem.addItem("L4S1");
-		sem.addItem("L4S2");
-		sem.addItem("L5S1");
-		sem.addItem("L5S2");
-		sem.addItem("L6S1");
-		sem.addItem("L6S2");
-		sem.setSelectedItem("Semester");
 		panel.add(sem);
 		
 		JComboBox<String> section = new JComboBox<String>();
+		for(String y: s.getAllsection()) {
+			section.addItem(y);
+			
+		}
+	
+		
 		section.setBounds(344, 377, 189, 24);
-		section.addItem("Section A");
-		section.addItem("Section B");
-		section.setSelectedItem("Your Section");
 		panel.add(section);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+	
 			public void actionPerformed(ActionEvent arg0) {
-				//database code..
+				
+				try {
 				
 				 sid = stdid.getText();
 				 sname = name.getText();
@@ -238,80 +261,93 @@ public class stdRegistration extends JFrame {
 				 sdob = new Date(birthdate.getDate().getTime());
 				 sphone = phone.getText();
 				 spassword = password.getText();
-				 
-				 ssemester = sem.getSelectedItem().toString();
-				 ssubject = subject.getSelectedItem().toString();
-				 ssection = section.getSelectedItem().toString();
-				 
-				
-				
-		
-
-				
-				if(sid.isEmpty()||sname.isEmpty()||semail.isEmpty()||sphone.isEmpty()||spassword.isEmpty()) {
+			
+				 int semid = sem.getSelectedIndex()+1;
 					
-					JOptionPane.showMessageDialog(null, "Field cannot be Empty");
-				}
+					
+				int secid = section.getSelectedIndex()+1;
+					
+				
+				int subid = subject.getSelectedIndex()+1;
+			
+				//database code..
+				
+			
+					 
+					
+						
+					 
+				 if(sid!=null) {
+					 BigInteger k = BigDecimal.valueOf(numeric(sid)).toBigInteger();
+					 s_info.setClzId(k);
+				 }
+				 else
+				 {
+					 JOptionPane.showMessageDialog(null, "Invalid ID");
+				 }
+				 
+				 if(phonenumeric(sphone)) {
+					
+					 s_info.setPhone(phone.getText());
+				 }
+				 else
+				 {
+					 JOptionPane.showMessageDialog(null, "Field cannot be Empty");
+				 }
+				 if(!check_name().isEmpty()) {
+						s_info.setName(name.getText());
+					}
 				else {
+						JOptionPane.showMessageDialog(null, "Field cannot be Empty!");
+					}
+				 if(isValidemail(semail)) {
+						s_info.setEmail(email.getText());
+					}
+				else {
+						JOptionPane.showMessageDialog(null, "Check your Email");
+					}
+				 if(sdob != null) {
+						s_info.setDob(new Date(birthdate.getDate().getTime()));
+					}
+				else {
+						JOptionPane.showMessageDialog(null, "Check your DOB");
+					}
 					
-					
-				if(numeric()) {
-					BigInteger bg = new BigInteger(sid);
-					s_info.setClzId(bg);
-				}
-			
-				if(phonenumeric()) {
-					s_info.setPhone(phone.getText());
-				}
-			
-				if(!check_name().isEmpty()) {
-					s_info.setName(name.getText());
-				}
 				
-			
-				if(isValidemail(semail)) {
-					s_info.setEmail(email.getText());
-				}
-				
-				if(sdob != null) {
-					s_info.setDob(new Date(birthdate.getDate().getTime()));
-				}	
-				
-			
 				if(male.isSelected())
-				{
-					s_info.setGender("Male");
-				}
-				
-				else if(female.isSelected()){
+					{
+						s_info.setGender("Male");
+					}
 					
-					s_info.setGender("Female");
-				}
-				
+				else if(female.isSelected()){
+						
+						s_info.setGender("Female");
+					}
+					
 				else if(other.isSelected())
-				{
-					s_info.setGender("Other");
-				}
+					{
+						s_info.setGender("Other");
+					}
+					
+					s_info.setAdd_city(city.getText());
+					s_info.setAdd_state(state.getText());
+					s_info.setZipCode(zipcode.getText());
+					
 				
-				s_info.setAdd_city(city.getText());
-				s_info.setAdd_state(state.getText());
-				s_info.setZipCode(zipcode.getText());
-				
-			
 				passwordValidation checkpassword = new passwordValidation();
 				if(checkpassword.validate(spassword)) {
-					s_info.setPassWord(password.getText());
-				}
+						s_info.setPassWord(password.getText());
+					}
+				else {
+						JOptionPane.showMessageDialog(null, "Try next Password");
+					}
+				 
+				 
 				
-				
-				}
-			
-			
-				
-				
+				 
 				studentService stdservice = new studentserviceImpl();
 				
-				if(stdservice.newRegister(s_info)&&stdservice.setPKofSubject(cs.getcourseNameID(ssubject),s.getsecvalue(ssection),sems.getsemesterID(ssection)))
+				if(stdservice.newRegister(s_info, subid, semid, secid))
 				{
 					JOptionPane.showMessageDialog(null, "Added Success");
 				}
@@ -322,26 +358,26 @@ public class stdRegistration extends JFrame {
 				
 				//input field make empty once the button is pressed..
 				
-//				stdid.setText("");
-//				name.setText("");
-//				email.setText("");
-//				birthdate.setCalendar(null);
-//				city.setText("");
-//				state.setText("");
-//				zipcode.setText("");
-//				phone.setText("");
-//				password.setText("");
-//				
-//				
-//				
-//				   
-//				
-//				
-//				
-//				Mainpage mp = new Mainpage();
-//				mp.setVisible(true);
-//				
-//				stdRegistration.this.dispose();
+				stdid.setText("");
+				name.setText("");
+				email.setText("");
+				birthdate.setCalendar(null);
+				city.setText("");
+				state.setText("");
+				zipcode.setText("");
+				phone.setText("");
+				password.setText("");
+	
+				Mainpage mp = new Mainpage();
+				mp.setVisible(true);
+				
+				stdRegistration.this.dispose();
+				
+				}
+				catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Fill all the Form");
+					System.out.println("helo");
+				}
 				
 			}
 		});
@@ -393,51 +429,63 @@ public class stdRegistration extends JFrame {
 		lblSubject_1.setBounds(188, 379, 94, 25);
 		panel.add(lblSubject_1);
 		
+		JButton btnS = new JButton("s");
+		btnS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, subject.getSelectedItem().toString());
+			}
+		});
+		btnS.setBounds(628, 354, 117, 25);
+		panel.add(btnS);
+		
 	
 		
 		JLabel unilogo = new JLabel("");
-		unilogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
+		unilogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/uoblogo.jpg"));
 		unilogo.setBounds(704, 19, 184, 97);
 		contentPane.add(unilogo);
 		
 		JLabel pcplogo = new JLabel("");
-		pcplogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
+		pcplogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/pcpslogo.jpg"));
 		pcplogo.setBounds(38, 31, 184, 85);
 		contentPane.add(pcplogo);
 	}
 	
 	
-	private boolean numeric() {
-		boolean x = false;
+	private Double numeric(String cid) {
+		
+		Double x = null;
 		try {
-			if(sid!=null) {
-				Double.parseDouble(sid);
-				x=true;
+			if(cid!=null&&cid.length()==10) {
+				x = Double.parseDouble(cid);
+				
+				
 			}
 			
 		}
 		catch(NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Clz ID cannot be String");
-			System.out.println("Clz ID cannot be String");
-			x=false;
+		
+		
 		}
 	
 		
 		return x;
 	}
-	private boolean phonenumeric() {
-		boolean x = false;
+	private Boolean phonenumeric(String pnum) {
+		Boolean x = false;
 		try {
-			if(sphone!=null) {
-				Double.parseDouble(sphone);
-				x=true;
+			if(pnum!=null) {
+				 Double.parseDouble(pnum);
+				 x=true;
+				
 			}
 			
 		}
 		catch(NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "PhoneNumber cannot be String");
-			System.out.println("Phone Number cannot be String");
-			x=false;
+			
+			
 		}
 	
 		
@@ -449,7 +497,7 @@ public class stdRegistration extends JFrame {
 			stdName = sname;
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Field Cannot be Empty");
+			JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
 		}
 		
 		return stdName;
@@ -459,4 +507,13 @@ public class stdRegistration extends JFrame {
 		 String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		 return stdemail.matches(regex);
 	}
+	
+	
+	
+	
+
+	
+	
+	
+	
 }

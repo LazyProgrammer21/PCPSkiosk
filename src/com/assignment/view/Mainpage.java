@@ -77,7 +77,7 @@ public class Mainpage extends JFrame {
 		setTitle("PCPSKIOSK");
 		setResizable(false);
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("/home/lazyprogrammer21/git/PCPSkiosk/images/appicon.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("/Users/hunte/git/PCPSkiosk/images/appicon.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 807, 508);
 		setLocationRelativeTo(null);
@@ -93,12 +93,12 @@ public class Mainpage extends JFrame {
 		mainpanel.setLayout(null);
 		
 		JLabel Pcpslogo = new JLabel("");
-		Pcpslogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/pcpslogo.jpg"));
+		Pcpslogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/pcpslogo.jpg"));
 		Pcpslogo.setBounds(47, 34, 177, 97);
 		mainpanel.add(Pcpslogo);
 		
 		JLabel Uoblogo = new JLabel("");
-		Uoblogo.setIcon(new ImageIcon("/home/lazyprogrammer21/git/PCPSkiosk/images/uoblogo.jpg"));
+		Uoblogo.setIcon(new ImageIcon("/Users/hunte/git/PCPSkiosk/images/uoblogo.jpg"));
 		Uoblogo.setBounds(541, 34, 177, 97);
 		mainpanel.add(Uoblogo);
 		

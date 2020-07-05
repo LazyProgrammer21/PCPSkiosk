@@ -1,9 +1,11 @@
 package com.assignment.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.assignment.db.database;
 
@@ -13,38 +15,29 @@ public class sectionServiceImpl implements sectionService {
 	public sectionServiceImpl() {
 		con=database.getDBConnection();
 	}
-
 	@Override
-	public int getsecvalue(String sec) {
-		int s_id;
-		String s_name;
-		int setthisvalue=0;
-		String sql = "select * from Section";
+	public List<String> getAllsection() {
+		List<String> lsec = new ArrayList<String>();
+		String sql = "select * from section";
 		
-		Statement stmt;
 		try {
-			stmt=con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				s_name=rs.getString(2);
-				if(sec.equals(s_name)) {
-					s_id=rs.getInt(1);
-					setthisvalue=s_id;
 				
+				lsec.add(rs.getString(2));
 			}
 		}
+		catch(SQLException e) {
+			e.printStackTrace();
 		}
-			catch(SQLException e) {
-				System.out.println("Database COnnection Intrupeted");
-				e.printStackTrace();
-			}
-			
-		
-
 		
 		
+		System.out.println(lsec);
 		
-		return setthisvalue;
+		return lsec;
 	}
+
+
 
 }
