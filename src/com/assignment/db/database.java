@@ -14,9 +14,8 @@ public class database {
 		try 
 		{
 			
-			
 				
-			    return DriverManager.getConnection("jdbc:mysql://localhost:3306/kioskdb","root","");
+			    return DriverManager.getConnection("jdbc:mysql://localhost:3306/KIOSKdb","root","");
 			
 				
 		
