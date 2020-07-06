@@ -110,17 +110,17 @@ public class studentserviceImpl implements studentService{
 		return acvalue;
 	}
 	@Override
-	public boolean updateAdmintable(String status,int x) {
-		boolean value=false;
-		System.out.println(status);
+	public boolean updateAdmintable(int x) {
+		
+		System.out.println(x);
+		String status="Taken";
 		
 		String sql = "update adminstudentrecord set status = \'"+status+"'"+"where uniID="+x;
 	try {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.execute();
-		value=true;
-		stmt.close();
-		con.close();
+		
+	
 		
 	}
 	catch(SQLException e ) {
@@ -131,7 +131,7 @@ public class studentserviceImpl implements studentService{
 		
 		
 		
-		return value;
+		return false;
 	}
 	@Override
 	public boolean checkstatuscolumn_of_studentadminrecord(BigInteger x) {

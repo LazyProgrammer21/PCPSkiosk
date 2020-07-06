@@ -48,6 +48,7 @@ public class Mainpage extends JFrame {
 	private String uniID;
 	 private String guest_email;
 	 private String uniid;
+	
 
 	
 
@@ -130,6 +131,8 @@ public class Mainpage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				uniid = JOptionPane.showInputDialog("Please Enter your UniversityID to proceed>>");
+				int cd = Integer.parseInt(uniid);
+				
 				studentService ss = new studentserviceImpl();
 				BigInteger bgi1 = new BigInteger(uniid);
 			
@@ -140,10 +143,13 @@ public class Mainpage extends JFrame {
 				try {
 				if(isnumeric()&&!uniid.isEmpty()) {
 					
+					 
 					
 					
 					BigInteger bgi = new BigInteger(uniid);
 					long lvalue=bgi.longValue();
+				
+					
 			
 					
 					if(lvalue==ss.getuniIDdb(bgi)){
@@ -153,6 +159,7 @@ public class Mainpage extends JFrame {
 						disposeMainpage();
 						
 					}
+					
 				
 				else  {
 						JOptionPane.showMessageDialog(null, "Invalid University ID..Try Again!!");
@@ -175,12 +182,20 @@ public class Mainpage extends JFrame {
 				catch(Exception ex) {
 					System.out.println("Cancel Pressed");
 				}
+			
+				
+				
+				
 				
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Username exits");
 					
 				}
+				
+				
+				ss.updateAdmintable(cd);
+				
 				
 				 
 			
@@ -358,5 +373,8 @@ public class Mainpage extends JFrame {
 		
 		return x;
 	}
+	
+	
+
 	
 }

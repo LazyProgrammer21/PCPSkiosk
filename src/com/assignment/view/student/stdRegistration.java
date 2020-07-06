@@ -69,7 +69,10 @@ public class stdRegistration extends JFrame {
 	studentinfo s_info = new studentinfo();
 	course cs = new courseSubjectImpl();
 	sectionService s = new sectionServiceImpl();
+	studentService stdservice = new studentserviceImpl();
 	static semesterService sems = new semesterSeriveImpl();
+	
+	
 	
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -86,9 +89,14 @@ public class stdRegistration extends JFrame {
 //			}
 //		});
 //	}
-
-
 	public stdRegistration() {
+		
+		initialize();
+	
+	}
+
+
+	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setUndecorated(true);
 		setBounds(100, 100, 924, 622);
@@ -251,7 +259,9 @@ public class stdRegistration extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 	
+			@SuppressWarnings({ "deprecation" })
 			public void actionPerformed(ActionEvent arg0) {
+				
 				
 				try {
 				
@@ -270,9 +280,10 @@ public class stdRegistration extends JFrame {
 				
 				int subid = subject.getSelectedIndex()+1;
 				
+				int ic = Integer.parseInt(sid);
 			
 				//database code..
-				int ic = Integer.parseInt(sid);
+//				
 				 BigInteger k = BigDecimal.valueOf(numeric(sid)).toBigInteger();
 			
 					 
@@ -347,18 +358,22 @@ public class stdRegistration extends JFrame {
 				 
 				
 				 
-				studentService stdservice = new studentserviceImpl();
+				
 				
 				if(stdservice.newRegister(s_info, subid, semid, secid))
 				{
-					if(stdservice.updateAdmintable("Taken", ic)) {
+					
 					JOptionPane.showMessageDialog(null, "Added Success");
-				}
+					
+				
 				}
 				
 				else {
 					JOptionPane.showMessageDialog(null, "Added Failed");
 				}
+				
+				
+				
 				
 				//input field make empty once the button is pressed..
 				
