@@ -11,6 +11,8 @@ public interface studentService {
 	boolean newRegister(studentinfo student,int courseID, int semID, int sectionID);
 	boolean addStudentadmin(int uniId, String Name);
 	long getuniIDdb(BigInteger id);
+	boolean updateAdmintable(String status,int uniID);
+	boolean checkstatuscolumn_of_studentadminrecord(BigInteger checkid);
 
 
 

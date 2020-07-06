@@ -269,16 +269,18 @@ public class stdRegistration extends JFrame {
 					
 				
 				int subid = subject.getSelectedIndex()+1;
+				
 			
 				//database code..
-				
+				int ic = Integer.parseInt(sid);
+				 BigInteger k = BigDecimal.valueOf(numeric(sid)).toBigInteger();
 			
 					 
 					
 						
 					 
 				 if(sid!=null) {
-					 BigInteger k = BigDecimal.valueOf(numeric(sid)).toBigInteger();
+					
 					 s_info.setClzId(k);
 				 }
 				 else
@@ -349,7 +351,9 @@ public class stdRegistration extends JFrame {
 				
 				if(stdservice.newRegister(s_info, subid, semid, secid))
 				{
+					if(stdservice.updateAdmintable("Taken", ic)) {
 					JOptionPane.showMessageDialog(null, "Added Success");
+				}
 				}
 				
 				else {

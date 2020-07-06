@@ -109,6 +109,62 @@ public class studentserviceImpl implements studentService{
 
 		return acvalue;
 	}
+	@Override
+	public boolean updateAdmintable(String status,int x) {
+		boolean value=false;
+		System.out.println(status);
+		
+		String sql = "update adminstudentrecord set status = \'"+status+"'"+"where uniID="+x;
+	try {
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.execute();
+		value=true;
+		stmt.close();
+		con.close();
+		
+	}
+	catch(SQLException e ) {
+		e.printStackTrace();
+	}
+		
+		
+		
+		
+		
+		return value;
+	}
+	@Override
+	public boolean checkstatuscolumn_of_studentadminrecord(BigInteger x) {
+		boolean stv=true;
+//		System.out.println(x);
+		
+		
+		
+		try {
+			String sql ="select status from adminstudentrecord where uniID="+x;
+			
+			Statement st1 = con.createStatement();
+			ResultSet rrset = st1.executeQuery(sql);
+			
+			rrset.next();
+	
+			String xu = rrset.getString("status");
+			if(xu.equals("Taken")) {
+				stv=false;
+			}
+			System.out.println(xu);
+
+			
+		}
+		catch(SQLException e) {
+//		System.out.println("Data Fetch Failed");
+			e.printStackTrace();
+		}
+
+		
+		
+		return stv;
+	}
 
 
 	

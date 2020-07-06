@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+import com.assignment.service.guestService;
+import com.assignment.service.guestServiceImpl;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
 import com.assignment.view.student.AdminHomepage;
@@ -46,6 +48,7 @@ public class Mainpage extends JFrame {
 	private String uniID;
 	 private String guest_email;
 	 private String uniid;
+
 	
 
 	/**
@@ -128,10 +131,16 @@ public class Mainpage extends JFrame {
 				
 				uniid = JOptionPane.showInputDialog("Please Enter your UniversityID to proceed>>");
 				studentService ss = new studentserviceImpl();
+				BigInteger bgi1 = new BigInteger(uniid);
+			
 
+				if(ss.checkstatuscolumn_of_studentadminrecord(bgi1)) {
+				
 				
 				try {
 				if(isnumeric()&&!uniid.isEmpty()) {
+					
+					
 					
 					BigInteger bgi = new BigInteger(uniid);
 					long lvalue=bgi.longValue();
@@ -167,6 +176,11 @@ public class Mainpage extends JFrame {
 					System.out.println("Cancel Pressed");
 				}
 				
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Username exits");
+					
+				}
 				
 				 
 			
@@ -179,6 +193,7 @@ public class Mainpage extends JFrame {
 		JButton ForgetPasswordbtn = new JButton("Forget Password");
 		ForgetPasswordbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
 				uniID = JOptionPane.showInputDialog("Please Enter your University ID to proceed");
 //				System.out.println(uniID);
 				int id = 1816212;//received from database..
@@ -212,6 +227,11 @@ public class Mainpage extends JFrame {
 				}
 				
 				
+			}
+			
+			catch(Exception e) {
+				System.out.println("Hello");
+			}
 			}
 		});
 		ForgetPasswordbtn.setBounds(362, 287, 168, 25);
@@ -285,6 +305,8 @@ public class Mainpage extends JFrame {
 				if(!guest_email.isEmpty())
 				{
 					if(isValid(guest_email)) {
+						guestService gs = new guestServiceImpl();
+						gs.addnewGuest(guest_email);
 						JOptionPane.showMessageDialog(null, "Thank you for Subscription");
 						GuestUser homepage = new GuestUser();
 						homepage.setVisible(true);
@@ -329,7 +351,7 @@ public class Mainpage extends JFrame {
 			
 		}
 		catch(NumberFormatException e) {
-			System.out.println("Cannot  be Empty");
+			System.out.println("Cannot be Null");
 			x=false;
 		}
 	
