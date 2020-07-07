@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface course {
 	
-//	int getcourseNameID(String course_name); 
+
 	
 	List<String> getAllcourse();
+	public String getcourseDescription();
 		
 		
 

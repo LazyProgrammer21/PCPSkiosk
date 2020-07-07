@@ -40,36 +40,35 @@ public class courseSubjectImpl implements course {
 		
 		return lcourse;
 	}
+
+
+	@Override
+	public String getcourseDescription() {
+		String x,y,total=null;
+		String concate = "@@hello@@";
+		String sql = "select * from subjectcourse";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			x = rs.getString(3);
+			rs.next();
+			y = rs.getString(3);
+			total = x+concate+y;
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		return total;
+	}
 	}
 
-//	@Override
-//	public int getcourseNameID(String course_name) {
-//		int c_id;
-//		String c_name;
-//		int setthisvalue=0;
-//		String sql = "select * from subjectCourse";
-//		Statement stmt;
-//		try {
-//			stmt = con.createStatement();
-//			ResultSet rs = stmt.executeQuery(sql);
-//			while(rs.next()) {
-//				c_name=rs.getString(2);
-//				if(course_name.equals(c_name)) {
-//					
-//					c_id=rs.getInt(1);
-//					setthisvalue=c_id;
-//				}
-//				
-//				
-//				
-//			}
-//		}
-//		catch(SQLException e) {
-//			System.out.println("data fetch failed");
-//		}
-//		
-//
-//		return setthisvalue;
-//	}
 
 

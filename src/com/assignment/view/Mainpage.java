@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+import com.assignment.service.adminService;
+import com.assignment.service.adminServiceImpl;
 import com.assignment.service.guestService;
 import com.assignment.service.guestServiceImpl;
 import com.assignment.service.studentService;
@@ -278,11 +280,14 @@ public class Mainpage extends JFrame {
 		Adminbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				s = JOptionPane.showInputDialog("Please Enter the Key");
-				String key = "admin123";
+				adminService as = new adminServiceImpl();
+				as.getadminKey();
+//				System.out.println(as.getadminKey());
+				
 				try {
 			
 				if (!s.isEmpty()) {
-					if(s.equals(key)) {
+					if(s.equals(as.getadminKey())) {
 						JOptionPane.showMessageDialog(null, "Success");
 					AdminHomepage h = new AdminHomepage();
 					h.setVisible(true);

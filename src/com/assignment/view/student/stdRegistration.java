@@ -280,8 +280,6 @@ public class stdRegistration extends JFrame {
 				
 				int subid = subject.getSelectedIndex()+1;
 				
-				int ic = Integer.parseInt(sid);
-			
 				//database code..
 //				
 				 BigInteger k = BigDecimal.valueOf(numeric(sid)).toBigInteger();

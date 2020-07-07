@@ -47,8 +47,8 @@ public class adminServiceImpl implements adminService {
 			ResultSet rs = st.executeQuery(sql);
 			
 			rs.next();
-			key=rs.getString("adminkey");
-			
+			key=rs.getString(1);
+		
 			
 		}
 		catch(SQLException e) {
