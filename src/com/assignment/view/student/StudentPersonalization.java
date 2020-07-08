@@ -1,6 +1,6 @@
 package com.assignment.view.student;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import javax.swing.JPasswordField;
+
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
@@ -22,31 +22,15 @@ public class StudentPersonalization extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNoUpdate;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField;
-	private JTextField textField_8;
+	private JTextField name;
+	private JTextField email;
+	private JTextField city;
+	private JTextField state;
+	private JTextField zipcode;
+	private JTextField phone;
+	private JTextField totalnumbookevent;
 
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					StudentPersonalization frame = new StudentPersonalization();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
 
 
 	public StudentPersonalization() {
@@ -122,98 +106,96 @@ public class StudentPersonalization extends JInternalFrame {
 		panel.add(label_11);
 		
 		txtNoUpdate = new JTextField();
+		txtNoUpdate.setEditable(false);
 		txtNoUpdate.setText("No update");
 		txtNoUpdate.setColumns(10);
 		txtNoUpdate.setBounds(394, 12, 162, 24);
 		panel.add(txtNoUpdate);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(394, 51, 162, 24);
-		panel.add(textField_1);
+		name = new JTextField();
+		name.setColumns(10);
+		name.setBounds(394, 51, 162, 24);
+		panel.add(name);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(394, 87, 162, 24);
-		panel.add(textField_2);
+		email = new JTextField();
+		email.setColumns(10);
+		email.setBounds(394, 87, 162, 24);
+		panel.add(email);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(394, 185, 162, 24);
-		panel.add(textField_3);
+		city = new JTextField();
+		city.setColumns(10);
+		city.setBounds(394, 185, 162, 24);
+		panel.add(city);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(394, 233, 162, 24);
-		panel.add(textField_4);
+		state = new JTextField();
+		state.setColumns(10);
+		state.setBounds(394, 233, 162, 24);
+		panel.add(state);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(394, 270, 162, 24);
-		panel.add(textField_5);
+		zipcode = new JTextField();
+		zipcode.setColumns(10);
+		zipcode.setBounds(394, 270, 162, 24);
+		panel.add(zipcode);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(394, 320, 162, 24);
-		panel.add(textField_6);
+		phone = new JTextField();
+		phone.setColumns(10);
+		phone.setBounds(394, 320, 162, 24);
+		panel.add(phone);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(394, 356, 162, 24);
-		panel.add(textField_7);
+		JRadioButton male = new JRadioButton("Male");
+		male.setBounds(391, 159, 70, 23);
+		panel.add(male);
 		
-		JRadioButton radioButton = new JRadioButton("Male");
-		radioButton.setBounds(391, 159, 70, 23);
-		panel.add(radioButton);
+		JRadioButton female = new JRadioButton("Female");
+		female.setBounds(466, 159, 90, 23);
+		panel.add(female);
 		
-		JRadioButton radioButton_1 = new JRadioButton("Female");
-		radioButton_1.setBounds(466, 159, 90, 23);
-		panel.add(radioButton_1);
+		JRadioButton other = new JRadioButton("Other");
+		other.setBounds(564, 159, 90, 23);
+		panel.add(other);
 		
-		JRadioButton radioButton_2 = new JRadioButton("Other");
-		radioButton_2.setBounds(564, 159, 90, 23);
-		panel.add(radioButton_2);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(394, 123, 171, 28);
-		panel.add(dateChooser);
+		JDateChooser dob = new JDateChooser();
+		dob.setBounds(394, 123, 171, 28);
+		panel.add(dob);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(394, 392, 162, 24);
 		panel.add(comboBox);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(588, 392, 117, 25);
-		panel.add(btnUpdate);
+		JButton update = new JButton("Update");
+		update.setBounds(588, 392, 117, 25);
+		panel.add(update);
 		
-		JButton button_1 = new JButton("Cancel");
-		button_1.setBounds(588, 429, 117, 25);
-		panel.add(button_1);
+		JButton cancel = new JButton("Cancel");
+		cancel.setBounds(588, 429, 117, 25);
+		panel.add(cancel);
 		
 		JLabel lblSection = new JLabel("Section");
 		lblSection.setFont(new Font("FreeSans", Font.BOLD, 16));
 		lblSection.setBounds(188, 430, 100, 25);
 		panel.add(lblSection);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(394, 428, 162, 24);
-		panel.add(textField);
-		
 		JLabel lblTotalBookedEvent = new JLabel("Total Booked Event");
 		lblTotalBookedEvent.setFont(new Font("FreeSans", Font.BOLD, 16));
 		lblTotalBookedEvent.setBounds(188, 459, 156, 25);
 		panel.add(lblTotalBookedEvent);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(394, 464, 162, 24);
-		panel.add(textField_8);
+		totalnumbookevent = new JTextField();
+		totalnumbookevent.setColumns(10);
+		totalnumbookevent.setBounds(394, 464, 162, 24);
+		panel.add(totalnumbookevent);
 		
 		JButton btnViewMyEvent = new JButton("View My event");
 		btnViewMyEvent.setBounds(564, 463, 156, 25);
 		panel.add(btnViewMyEvent);
+		
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.setBounds(394, 360, 162, 24);
+		panel.add(comboBox_1);
+		
+		JComboBox<String> comboBox_2 = new JComboBox<String>();
+		comboBox_2.setBounds(394, 427, 162, 24);
+		panel.add(comboBox_2);
 
 	}
-
 }
