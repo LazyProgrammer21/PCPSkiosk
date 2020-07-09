@@ -6,7 +6,7 @@ import java.sql.Date;
 public class studentinfo {
 
 	private BigInteger clzId;
-	private int uniId;
+	
 	private String Name;
 	private String Email;
 	private Date dob;
@@ -25,12 +25,7 @@ public class studentinfo {
 	public void setClzId(BigInteger clzId) {
 		this.clzId = clzId;
 	}
-	public int getUniId() {
-		return uniId;
-	}
-	public void setUniId(int uniId) {
-		this.uniId = uniId;
-	}
+	
 	public String getName() {
 		return Name;
 	}

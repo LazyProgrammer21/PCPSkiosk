@@ -6,14 +6,22 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.math.BigInteger;
+
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import javax.swing.JRadioButton;
+
+import com.assignment.model.studentinfo;
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StudentPersonalization extends JInternalFrame {
 
@@ -21,7 +29,7 @@ public class StudentPersonalization extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtNoUpdate;
+	private JTextField id;
 	private JTextField name;
 	private JTextField email;
 	private JTextField city;
@@ -29,11 +37,13 @@ public class StudentPersonalization extends JInternalFrame {
 	private JTextField zipcode;
 	private JTextField phone;
 	private JTextField totalnumbookevent;
-
-
-
+	studentService ss = new studentserviceImpl();
 
 	public StudentPersonalization() {
+		initialize();
+	}
+
+	public void initialize() {
 		
 		setBorder(null);
 		BasicInternalFrameUI gui = (BasicInternalFrameUI) this.getUI();
@@ -105,12 +115,12 @@ public class StudentPersonalization extends JInternalFrame {
 		label_11.setBounds(188, 393, 100, 25);
 		panel.add(label_11);
 		
-		txtNoUpdate = new JTextField();
-		txtNoUpdate.setEditable(false);
-		txtNoUpdate.setText("No update");
-		txtNoUpdate.setColumns(10);
-		txtNoUpdate.setBounds(394, 12, 162, 24);
-		panel.add(txtNoUpdate);
+		id = new JTextField();
+		id.setEditable(false);
+		id.setText("No update");
+		id.setColumns(10);
+		id.setBounds(394, 12, 162, 24);
+		panel.add(id);
 		
 		name = new JTextField();
 		name.setColumns(10);
@@ -163,6 +173,13 @@ public class StudentPersonalization extends JInternalFrame {
 		panel.add(comboBox);
 		
 		JButton update = new JButton("Update");
+		update.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				setValue(st_id);
+				BigInteger bg = BigInteger.valueOf(123);
+				ss.studentloginIn(bg, "Hello");
+			}
+		});
 		update.setBounds(588, 392, 117, 25);
 		panel.add(update);
 		
@@ -197,5 +214,12 @@ public class StudentPersonalization extends JInternalFrame {
 		comboBox_2.setBounds(394, 427, 162, 24);
 		panel.add(comboBox_2);
 
+	}
+	private void setValue(int st_id) {
+		studentinfo ssinfo = new studentinfo();
+//		ss.getstudentDetailbyID(st_id);
+		
+		System.out.println(ss.getstudentDetailbyID(st_id));
+		
 	}
 }

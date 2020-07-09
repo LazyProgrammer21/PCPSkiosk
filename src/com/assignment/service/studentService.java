@@ -1,7 +1,7 @@
 package com.assignment.service;
 
 import java.math.BigInteger;
-
+import java.util.List;
 
 import com.assignment.model.studentinfo;
 
@@ -13,7 +13,8 @@ public interface studentService {
 	long getuniIDdb(BigInteger id);
 	boolean updateAdmintable(int uniID);
 	boolean checkstatuscolumn_of_studentadminrecord(BigInteger checkid);
-
+	List<studentinfo> getstudentDetailbyID(int stdid);
+	boolean studentloginIn(BigInteger clzid, String Password);
 
 
 }
