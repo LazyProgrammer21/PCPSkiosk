@@ -216,7 +216,7 @@ public class studentserviceImpl implements studentService{
 		boolean x= false;
 		
 		
-		String sql = "select clzID,passWord from studentinfo where clzID=?";
+		String sql = "select clzID,passWord from studentinfo where clzID="+clzid;
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
