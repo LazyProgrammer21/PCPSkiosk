@@ -1,14 +1,20 @@
 package com.assignment.service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import com.assignment.db.database;
 import com.assignment.model.studentinfo;
+
 
 
 public class studentserviceImpl implements studentService{
@@ -164,6 +170,85 @@ public class studentserviceImpl implements studentService{
 		
 		
 		return stv;
+	}
+	@Override
+	public List<studentinfo> getstudentDetailbyID(int stdid) {
+		
+		List<studentinfo> st_info = new ArrayList<>();
+		String sql = "select * from studentinfo where clzID=?";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				studentinfo sinfo = new studentinfo();
+				BigInteger cid =  BigInteger.valueOf(rs.getInt("clzID"));
+				sinfo.setClzId(cid);
+				sinfo.setName(rs.getString(""));
+				sinfo.setEmail(rs.getString(""));
+				sinfo.setDob(rs.getDate(""));
+				sinfo.setGender(rs.getString(""));
+				sinfo.setAdd_city(rs.getString(""));
+				sinfo.setAdd_state(rs.getString(""));
+				sinfo.setZipCode(rs.getString(""));
+				sinfo.setPassWord(rs.getString(""));
+				sinfo.setPhone(rs.getString(""));
+				st_info.add(sinfo);
+				
+			
+			
+				
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return st_info;
+	}
+	@Override
+	public boolean studentloginIn(BigInteger clzid, String Password) {
+		
+		System.out.println(clzid);
+		System.out.println(Password);
+		boolean x= false;
+		
+		
+		String sql = "select clzID,passWord from studentinfo where clzID="+clzid;
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+//				if((clzid==BigInteger.valueOf(rs.getInt("clzID")))&&(rs.getString("passWord").equals(Password)))
+//				{
+//				rs.getInt("clzID");
+//				rs.getString("passWord");
+					System.out.println(rs.getInt("clzID"));
+					System.out.println(rs.getString("passWord"));
+//					System.out.println("helo");
+					x=true;
+//				}
+//				else {
+//					JOptionPane.showMessageDialog(null, "Invalid username");
+//					x=false;
+//				}
+				
+					
+				
+						
+				
+			}
+			
+			
+		}
+		catch(SQLException e) {
+//			e.printStackTrace();
+			
+		}
+		
+		return true;
 	}
 
 

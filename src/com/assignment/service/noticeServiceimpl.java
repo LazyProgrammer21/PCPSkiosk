@@ -22,7 +22,7 @@ public class noticeServiceimpl implements noticeService {
 	@Override
 	public List<noticeinfo> getAllNotice() {
 		List <noticeinfo> n_info = new ArrayList<>();
-		String sql = "select * from noticeinfo";
+		String sql = "select * from NOTICEINFO";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -30,9 +30,10 @@ public class noticeServiceimpl implements noticeService {
 			
 			while(rs.next()) {
 				noticeinfo ninfo = new noticeinfo();
-				ninfo.setId(rs.getInt("id"));
-				ninfo.setIssueDate(rs.getDate("Dateissued"));
-				ninfo.setType(rs.getString("Type"));
+				ninfo.setId(rs.getInt("ID"));
+				ninfo.setType(rs.getString("TYPE"));
+				ninfo.setIssueDate(rs.getDate("DATEISSUED"));
+				
 				
 				n_info.add(ninfo);
 			}
@@ -67,14 +68,17 @@ public class noticeServiceimpl implements noticeService {
 	@Override
 	public boolean issueNotice(noticeinfo issuenotice) {
 		
-		String sql = "insert into noticeinfo (Dateissued,Type,subject,description) values(?,?,?,?)";
+		String sql = "insert into NOTICEINFO (Type,subject,description,Dateissued) values(?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setDate(1, issuenotice.getIssueDate());
-			stmt.setString(2, issuenotice.getType());
-			stmt.setString(3, issuenotice.getSubject());
-			stmt.setString(4, issuenotice.getDescription());
+			stmt.setString(1, issuenotice.getType());
+			stmt.setString(2, issuenotice.getSubject());
+			stmt.setString(3, issuenotice.getDescription());
+			stmt.setDate(4, issuenotice.getIssueDate());
+	
+	
+			
 			stmt.execute();
 			
 			

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+
 import com.assignment.service.adminService;
 import com.assignment.service.adminServiceImpl;
 import com.assignment.service.guestService;
@@ -51,7 +52,7 @@ public class Mainpage extends JFrame {
 	 private String guest_email;
 	 private String uniid;
 	
-
+	 studentService ss = new studentserviceImpl();
 	
 
 	/**
@@ -135,7 +136,7 @@ public class Mainpage extends JFrame {
 				uniid = JOptionPane.showInputDialog("Please Enter your UniversityID to proceed>>");
 				int cd = Integer.parseInt(uniid);
 				
-				studentService ss = new studentserviceImpl();
+				
 				BigInteger bgi1 = new BigInteger(uniid);
 			
 
@@ -143,7 +144,7 @@ public class Mainpage extends JFrame {
 				
 				
 				try {
-				if(isnumeric()&&!uniid.isEmpty()) {
+				if(isnumeric(uniid)&&!uniid.isEmpty()) {
 					
 					 
 					
@@ -256,20 +257,50 @@ public class Mainpage extends JFrame {
 		
 		JButton Loginbtn = new JButton("Login");
 		Loginbtn.addActionListener(new ActionListener() {
+		
 			public void actionPerformed(ActionEvent arg0) {
-				studentpage page;
 				try {
+				try {
+					studentpage page;
+						BigInteger bg = new BigInteger(studentid.getText());
+					if(isnumeric(studentid.getText())) {
+					if(ss.studentloginIn(bg, password.getText())) {
+						JOptionPane.showMessageDialog(null, "You are logged In");
+	
+						page = new studentpage();
+						page.setVisible(true);
+
+						disposeMainpage();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Invalid Username and Password");
+					}
+						
+						
 					
-					page = new studentpage();
-					page.setVisible(true);
+						studentid.setText("");
+						password.setText("");
 					
-					disposeMainpage();
+				
 					
-				} catch (PropertyVetoException e) {
-					JOptionPane.showMessageDialog(null, "Page not found.");
-					System.out.println("Page not found");
+					
+				}
+					
+					else {
+						JOptionPane.showMessageDialog(null, "cannot be string");
+						}	
+					}
+					catch (PropertyVetoException e) {
+					JOptionPane.showMessageDialog(null, "Try again!");
+					
+				}
+				}
+				catch (Exception e) {
+				System.out.println("Hello");
+				JOptionPane.showMessageDialog(null, "Try Again with valid Username and Password");
 				}
 				
+	
 				
 			}
 		});
@@ -361,18 +392,22 @@ public class Mainpage extends JFrame {
 	private void disposeMainpage() {
 		Mainpage.this.dispose();
 	}
-	private boolean isnumeric () {
+	private boolean isnumeric (String uniid) {
 		boolean x = false;
 		try {
 			if(uniid!=null) {
 				Double.parseDouble(uniid);
 				x=true;
 			}
+			else {
+				JOptionPane.showMessageDialog(null, "username cannot be String");
+				x=false;
+			}
 			
 		}
 		catch(NumberFormatException e) {
 			System.out.println("Cannot be Null");
-			x=false;
+			
 		}
 	
 		

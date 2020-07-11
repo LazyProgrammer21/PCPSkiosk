@@ -25,17 +25,17 @@ public class collegedetailImpl implements collegedetailService {
 		String detail = null;
 		String intermission = "@@intermission@@";
 
-		String sql = "select * from collegedetail where id=1";
+		String sql = "select * from COLLEGE_DETAIL where id=1";
 		try {
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		rs.next();
 		
-		String x = rs.getString(2);
+		String x = rs.getString(1);
 		
-		String y = rs.getString(3);
+		String y = rs.getString(2);
 		
-		String contactus = rs.getString(4);
+		String contactus = rs.getString(3);
 		
 		detail = x +intermission+ y+ intermission+contactus;
 		System.out.println(detail);
@@ -59,7 +59,7 @@ public class collegedetailImpl implements collegedetailService {
 		String y = clzdetail.getAboutus();
 		String z = clzdetail.getContactus();
 		
-		String sql = "update collegedetail set ClzIntro=?, AboutUs=?,ContactUs=?  where id=1";
+		String sql = "update COLLEGE_DETAIL set ClzIntro=?, AboutUs=?,ContactUs=?  where id=1";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
