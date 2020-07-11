@@ -6,7 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/hunte/OneDrive/Desktop/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hunte/OneDrive/Desktop/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MAGAR/Downloads/jcalendar-1.4.jar/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MAGAR/Downloads/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MAGAR/Downloads/rs2xml/rs2xml/rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
