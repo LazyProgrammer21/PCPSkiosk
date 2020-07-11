@@ -51,9 +51,9 @@ public class courseSubjectImpl implements course {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			x = rs.getString(3);
-			rs.next();
 			y = rs.getString(3);
+			rs.next();
+			x = rs.getString(3);
 			total = x+concate+y;
 			
 		}
