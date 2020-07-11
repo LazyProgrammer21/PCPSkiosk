@@ -72,6 +72,7 @@ public class noticeServiceimpl implements noticeService {
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
+			
 			stmt.setString(1, issuenotice.getType());
 			stmt.setString(2, issuenotice.getSubject());
 			stmt.setString(3, issuenotice.getDescription());
