@@ -15,7 +15,11 @@ public class database {
 		{
 			
 				
+
 			    return DriverManager.getConnection("jdbc:mysql://localhost:3306/KIOSKdb?serverTimezone=UTC","root","");
+
+			   
+
 			
 				
 		
