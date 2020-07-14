@@ -8,9 +8,15 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.beans.PropertyVetoException;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+
+import com.assignment.model.noticeinfo;
+import com.assignment.model.studentinfo;
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -32,8 +38,6 @@ public class StudentRecordAdmin extends JInternalFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTable table;
 	private JTextField textField_10;
@@ -41,6 +45,8 @@ public class StudentRecordAdmin extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
+	studentService ss = new studentserviceImpl();
+	List<studentinfo> ninfo = ss.getstudentDetailbyID();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -98,6 +104,7 @@ public class StudentRecordAdmin extends JInternalFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(97);
 		table.getColumnModel().getColumn(3).setPreferredWidth(101);
 		table.getColumnModel().getColumn(4).setPreferredWidth(114);
+		displatTable(table);
 		table.setBorder(new LineBorder(Color.BLACK));
 		
 		JComboBox <String>comboBox_3 = new JComboBox<String>();
@@ -171,23 +178,13 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		JLabel label_7 = new JLabel("Phonen Number");
 		label_7.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_7.setBounds(57, 321, 141, 25);
+		label_7.setBounds(57, 341, 141, 25);
 		panel_1.add(label_7);
-		
-		JLabel label_8 = new JLabel("level(CLass)");
-		label_8.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_8.setBounds(57, 358, 94, 25);
-		panel_1.add(label_8);
 		
 		JLabel label_9 = new JLabel("Email");
 		label_9.setFont(new Font("FreeSans", Font.BOLD, 16));
 		label_9.setBounds(57, 93, 70, 31);
 		panel_1.add(label_9);
-		
-		JLabel label_10 = new JLabel("Subject");
-		label_10.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_10.setBounds(57, 395, 100, 25);
-		panel_1.add(label_10);
 		
 		textField = new JTextField();
 		textField.setText("No update");
@@ -217,18 +214,13 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(263, 272, 162, 24);
+		textField_5.setBounds(263, 287, 162, 24);
 		panel_1.add(textField_5);
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		textField_6.setBounds(263, 322, 162, 24);
+		textField_6.setBounds(263, 344, 162, 24);
 		panel_1.add(textField_6);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(263, 358, 162, 24);
-		panel_1.add(textField_7);
 		
 		JRadioButton radioButton = new JRadioButton("Male");
 		radioButton.setBounds(260, 161, 70, 23);
@@ -246,33 +238,32 @@ public class StudentRecordAdmin extends JInternalFrame {
 		dateChooser.setBounds(263, 125, 171, 28);
 		panel_1.add(dateChooser);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(263, 394, 162, 24);
-		panel_1.add(comboBox);
-		
-		JLabel label_11 = new JLabel("Section");
-		label_11.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_11.setBounds(57, 432, 100, 25);
-		panel_1.add(label_11);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(263, 430, 162, 24);
-		panel_1.add(textField_8);
-		
 		JLabel label_12 = new JLabel("Total Booked Event");
 		label_12.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_12.setBounds(57, 461, 156, 25);
+		label_12.setBounds(57, 401, 156, 25);
 		panel_1.add(label_12);
 		
 		textField_9 = new JTextField();
 		textField_9.setColumns(10);
-		textField_9.setBounds(263, 466, 162, 24);
+		textField_9.setBounds(254, 404, 171, 24);
 		panel_1.add(textField_9);
 		
 		JButton btnViewEvent = new JButton("View Event");
-		btnViewEvent.setBounds(425, 465, 117, 25);
+		btnViewEvent.setBounds(308, 439, 117, 25);
 		panel_1.add(btnViewEvent);
 
+		
+	}
+	void displatTable(JTable table) {
+		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+		
+		// empty the table first otherwise on every button click same data will repeatedly displayed
+		
+		tableModel.setRowCount(0);
+		
+		for(studentinfo ninfos : ninfo)
+		{
+			tableModel.addRow(new Object[] {ninfos.getClzId(),ninfos.getName(),ninfos.getSubject(),ninfos.getSemseter(),ninfos.getSection()});
+		}
 	}
 }

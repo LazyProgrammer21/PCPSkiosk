@@ -223,8 +223,8 @@ public class StudentPersonalization extends JInternalFrame {
 	
 		Mainpage mp = new Mainpage();
 	
-		List<studentinfo> s_info = ss.getstudentDetailbyID(mp.settheclzid());
-		System.out.println(s_info);
+//		List<studentinfo> s_info = ss.getstudentDetailbyID(mp.settheclzid());
+//		System.out.println(s_info);
 	
 	
 	

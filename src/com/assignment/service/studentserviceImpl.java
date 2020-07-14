@@ -180,7 +180,7 @@ public class studentserviceImpl implements studentService{
 	
 	}
 	@Override
-	public List<studentinfo> getstudentDetailbyID(BigInteger stdid) {
+	public List<studentinfo> getstudentDetailbyID() {
 		//display===
 		List<studentinfo> st_info = new ArrayList<>();
 		String sql = "select \r\n" + 
@@ -198,29 +198,21 @@ public class studentserviceImpl implements studentService{
 				"inner join\r\n" + 
 				"subjectcourse\r\n" + 
 				"on\r\n" + 
-				"studentinfo.courseid=subjectcourse.courseid\r\n" + 
-				"where \r\n" + 
-				"studentinfo.clzid=1810045100;";
+				"studentinfo.courseid=subjectcourse.courseid";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				studentinfo sinfo = new studentinfo();
-				BigInteger cid =  BigInteger.valueOf(rs.getInt("clzID"));
+				BigInteger cid =  BigInteger.valueOf(rs.getInt("CLZID"));
 				sinfo.setClzId(cid);
 				sinfo.setName(rs.getString("NAME"));
-				sinfo.setEmail(rs.getString("EMAIL"));
-				sinfo.setDob(rs.getDate("DOB"));
-				sinfo.setGender(rs.getString("GENDER"));
-				sinfo.setAdd_city(rs.getString("ADD_CITY"));
-				sinfo.setAdd_state(rs.getString("ADD_STATE"));
-				sinfo.setZipCode(rs.getString("ZIPCODE"));
-				sinfo.setPassWord(rs.getString(""));
-				sinfo.setPhone(rs.getString(""));
-				st_info.add(sinfo);
-				
-			
+				sinfo.setSubject(rs.getString(3));
+				sinfo.setSemseter(rs.getString("SEMESTER"));
+				sinfo.setSection(rs.getString("SECTION"));
+		
+			st_info.add(sinfo);
 			
 				
 			}
