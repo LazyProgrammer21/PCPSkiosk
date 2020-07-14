@@ -3,6 +3,7 @@ package com.assignment.view.student;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
@@ -31,8 +32,9 @@ public class addStudent extends JFrame {
 	private String stdname;
 	private String sname;
 	private int id;
+	private JTable table;
 	
-
+	stdUNIkey suni = new stdUNIkey();
 
 	/**
 	 * Launch the application.
@@ -53,7 +55,11 @@ public class addStudent extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public addStudent() {
+	public addStudent(JTable table) {
+		this.table=table;
+		initialize();
+	}
+	public void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 546, 426);
 		setUndecorated(true);
@@ -128,6 +134,10 @@ public class addStudent extends JFrame {
 					
 					
 				
+					suni.displaytable(table);
+					
+					
+				
 			
 				
 
@@ -139,6 +149,8 @@ public class addStudent extends JFrame {
 			uniID.setText(null);
 			Name.setText(null);
 			
+			addStudent.this.dispose();
+		
 						
 		}
 				

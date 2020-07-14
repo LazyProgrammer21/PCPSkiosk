@@ -12,9 +12,12 @@ public interface studentService {
 	boolean addStudentadmin(int uniId, String Name);
 	long getuniIDdb(BigInteger id);
 	boolean updateAdmintable(int uniID);
-	boolean checkstatuscolumn_of_studentadminrecord(BigInteger checkid);
-	List<studentinfo> getstudentDetailbyID(int stdid);
+	boolean checkstatuscolumn_of_studentadminrecord(int checkid);
+	List<studentinfo> getstudentDetailbyID();
 	boolean studentloginIn(BigInteger clzid, String Password);
+
+	List<studentinfo> getdatafromstudentadminrecord();
+	
 
 
 }

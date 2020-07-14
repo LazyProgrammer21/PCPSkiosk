@@ -16,9 +16,44 @@ public class studentinfo {
 	private String zipCode;
 	private String phone;
 	private String passWord;
+	private String Status;
+	private int uniID;
+	private String subject;
+	private String semseter;
+	private String Section;
 	
 	
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getSemseter() {
+		return semseter;
+	}
+	public void setSemseter(String semseter) {
+		this.semseter = semseter;
+	}
+	public String getSection() {
+		return Section;
+	}
+	public void setSection(String section) {
+		Section = section;
+	}
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
+	public int getUniID() {
+		return uniID;
+	}
+	public void setUniID(int uniID) {
+		this.uniID = uniID;
+	}
 	public BigInteger getClzId() {
 		return clzId;
 	}

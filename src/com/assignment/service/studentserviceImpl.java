@@ -1,6 +1,6 @@
 package com.assignment.service;
 
-import java.math.BigDecimal;
+
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.assignment.db.database;
+import com.assignment.model.noticeinfo;
 import com.assignment.model.studentinfo;
 
 
@@ -29,7 +30,8 @@ public class studentserviceImpl implements studentService{
 	}
 	@Override
 	public boolean newRegister(studentinfo student, int courseID, int semID, int sectionID) {
-		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,passWord,courseID,semID,sectionID) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		boolean x=false;
+		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,passWord,courseID,semID,sectionID,phone) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		   try 
 		   {
@@ -44,29 +46,33 @@ public class studentserviceImpl implements studentService{
 			   stmt.setString(6, student.getAdd_city());
 			   stmt.setString(7,student.getAdd_state());
 			   stmt.setString(8, student.getZipCode());
-			   stmt.setString(9, student.getPhone());
-			   stmt.setString(10, student.getPassWord());
-			   stmt.setInt(11, courseID);
-			   stmt.setInt(12, semID);
-			   stmt.setInt(13, sectionID);
+			   stmt.setString(9, student.getPassWord());
+			
+			   stmt.setInt(10, courseID);
+			   stmt.setInt(11, semID);
+			   stmt.setInt(12, sectionID);
+			
+			   stmt.setString(13, student.getPhone());
 			   
 			   stmt.execute();
 			   
-			   
+			   x=true;
 			
 			} 
 		   catch (SQLException e) {
 			
 			      System.out.println(e);
+			      x=false;
 		    }
 			
 		
 		
-		
-		return false;
+	
+		return x;
 	}
 	@Override
 	public boolean addStudentadmin(int uniId, String Name) {
+		boolean y=false;
 		String sql = "insert into AdminStudentrecord(uniID,StudentName) values(?,?)";
 		  try 
 		   {
@@ -78,46 +84,47 @@ public class studentserviceImpl implements studentService{
 			   
 			   stmt.execute();
 			   
-			   return true;
+			   y= true;
 			
 			} 
 		   catch (SQLException e) {
 			
 			      System.out.println(e);
 		    }
-		return false;
+		return y;
+		
 	}
 	@Override
 	public long getuniIDdb(BigInteger uid) {
 			
 			long longvalue_of_uid = uid.longValue();
-			long id;
 			long acvalue=0;
-		String sql = "select uniID from AdminStudentrecord ";
+		String sql = "select UNIID from ADMINSTUDENTRECORD ";
 				
 			Statement s;
 			try {
 				s = con.createStatement();
 				ResultSet rs = s.executeQuery(sql);
 				while(rs.next()) {
-				 id = rs.getLong(1);
-				if(id==longvalue_of_uid) {
-					acvalue=id;
+			
+				if(rs.getLong(1)==longvalue_of_uid) {
+					acvalue=rs.getLong(1);
 				}
 				 					
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 			
 			
 
 		return acvalue;
+
 	}
 	@Override
 	public boolean updateAdmintable(int x) {
-		
+		boolean z=false;
 		System.out.println(x);
 		String status="Taken";
 		
@@ -126,31 +133,33 @@ public class studentserviceImpl implements studentService{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.execute();
 		
+		z=true;
 	
 		
 	}
 	catch(SQLException e ) {
 		e.printStackTrace();
+		z=false;
 	}
 		
 		
 		
 		
 		
-		return false;
+		return z;
 	}
 	@Override
-	public boolean checkstatuscolumn_of_studentadminrecord(BigInteger x) {
-		boolean stv=true;
-//		System.out.println(x);
+	public boolean checkstatuscolumn_of_studentadminrecord(int x) {
+		boolean stv=false;
+
 		
 		
 		
 		try {
-			String sql ="select status from adminstudentrecord where uniID="+x;
+			String sql ="select STATUS from adminstudentrecord where uniID="+x;
 			
-			Statement st1 = con.createStatement();
-			ResultSet rrset = st1.executeQuery(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rrset = ps.executeQuery();
 			
 			rrset.next();
 	
@@ -158,7 +167,7 @@ public class studentserviceImpl implements studentService{
 			if(xu.equals("Taken")) {
 				stv=false;
 			}
-			System.out.println(xu);
+		
 
 			
 		}
@@ -167,35 +176,43 @@ public class studentserviceImpl implements studentService{
 			e.printStackTrace();
 		}
 
-		
-		
 		return stv;
+	
 	}
 	@Override
-	public List<studentinfo> getstudentDetailbyID(int stdid) {
-		
+	public List<studentinfo> getstudentDetailbyID() {
+		//display===
 		List<studentinfo> st_info = new ArrayList<>();
-		String sql = "select * from studentinfo where clzID=?";
+		String sql = "select \r\n" + 
+				"studentinfo.clzid,studentinfo.name,subjectcourse.name,semester.semester,section.section\r\n" + 
+				"from \r\n" + 
+				"studentinfo\r\n" + 
+				"inner join \r\n" + 
+				"semester \r\n" + 
+				"on\r\n" + 
+				"studentinfo.semid=semester.semid\r\n" + 
+				"inner join\r\n" + 
+				"section\r\n" + 
+				"on\r\n" + 
+				"studentinfo.sectionid=section.sectionid\r\n" + 
+				"inner join\r\n" + 
+				"subjectcourse\r\n" + 
+				"on\r\n" + 
+				"studentinfo.courseid=subjectcourse.courseid";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				studentinfo sinfo = new studentinfo();
-				BigInteger cid =  BigInteger.valueOf(rs.getInt("clzID"));
+				BigInteger cid =  BigInteger.valueOf(rs.getInt("CLZID"));
 				sinfo.setClzId(cid);
-				sinfo.setName(rs.getString(""));
-				sinfo.setEmail(rs.getString(""));
-				sinfo.setDob(rs.getDate(""));
-				sinfo.setGender(rs.getString(""));
-				sinfo.setAdd_city(rs.getString(""));
-				sinfo.setAdd_state(rs.getString(""));
-				sinfo.setZipCode(rs.getString(""));
-				sinfo.setPassWord(rs.getString(""));
-				sinfo.setPhone(rs.getString(""));
-				st_info.add(sinfo);
-				
-			
+				sinfo.setName(rs.getString("NAME"));
+				sinfo.setSubject(rs.getString(3));
+				sinfo.setSemseter(rs.getString("SEMESTER"));
+				sinfo.setSection(rs.getString("SECTION"));
+		
+			st_info.add(sinfo);
 			
 				
 			}
@@ -207,6 +224,7 @@ public class studentserviceImpl implements studentService{
 		
 		
 		return st_info;
+
 	}
 	@Override
 	public boolean studentloginIn(BigInteger clzid, String Password) {
@@ -218,42 +236,53 @@ public class studentserviceImpl implements studentService{
 		
 		String sql = "select clzID,passWord from studentinfo where clzID="+clzid;
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-//				if((clzid==BigInteger.valueOf(rs.getInt("clzID")))&&(rs.getString("passWord").equals(Password)))
-//				{
-//				rs.getInt("clzID");
-//				rs.getString("passWord");
-					System.out.println(rs.getInt("clzID"));
-					System.out.println(rs.getString("passWord"));
-//					System.out.println("helo");
-					x=true;
-//				}
-//				else {
-//					JOptionPane.showMessageDialog(null, "Invalid username");
-//					x=false;
-//				}
-				
-					
-				
-						
-				
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+
+			if(rs.getString("PASSWORD").equals(Password)) {
+				x=true;
 			}
 			
 			
 		}
 		catch(SQLException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
+			
 			
 		}
 		
-		return true;
+		return x;
+
+	}
+	@Override
+	public List<studentinfo> getdatafromstudentadminrecord() {
+		List <studentinfo> datas = new ArrayList<>();
+
+	
+
+		String sql="select * from adminstudentrecord";
+		try {
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				studentinfo  s_info = new studentinfo();
+			s_info.setUniID(rs.getInt("UNIID"));
+			s_info.setName(rs.getString("STUDENTNAME"));
+			s_info.setStatus(rs.getString("STATUS"));
+				datas.add(s_info);
+		}
+		}
+		catch(SQLException sq) {
+			sq.printStackTrace();
+		}
+		
+
+		return datas;
 	}
 
 
-	
-	
 
 
 

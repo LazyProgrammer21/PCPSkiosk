@@ -116,52 +116,7 @@ public class NoticedashBoard extends JInternalFrame {
 		notietable.getColumnModel().getColumn(1).setPreferredWidth(105);
 		notietable.getColumnModel().getColumn(2).setPreferredWidth(85);
 		
-		JButton btnDeleteNotice = new JButton("Delete Notice");
-		btnDeleteNotice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if(notietable.getSelectedRow()<0) {
-						JOptionPane.showMessageDialog(null, "Select any row to proceed!");
-						
-					}
-					else {
-					
-					int row =notietable.getSelectedRow();
-					String id = (notietable.getModel().getValueAt(row, 0).toString());
-					int ids= Integer.parseInt(id);
-					
-				
-					noticeService ns = new noticeServiceimpl();
-					if(ns.deleteNotice(ids))
-					{
-						JOptionPane.showMessageDialog(null, "Deleted Success");
-						
-				
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "cannot delete Data");
-					}
-					}
-				}
-				catch(Exception s) {
-					System.out.println("hello");
-				}
-				
-			
-				
-				displayTable(notietable);
-				
-				
-				
-				
-				
-			}
-		});
-		if(triggerValue==1) {
-			btnDeleteNotice.setVisible(false);
-		}
-		btnDeleteNotice.setBounds(109, 253, 97, 25);
-		panel.add(btnDeleteNotice);
+		
 		
 		JButton btnIssueNotice = new JButton("Issue Notice");
 		btnIssueNotice.addActionListener(new ActionListener() {
@@ -178,6 +133,15 @@ public class NoticedashBoard extends JInternalFrame {
 		}
 		btnIssueNotice.setBounds(206, 253, 105, 25);
 		panel.add(btnIssueNotice);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayTable(notietable);
+			}
+		});
+		btnRefresh.setBounds(12, 252, 97, 25);
+		panel.add(btnRefresh);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
@@ -241,4 +205,6 @@ public class NoticedashBoard extends JInternalFrame {
 
 		
 	}
+	
+	
 }

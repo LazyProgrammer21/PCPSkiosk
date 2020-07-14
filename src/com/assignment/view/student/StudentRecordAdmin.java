@@ -8,9 +8,15 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.beans.PropertyVetoException;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+
+import com.assignment.model.noticeinfo;
+import com.assignment.model.studentinfo;
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -18,8 +24,13 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class StudentRecordAdmin extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -27,8 +38,6 @@ public class StudentRecordAdmin extends JInternalFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTable table;
 	private JTextField textField_10;
@@ -36,6 +45,8 @@ public class StudentRecordAdmin extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
+	studentService ss = new studentserviceImpl();
+	List<studentinfo> ninfo = ss.getstudentDetailbyID();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,7 +83,12 @@ public class StudentRecordAdmin extends JInternalFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 115, 462, 148);
+		panel.add(scrollPane);
+		
 		table = new JTable();
+		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -81,16 +97,15 @@ public class StudentRecordAdmin extends JInternalFrame {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"Id", "Name", "Subject", "Level", "EventBooked"
+				"Id", "Name", "Subject", "Semester", "Section"
 			}
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(124);
 		table.getColumnModel().getColumn(2).setPreferredWidth(97);
 		table.getColumnModel().getColumn(3).setPreferredWidth(101);
 		table.getColumnModel().getColumn(4).setPreferredWidth(114);
+		displatTable(table);
 		table.setBorder(new LineBorder(Color.BLACK));
-		table.setBounds(12, 142, 462, 121);
-		panel.add(table);
 		
 		JComboBox <String>comboBox_3 = new JComboBox<String>();
 		comboBox_3.setEditable(true);
@@ -110,31 +125,6 @@ public class StudentRecordAdmin extends JInternalFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setBounds(322, 28, 94, 25);
 		panel.add(btnNewButton);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblId.setBounds(12, 115, 27, 15);
-		panel.add(lblId);
-		
-		JLabel lblName = new JLabel("Name");
-		lblName.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblName.setBounds(72, 115, 64, 15);
-		panel.add(lblName);
-		
-		JLabel lblSubject = new JLabel("Subject");
-		lblSubject.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblSubject.setBounds(204, 115, 64, 15);
-		panel.add(lblSubject);
-		
-		JLabel lblLevel = new JLabel("Level");
-		lblLevel.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblLevel.setBounds(293, 115, 64, 15);
-		panel.add(lblLevel);
-		
-		JLabel lblEventBooked = new JLabel("EventBooked");
-		lblEventBooked.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblEventBooked.setBounds(369, 115, 94, 15);
-		panel.add(lblEventBooked);
 		
 		JLabel label_13 = new JLabel("");
 		label_13.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -188,23 +178,13 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		JLabel label_7 = new JLabel("Phonen Number");
 		label_7.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_7.setBounds(57, 321, 141, 25);
+		label_7.setBounds(57, 341, 141, 25);
 		panel_1.add(label_7);
-		
-		JLabel label_8 = new JLabel("level(CLass)");
-		label_8.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_8.setBounds(57, 358, 94, 25);
-		panel_1.add(label_8);
 		
 		JLabel label_9 = new JLabel("Email");
 		label_9.setFont(new Font("FreeSans", Font.BOLD, 16));
 		label_9.setBounds(57, 93, 70, 31);
 		panel_1.add(label_9);
-		
-		JLabel label_10 = new JLabel("Subject");
-		label_10.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_10.setBounds(57, 395, 100, 25);
-		panel_1.add(label_10);
 		
 		textField = new JTextField();
 		textField.setText("No update");
@@ -234,18 +214,13 @@ public class StudentRecordAdmin extends JInternalFrame {
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(263, 272, 162, 24);
+		textField_5.setBounds(263, 287, 162, 24);
 		panel_1.add(textField_5);
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		textField_6.setBounds(263, 322, 162, 24);
+		textField_6.setBounds(263, 344, 162, 24);
 		panel_1.add(textField_6);
-		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(263, 358, 162, 24);
-		panel_1.add(textField_7);
 		
 		JRadioButton radioButton = new JRadioButton("Male");
 		radioButton.setBounds(260, 161, 70, 23);
@@ -263,33 +238,32 @@ public class StudentRecordAdmin extends JInternalFrame {
 		dateChooser.setBounds(263, 125, 171, 28);
 		panel_1.add(dateChooser);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(263, 394, 162, 24);
-		panel_1.add(comboBox);
-		
-		JLabel label_11 = new JLabel("Section");
-		label_11.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_11.setBounds(57, 432, 100, 25);
-		panel_1.add(label_11);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(263, 430, 162, 24);
-		panel_1.add(textField_8);
-		
 		JLabel label_12 = new JLabel("Total Booked Event");
 		label_12.setFont(new Font("FreeSans", Font.BOLD, 16));
-		label_12.setBounds(57, 461, 156, 25);
+		label_12.setBounds(57, 401, 156, 25);
 		panel_1.add(label_12);
 		
 		textField_9 = new JTextField();
 		textField_9.setColumns(10);
-		textField_9.setBounds(263, 466, 162, 24);
+		textField_9.setBounds(254, 404, 171, 24);
 		panel_1.add(textField_9);
 		
 		JButton btnViewEvent = new JButton("View Event");
-		btnViewEvent.setBounds(425, 465, 117, 25);
+		btnViewEvent.setBounds(308, 439, 117, 25);
 		panel_1.add(btnViewEvent);
 
+		
+	}
+	void displatTable(JTable table) {
+		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+		
+		// empty the table first otherwise on every button click same data will repeatedly displayed
+		
+		tableModel.setRowCount(0);
+		
+		for(studentinfo ninfos : ninfo)
+		{
+			tableModel.addRow(new Object[] {ninfos.getClzId(),ninfos.getName(),ninfos.getSubject(),ninfos.getSemseter(),ninfos.getSection()});
+		}
 	}
 }

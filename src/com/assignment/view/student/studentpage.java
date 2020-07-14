@@ -2,11 +2,13 @@ package com.assignment.view.student;
 
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
+import java.math.BigInteger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.assignment.model.studentinfo;
 import com.assignment.view.Mainpage;
 
 import java.awt.Color;
@@ -30,6 +32,7 @@ public class studentpage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public int trigger_for_btndisable;
+	studentinfo ss = new studentinfo();
 	
 
 	/**
@@ -166,6 +169,7 @@ public class studentpage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				desktopPane.removeAll();
+		
 				StudentPersonalization sp = new StudentPersonalization();
 				sp.setVisible(true);
 				desktopPane.add(sp);

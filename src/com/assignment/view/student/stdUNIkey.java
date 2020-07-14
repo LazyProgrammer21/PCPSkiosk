@@ -8,17 +8,33 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.assignment.model.noticeinfo;
+import com.assignment.model.studentinfo;
+import com.assignment.service.studentService;
+import com.assignment.service.studentserviceImpl;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class stdUNIkey extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	studentService ss = new studentserviceImpl();
+	List<studentinfo> s_info= ss.getdatafromstudentadminrecord();
 
 	/**
 	 * Launch the application.
@@ -49,7 +65,14 @@ public class stdUNIkey extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 58, 458, 289);
+		contentPane.add(scrollPane);
+		
 		table = new JTable();
+	
+		scrollPane.setViewportView(table);
+	
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -57,41 +80,19 @@ public class stdUNIkey extends JFrame {
 				{null, null, null},
 			},
 			new String[] {
-				"College ID", "Student Name", "UniversityID"
+				"UniversityID", "Sudent Name", "Status"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				true, true, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(102);
 		table.getColumnModel().getColumn(0).setMinWidth(42);
 		table.getColumnModel().getColumn(1).setPreferredWidth(137);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(97);
-		table.setBounds(40, 58, 458, 289);
-		contentPane.add(table);
+		displaytable(table);
 		
-		JLabel lblCollegeId = new JLabel("College  ID");
-		lblCollegeId.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblCollegeId.setBounds(60, 24, 114, 15);
-		contentPane.add(lblCollegeId);
-		
-		JLabel lblStudentName = new JLabel("Student Name");
-		lblStudentName.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblStudentName.setBounds(195, 25, 134, 15);
-		contentPane.add(lblStudentName);
-		
-		JLabel lblCollegeId_1_1 = new JLabel("University  ID");
+		JLabel lblCollegeId_1_1 = new JLabel("StudentRecord");
 		lblCollegeId_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblCollegeId_1_1.setBounds(364, 31, 134, 15);
+		lblCollegeId_1_1.setBounds(204, 33, 134, 15);
 		contentPane.add(lblCollegeId_1_1);
 		
 		JButton btnBack = new JButton("Back");
@@ -106,7 +107,7 @@ public class stdUNIkey extends JFrame {
 		JButton btnAddStudent = new JButton("Add Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				addStudent add = new addStudent();
+				addStudent add = new addStudent(table);
 				add.setVisible(true);
 				add.setLocationRelativeTo(null);
 				stdUNIkey.this.dispose();
@@ -115,5 +116,21 @@ public class stdUNIkey extends JFrame {
 		});
 		btnAddStudent.setBounds(233, 352, 142, 25);
 		contentPane.add(btnAddStudent);
+	}
+	void displaytable(JTable table){
+		
+		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+		
+		// empty the table first otherwise on every button click same data will repeatedly displayed
+		
+			tableModel.setRowCount(0);
+			for(studentinfo ninfos : s_info)
+			{
+				tableModel.addRow(new Object[] {ninfos.getUniID(),ninfos.getName(),ninfos.getStatus()});
+			}
+			
+			
+
+			
 	}
 }
