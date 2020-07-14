@@ -74,21 +74,21 @@ public class stdRegistration extends JFrame {
 	
 	
 	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					stdRegistration frame = new stdRegistration();
-//					frame.setVisible(true);
-//					frame.setLocationRelativeTo(null);
-//						
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					stdRegistration frame = new stdRegistration();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+						
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	public stdRegistration() {
 		
 		initialize();

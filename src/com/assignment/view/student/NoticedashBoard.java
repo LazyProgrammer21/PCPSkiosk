@@ -119,38 +119,46 @@ public class NoticedashBoard extends JInternalFrame {
 		JButton btnDeleteNotice = new JButton("Delete Notice");
 		btnDeleteNotice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		
 				try {
-					if(notietable.getSelectedRow()<0) {
+					
+					if(notietable.getSelectedRow()>0) {
+						
+						int row =notietable.getSelectedRow();
+						String id = (notietable.getModel().getValueAt(row, 0).toString());
+						int ids= Integer.parseInt(id);
+						
+					
+						noticeService ns = new noticeServiceimpl();
+						if(ns.deleteNotice(ids))
+						{
+							JOptionPane.showMessageDialog(null, "Deleted Success");
+							
+					
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Cannot Delete Data");
+						}
+					}
+					
+					else {
+						
+						
 						JOptionPane.showMessageDialog(null, "Select any row to proceed!");
-						
-					}
-					else {
-					
-					int row =notietable.getSelectedRow();
-					String id = (notietable.getModel().getValueAt(row, 0).toString());
-					int ids= Integer.parseInt(id);
+						}
 					
 				
-					noticeService ns = new noticeServiceimpl();
-					if(ns.deleteNotice(ids))
-					{
-						JOptionPane.showMessageDialog(null, "Deleted Success");
-						
-				
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "cannot delete Data");
-					}
-					}
+								
+					
+					
 				}
 				catch(Exception s) {
-					System.out.println("hello");
+					System.out.println("Hi");
 				}
-				
+		
+		
+//				displayTable(notietable);
 			
-				
-				displayTable(notietable);
-				
 				
 				
 				
@@ -178,6 +186,15 @@ public class NoticedashBoard extends JInternalFrame {
 		}
 		btnIssueNotice.setBounds(206, 253, 105, 25);
 		panel.add(btnIssueNotice);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayTable(notietable);
+			}
+		});
+		btnRefresh.setBounds(12, 252, 97, 25);
+		panel.add(btnRefresh);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);

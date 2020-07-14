@@ -32,10 +32,13 @@ public class noticeServiceimpl implements noticeService {
 				noticeinfo ninfo = new noticeinfo();
 				ninfo.setId(rs.getInt("ID"));
 				ninfo.setType(rs.getString("TYPE"));
+//				ninfo.setIssueDate(rs.getDate("SUBJECT"));
+//				ninfo.setIssueDate(rs.getDate("DESCRIPTION"));
 				ninfo.setIssueDate(rs.getDate("DATEISSUED"));
 				
-				
+			
 				n_info.add(ninfo);
+//				System.out.println(n_info);
 			}
 			
 		}
