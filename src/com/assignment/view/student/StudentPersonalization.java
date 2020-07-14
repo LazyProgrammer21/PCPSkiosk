@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -16,6 +18,7 @@ import javax.swing.JRadioButton;
 import com.assignment.model.studentinfo;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
+import com.assignment.view.Mainpage;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -37,9 +40,11 @@ public class StudentPersonalization extends JInternalFrame {
 	private JTextField zipcode;
 	private JTextField phone;
 	private JTextField totalnumbookevent;
+	private BigInteger id1;
 	studentService ss = new studentserviceImpl();
 
 	public StudentPersonalization() {
+	
 		initialize();
 	}
 
@@ -175,9 +180,8 @@ public class StudentPersonalization extends JInternalFrame {
 		JButton update = new JButton("Update");
 		update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				setValue(st_id);
-				BigInteger bg = BigInteger.valueOf(123);
-				ss.studentloginIn(bg, "Hello");
+				setValue();
+			
 			}
 		});
 		update.setBounds(588, 392, 117, 25);
@@ -215,11 +219,17 @@ public class StudentPersonalization extends JInternalFrame {
 		panel.add(comboBox_2);
 
 	}
-	private void setValue(int st_id) {
-		studentinfo ssinfo = new studentinfo();
-//		ss.getstudentDetailbyID(st_id);
+	private void setValue() {
+	
+		Mainpage mp = new Mainpage();
+	
+		List<studentinfo> s_info = ss.getstudentDetailbyID(mp.settheclzid());
+		System.out.println(s_info);
+	
+	
+	
 		
-		System.out.println(ss.getstudentDetailbyID(st_id));
+	
 		
 	}
 }

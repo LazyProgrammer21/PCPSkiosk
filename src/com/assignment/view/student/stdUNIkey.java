@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.assignment.model.noticeinfo;
+import com.assignment.model.studentinfo;
 import com.assignment.service.studentService;
 import com.assignment.service.studentserviceImpl;
 
@@ -18,6 +19,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
@@ -30,6 +34,7 @@ public class stdUNIkey extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	studentService ss = new studentserviceImpl();
+	List<studentinfo> s_info= ss.getdatafromstudentadminrecord();
 
 	/**
 	 * Launch the application.
@@ -75,20 +80,9 @@ public class stdUNIkey extends JFrame {
 				{null, null, null},
 			},
 			new String[] {
-				"College ID", "Student Name", "UniversityID"
+				"UniversityID", "Sudent Name", "Status"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				true, true, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(102);
 		table.getColumnModel().getColumn(0).setMinWidth(42);
 		table.getColumnModel().getColumn(1).setPreferredWidth(137);
@@ -113,7 +107,7 @@ public class stdUNIkey extends JFrame {
 		JButton btnAddStudent = new JButton("Add Student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				addStudent add = new addStudent();
+				addStudent add = new addStudent(table);
 				add.setVisible(true);
 				add.setLocationRelativeTo(null);
 				stdUNIkey.this.dispose();
@@ -129,15 +123,14 @@ public class stdUNIkey extends JFrame {
 		
 		// empty the table first otherwise on every button click same data will repeatedly displayed
 		
-		tableModel.setRowCount(0);
-		String datas=ss.getdatafromstudentadminrecord_clzid();
-		String[] splitdata = datas.split("@@concat@@");
-		
-		
-		
-		for(String x:splitdata )
-		{
-			tableModel.addRow(new Object[] {x.toString(),x.toString(),x.toString()});
-		}
+			tableModel.setRowCount(0);
+			for(studentinfo ninfos : s_info)
+			{
+				tableModel.addRow(new Object[] {ninfos.getUniID(),ninfos.getName(),ninfos.getStatus()});
+			}
+			
+			
+
+			
 	}
 }

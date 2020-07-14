@@ -32,19 +32,18 @@ public class noticeServiceimpl implements noticeService {
 				noticeinfo ninfo = new noticeinfo();
 				ninfo.setId(rs.getInt("ID"));
 				ninfo.setType(rs.getString("TYPE"));
-//				ninfo.setIssueDate(rs.getDate("SUBJECT"));
-//				ninfo.setIssueDate(rs.getDate("DESCRIPTION"));
 				ninfo.setIssueDate(rs.getDate("DATEISSUED"));
 				
 			
 				n_info.add(ninfo);
-//				System.out.println(n_info);
+			
 			}
 			
 		}
 		catch(SQLException e) {
 			
 		}
+		System.out.println(n_info);
 		return n_info;
 	}
 
@@ -53,7 +52,7 @@ public class noticeServiceimpl implements noticeService {
 		String sql = "delete from noticeinfo where id ="+id;
 		try {
 			
-			Statement stmt = con.createStatement();
+			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.executeUpdate(sql);
 	
 		}

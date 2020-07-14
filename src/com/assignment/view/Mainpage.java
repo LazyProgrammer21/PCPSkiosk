@@ -52,6 +52,7 @@ public class Mainpage extends JFrame {
 	 private String uniid;
 	
 	 studentService ss = new studentserviceImpl();
+	 BigInteger bg=null;
 	
 
 	/**
@@ -244,7 +245,7 @@ public class Mainpage extends JFrame {
 				try {
 				try {
 					studentpage page;
-						BigInteger bg = new BigInteger(studentid.getText());
+						 bg = new BigInteger(studentid.getText());
 					if(isnumeric(studentid.getText())) {
 					if(ss.studentloginIn(bg, password.getText())) {
 						JOptionPane.showMessageDialog(null, "You are logged In");
@@ -255,7 +256,7 @@ public class Mainpage extends JFrame {
 						disposeMainpage();
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Invalid Username and Password");
+						JOptionPane.showMessageDialog(null, "Worng Username and Password");
 					}
 						
 						
@@ -276,9 +277,10 @@ public class Mainpage extends JFrame {
 					JOptionPane.showMessageDialog(null, "Try again!");
 					
 				}
+			
 				}
 				catch (Exception e) {
-				System.out.println("Hello");
+			
 				JOptionPane.showMessageDialog(null, "Try Again with valid Username and Password");
 				}
 				
@@ -395,7 +397,14 @@ public class Mainpage extends JFrame {
 		
 		return x;
 	}
+	public BigInteger settheclzid() {
+		
+		BigInteger bg = new BigInteger(studentid.getText());
+		System.out.println(bg);
+		return bg;
+
 	
+	}
 	
 
 	

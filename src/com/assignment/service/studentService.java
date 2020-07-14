@@ -13,9 +13,11 @@ public interface studentService {
 	long getuniIDdb(BigInteger id);
 	boolean updateAdmintable(int uniID);
 	boolean checkstatuscolumn_of_studentadminrecord(int checkid);
-	List<studentinfo> getstudentDetailbyID(int stdid);
+	List<studentinfo> getstudentDetailbyID(BigInteger stdid);
 	boolean studentloginIn(BigInteger clzid, String Password);
-	String getdatafromstudentadminrecord_clzid();
+
+	List<studentinfo> getdatafromstudentadminrecord();
+	
 
 
 }

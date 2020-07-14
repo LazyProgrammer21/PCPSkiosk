@@ -18,8 +18,13 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class StudentRecordAdmin extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -72,7 +77,12 @@ public class StudentRecordAdmin extends JInternalFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 115, 462, 148);
+		panel.add(scrollPane);
+		
 		table = new JTable();
+		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -81,7 +91,7 @@ public class StudentRecordAdmin extends JInternalFrame {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"Id", "Name", "Subject", "Level", "EventBooked"
+				"Id", "Name", "Subject", "Semester", "Section"
 			}
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(124);
@@ -89,8 +99,6 @@ public class StudentRecordAdmin extends JInternalFrame {
 		table.getColumnModel().getColumn(3).setPreferredWidth(101);
 		table.getColumnModel().getColumn(4).setPreferredWidth(114);
 		table.setBorder(new LineBorder(Color.BLACK));
-		table.setBounds(12, 142, 462, 121);
-		panel.add(table);
 		
 		JComboBox <String>comboBox_3 = new JComboBox<String>();
 		comboBox_3.setEditable(true);
@@ -110,31 +118,6 @@ public class StudentRecordAdmin extends JInternalFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setBounds(322, 28, 94, 25);
 		panel.add(btnNewButton);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblId.setBounds(12, 115, 27, 15);
-		panel.add(lblId);
-		
-		JLabel lblName = new JLabel("Name");
-		lblName.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblName.setBounds(72, 115, 64, 15);
-		panel.add(lblName);
-		
-		JLabel lblSubject = new JLabel("Subject");
-		lblSubject.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblSubject.setBounds(204, 115, 64, 15);
-		panel.add(lblSubject);
-		
-		JLabel lblLevel = new JLabel("Level");
-		lblLevel.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblLevel.setBounds(293, 115, 64, 15);
-		panel.add(lblLevel);
-		
-		JLabel lblEventBooked = new JLabel("EventBooked");
-		lblEventBooked.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblEventBooked.setBounds(369, 115, 94, 15);
-		panel.add(lblEventBooked);
 		
 		JLabel label_13 = new JLabel("");
 		label_13.setFont(new Font("Dialog", Font.BOLD, 14));

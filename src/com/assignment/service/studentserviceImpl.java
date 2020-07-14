@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import com.assignment.db.database;
 import com.assignment.model.noticeinfo;
 import com.assignment.model.studentinfo;
@@ -28,7 +31,7 @@ public class studentserviceImpl implements studentService{
 	@Override
 	public boolean newRegister(studentinfo student, int courseID, int semID, int sectionID) {
 		boolean x=false;
-		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,phone,passWord,courseID,semID,sectionID) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into studentinfo(clzID,Name,Email,DOB,Gender,Add_city,Add_state,zipCode,passWord,courseID,semID,sectionID,phone) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		   try 
 		   {
@@ -43,11 +46,13 @@ public class studentserviceImpl implements studentService{
 			   stmt.setString(6, student.getAdd_city());
 			   stmt.setString(7,student.getAdd_state());
 			   stmt.setString(8, student.getZipCode());
-			   stmt.setString(9, student.getPhone());
-			   stmt.setString(10, student.getPassWord());
-			   stmt.setInt(11, courseID);
-			   stmt.setInt(12, semID);
-			   stmt.setInt(13, sectionID);
+			   stmt.setString(9, student.getPassWord());
+			
+			   stmt.setInt(10, courseID);
+			   stmt.setInt(11, semID);
+			   stmt.setInt(12, sectionID);
+			
+			   stmt.setString(13, student.getPhone());
 			   
 			   stmt.execute();
 			   
@@ -153,19 +158,16 @@ public class studentserviceImpl implements studentService{
 		try {
 			String sql ="select STATUS from adminstudentrecord where uniID="+x;
 			
-			Statement st1 = con.createStatement();
-			ResultSet rrset = st1.executeQuery(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rrset = ps.executeQuery();
 			
 			rrset.next();
 	
 			String xu = rrset.getString("status");
 			if(xu.equals("Taken")) {
-				stv=true;
-			}
-			else if(xu.equals(null)) {
 				stv=false;
 			}
-			System.out.println(xu);
+		
 
 			
 		}
@@ -178,10 +180,27 @@ public class studentserviceImpl implements studentService{
 	
 	}
 	@Override
-	public List<studentinfo> getstudentDetailbyID(int stdid) {
-		
+	public List<studentinfo> getstudentDetailbyID(BigInteger stdid) {
+		//display===
 		List<studentinfo> st_info = new ArrayList<>();
-		String sql = "select * from studentinfo where clzID=?";
+		String sql = "select \r\n" + 
+				"studentinfo.clzid,studentinfo.name,subjectcourse.name,semester.semester,section.section\r\n" + 
+				"from \r\n" + 
+				"studentinfo\r\n" + 
+				"inner join \r\n" + 
+				"semester \r\n" + 
+				"on\r\n" + 
+				"studentinfo.semid=semester.semid\r\n" + 
+				"inner join\r\n" + 
+				"section\r\n" + 
+				"on\r\n" + 
+				"studentinfo.sectionid=section.sectionid\r\n" + 
+				"inner join\r\n" + 
+				"subjectcourse\r\n" + 
+				"on\r\n" + 
+				"studentinfo.courseid=subjectcourse.courseid\r\n" + 
+				"where \r\n" + 
+				"studentinfo.clzid=1810045100;";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -190,13 +209,13 @@ public class studentserviceImpl implements studentService{
 				studentinfo sinfo = new studentinfo();
 				BigInteger cid =  BigInteger.valueOf(rs.getInt("clzID"));
 				sinfo.setClzId(cid);
-				sinfo.setName(rs.getString(""));
-				sinfo.setEmail(rs.getString(""));
-				sinfo.setDob(rs.getDate(""));
-				sinfo.setGender(rs.getString(""));
-				sinfo.setAdd_city(rs.getString(""));
-				sinfo.setAdd_state(rs.getString(""));
-				sinfo.setZipCode(rs.getString(""));
+				sinfo.setName(rs.getString("NAME"));
+				sinfo.setEmail(rs.getString("EMAIL"));
+				sinfo.setDob(rs.getDate("DOB"));
+				sinfo.setGender(rs.getString("GENDER"));
+				sinfo.setAdd_city(rs.getString("ADD_CITY"));
+				sinfo.setAdd_state(rs.getString("ADD_STATE"));
+				sinfo.setZipCode(rs.getString("ZIPCODE"));
 				sinfo.setPassWord(rs.getString(""));
 				sinfo.setPhone(rs.getString(""));
 				st_info.add(sinfo);
@@ -225,33 +244,19 @@ public class studentserviceImpl implements studentService{
 		
 		String sql = "select clzID,passWord from studentinfo where clzID="+clzid;
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-//				if((clzid==BigInteger.valueOf(rs.getInt("clzID")))&&(rs.getString("passWord").equals(Password)))
-//				{
-//				rs.getInt("clzID");
-//				rs.getString("passWord");
-					System.out.println(rs.getInt("clzID"));
-					System.out.println(rs.getString("passWord"));
-//					System.out.println("helo");
-					x=true;
-//				}
-//				else {
-//					JOptionPane.showMessageDialog(null, "Invalid username");
-//					x=false;
-//				}
-				
-					
-				
-						
-				
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+
+			if(rs.getString("PASSWORD").equals(Password)) {
+				x=true;
 			}
 			
 			
 		}
 		catch(SQLException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
+			
 			
 		}
 		
@@ -259,41 +264,33 @@ public class studentserviceImpl implements studentService{
 
 	}
 	@Override
-	public String getdatafromstudentadminrecord_clzid() {
-		String concat="@@concat@@";
-		String datas="";
+	public List<studentinfo> getdatafromstudentadminrecord() {
+		List <studentinfo> datas = new ArrayList<>();
+
 	
 
-		String sql="select adminstudentrecord.uniid,studentinfo.clzid,adminstudentrecord.studentname from adminstudentrecord inner join studentinfo on studentinfo.name=adminstudentrecord.studentname";
+		String sql="select * from adminstudentrecord";
 		try {
-			Statement stmt = con.createStatement();
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				
-				
-				String data=Integer.toString(rs.getInt(1));
-				String data1=Integer.toString(rs.getInt(2));
-				String data2=rs.getString(3);
-				
-				datas = data+concat+data1+concat+data2;
-			}
-			
-			
+				studentinfo  s_info = new studentinfo();
+			s_info.setUniID(rs.getInt("UNIID"));
+			s_info.setName(rs.getString("STUDENTNAME"));
+			s_info.setStatus(rs.getString("STATUS"));
+				datas.add(s_info);
+		}
 		}
 		catch(SQLException sq) {
 			sq.printStackTrace();
 		}
 		
-		
-		
-		
-		System.out.println(datas);
+
 		return datas;
 	}
 
 
-	
-	
 
 
 

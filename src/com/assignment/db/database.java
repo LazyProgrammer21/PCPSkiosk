@@ -14,7 +14,7 @@ public class database {
 		try 
 		{
 			
-				
+//				return DriverManager.getConnection("jdbc:mysql://localhost:3306/pcpskiosk1?serverTimezone=UTC","root","");
 			    return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","SYSTEM","9865457708Ss@");
 			
 				
