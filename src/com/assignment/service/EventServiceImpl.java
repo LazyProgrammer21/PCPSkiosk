@@ -71,7 +71,6 @@ public class EventServiceImpl  implements EventService{
         ei.setEventDescription(description);
         ei.setEventOrganiser(organiser);
         ei.setEventVenue(venue);
-        ei.setRs(rs);
 
     }
     catch(Exception ex){
